@@ -1,0 +1,116 @@
+{
+	"name": "@alanscodelog/utils",
+	"description": "My utility functions and typescript types.",
+	"version": "0.0.0-semantically-released",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"babel:run": "npx babel-node --extensions \".ts,.js\" --",
+
+		"build:babel": "npx babel --extensions \".ts,.js\" src --out-dir dist --source-maps inline",
+		"build:watch": "npm run build:babel -- --watch",
+		"build:types": "npx tsc --project tsconfig.types.json",
+		"build": "npm run build:babel && npm run build:types",
+
+		"lint:eslint": "npx eslint \"src/**/*.ts\" \"tests/**/*.ts\" --max-warnings=0",
+		"lint:types": "npx tsc --noEmit --pretty",
+		"lint:commits": "npx commitlint --from master --to HEAD",
+		"lint": "npm run lint:types && npm run lint:eslint",
+
+		"coverage": "npm run test -- --coverage",
+		"coverage:dev": "npx http-server coverage/lcov-report --port=5000 & onchange -k -i \"jest.config.js\" --  npm run coverage -- --watch",
+
+		"test": "npx jest test --verbose --runInBand",
+		"test:debug": "node --inspect-brk node_modules/jest/bin/jest test --verbose --runInBand",
+		"test:inspect-errors": "set INSPECT_ERRORS=true && npx test",
+
+		"gen:exports": "npx indexit update",
+
+		"doc": "npx typedoc --options typedoc.config.js",
+		"doc:dev": "npx http-server docs --port=5001 & onchange -i \"src/**/*.ts\" \"typedoc.config.js\" -- npm run doc",
+
+		"audit:prod": "yarn audit --groups dependencies",
+		"prepare": "npm run build"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "npm run build:babel && npm run lint && npm run test -- --no-cache",
+			"pre-push": "npm run lint:commits"
+		}
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@types/node":"^14.0.11",
+
+		"semantic-release": "^17.0.8",
+		"@semantic-release/changelog": "^5.0.1",
+		"@semantic-release/commit-analyzer": "^8.0.1",
+		"@semantic-release/github": "^7.0.7",
+		"@semantic-release/npm": "^7.0.5",
+		"@semantic-release/release-notes-generator": "^9.0.1",
+		"conventional-changelog-conventionalcommits": "^4.3.0",
+		"@alanscodelog/semantic-release-config": "^1.0.0",
+		"@alanscodelog/commitlint-config": "^1.0.0",
+		"commitlint": "^8.3.5",
+
+		"@babel/cli": "^7.10.1",
+		"@babel/core": "^7.10.2",
+		"@babel/node": "^7.10.1",
+		"@babel/preset-env": "^7.10.2",
+		"@babel/preset-typescript": "^7.10.1",
+		"@babel/plugin-proposal-export-namespace-from":"^7.10.1",
+		"@babel/plugin-proposal-class-properties": "^7.10.1",
+		"babel-plugin-module-resolver": "^4.0.0",
+		"@alanscodelog/babel-preset": "^1.0.2",
+		"core-js": "^3.6.5",
+
+		"eslint": "^7.1.0",
+		"eslint-import-resolver-typescript": "^2.0.0",
+		"eslint-plugin-import": "^2.20.2",
+		"eslint-plugin-simple-import-sort": "^5.0.3",
+		"@typescript-eslint/eslint-plugin": "^3.1.0",
+		"@typescript-eslint/parser": "^3.1.0",
+		"@alanscodelog/eslint-config": "^1.1.0",
+
+		"chai": "^4.2.0",
+		"jest": "^26.0.1",
+		"ts-jest": "^26.1.0",
+		"jest-watch-typeahead": "^0.6.0",
+		"@types/chai": "^4.2.11",
+		"@types/jest": "^25.2.3",
+
+		"typedoc": "^0.17.7",
+		"typedoc-neo-theme": "^1.0.8",
+		"typedoc-plugin-external-module-name": "^4.0.0",
+
+		"typescript": "^3.9.3",
+		"@alanscodelog/tsconfigs": "^2.0.1",
+
+		"husky": "^4.2.5",
+		"indexit": "^1.1.0",
+		"onchange": "^7.0.2",
+		"http-server": "^0.12.0"
+	},
+	"author": "Alan <alanscodelog@gmail.com>",
+	"repository": "https://github.com/alanscodelog/my-utils",
+	"license": "MIT",
+	"files": [
+		"src",
+		"dist"
+	],
+	"release": { "extends": [ "@alanscodelog/semantic-release-config" ] },
+	"commitlint": { "extends": [ "@alanscodelog" ] },
+	"babel": { "presets": ["@alanscodelog"] },
+	"browserslist":"> 0.5%, last 2 versions, not dead, not < 0.25%, not IE > 0, maintained node versions",
+	"engines": { "node": ">=10.0.0" },
+	"@comments": {
+		"scripts": {
+			"prepare": "Needed so that if we pull the package from git it will get built and installed properly.",
+			"test:inspect_errors":"For use with my inspect_error utility function from @alanscodelog/utils"
+		}
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
+
