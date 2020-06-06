@@ -8,6 +8,7 @@ const moduleNameMapper = pathsToModuleNameMapper(tsconfig.config.compilerOptions
 
 module.exports = {
 	preset: "ts-jest",
+	// only remove if the dom is needed
 	// this will remove jsdom, which has an issue with node 10 (https://github.com/jsdom/jsdom/issues/2961)
 	// it also makes tests faster
 	testEnvironment: "node",
@@ -47,7 +48,6 @@ module.exports = {
 	],
 	coveragePathIgnorePatterns: [
 		".*?\/index.ts",
-		// ".*?\/(types|retypes)\/.*.ts",
 	],
 	coverageDirectory: "coverage",
 };

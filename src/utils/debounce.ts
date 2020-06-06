@@ -1,6 +1,6 @@
 /** @packageDocumentation @module utils */
 
-import { AnyFunction } from "@/types"
+import type { AnyFunction } from "@/types"
 
 
 type Debounced<T extends (...args: any) => any> = ((...args: Parameters<T>) => void)

@@ -1,5 +1,5 @@
 /** @packageDocumentation @module types */
-import { ExpandRecord } from "./ExpandRecord"
+import type { ExpandRecord } from "./ExpandRecord"
 
 
 /**

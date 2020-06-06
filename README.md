@@ -1,4 +1,3 @@
-
 ![Docs](https://github.com/alanscodelog/my-utils/workflows/Docs/badge.svg)
 ![Build](https://github.com/alanscodelog/my-utils/workflows/Build/badge.svg)
 [![Release](https://github.com/alanscodelog/my-utils/workflows/Release/badge.svg)](https://www.npmjs.com/package/@alanscodelog/utils)

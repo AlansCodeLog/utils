@@ -14,7 +14,7 @@
 
 		"lint:eslint": "npx eslint \"src/**/*.ts\" \"tests/**/*.ts\" --max-warnings=0",
 		"lint:types": "npx tsc --noEmit --pretty",
-		"lint:commits": "npx commitlint --from master --to HEAD",
+		"lint:commits": "npx commitlint --from $(git rev-list HEAD --not --remotes | tail -1)^ --to HEAD --verbose",
 		"lint": "npm run lint:types && npm run lint:eslint",
 
 		"coverage": "npm run test -- --coverage",
@@ -24,10 +24,10 @@
 		"test:debug": "node --inspect-brk node_modules/jest/bin/jest test --verbose --runInBand",
 		"test:inspect-errors": "set INSPECT_ERRORS=true && npx test",
 
-		"gen:exports": "npx indexit update",
-
 		"doc": "npx typedoc --options typedoc.config.js",
 		"doc:dev": "npx http-server docs --port=5001 & onchange -i \"src/**/*.ts\" \"typedoc.config.js\" -- npm run doc",
+
+		"gen:exports": "npx indexit update",
 
 		"audit:prod": "yarn audit --groups dependencies",
 		"prepare": "npm run build"
@@ -40,7 +40,7 @@
 	},
 	"dependencies": {},
 	"devDependencies": {
-		"@types/node":"^14.0.11",
+		"@types/node": "^14.0.11",
 
 		"semantic-release": "^17.0.8",
 		"@semantic-release/changelog": "^5.0.1",
@@ -49,7 +49,7 @@
 		"@semantic-release/npm": "^7.0.5",
 		"@semantic-release/release-notes-generator": "^9.0.1",
 		"conventional-changelog-conventionalcommits": "^4.3.0",
-		"@alanscodelog/semantic-release-config": "^1.0.0",
+		"@alanscodelog/semantic-release-config": "^1.0.1",
 		"@alanscodelog/commitlint-config": "^1.0.0",
 		"commitlint": "^8.3.5",
 
@@ -58,7 +58,7 @@
 		"@babel/node": "^7.10.1",
 		"@babel/preset-env": "^7.10.2",
 		"@babel/preset-typescript": "^7.10.1",
-		"@babel/plugin-proposal-export-namespace-from":"^7.10.1",
+		"@babel/plugin-proposal-export-namespace-from": "^7.10.1",
 		"@babel/plugin-proposal-class-properties": "^7.10.1",
 		"babel-plugin-module-resolver": "^4.0.0",
 		"@alanscodelog/babel-preset": "^1.0.2",
@@ -84,7 +84,7 @@
 		"typedoc-plugin-external-module-name": "^4.0.0",
 
 		"typescript": "^3.9.3",
-		"@alanscodelog/tsconfigs": "^2.0.1",
+		"@alanscodelog/tsconfigs": "^2.1.1",
 
 		"husky": "^4.2.5",
 		"indexit": "^1.1.0",
@@ -105,8 +105,9 @@
 	"engines": { "node": ">=10.0.0" },
 	"@comments": {
 		"scripts": {
-			"prepare": "Needed so that if we pull the package from git it will get built and installed properly.",
-			"test:inspect_errors":"For use with my inspect_error utility function from @alanscodelog/utils"
+			"lint:commits": "Lints all unpushed commits in the active branch.",
+			"test:inspect_errors":"For use with my inspect_error utility function from @alanscodelog/utils",
+			"prepare": "Needed so that if we pull the package from git it will get built and installed properly."
 		}
 	},
 	"publishConfig": {

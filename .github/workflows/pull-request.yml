@@ -34,7 +34,7 @@ jobs:
         restore-keys: ${{ runner.os }}-node-${{ matrix.node }}-yarn-
     - run: "echo Yarn Cache Hit: ${{ steps.yarn-cache.outputs.cache-hit != 'true'}}"
 
-    - name: Build and Test (Node.js ${{ matrix.node-version }})
+    - name: Setting Up Node.js (${{ matrix.node-version }})
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
