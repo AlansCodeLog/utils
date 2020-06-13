@@ -1,4 +1,3 @@
-/* eslint-disable import/export */
 /* Manually Generated Index */
 
 export * from "./utils"

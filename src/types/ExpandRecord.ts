@@ -1,4 +1,5 @@
 /** @packageDocumentation @module types */
+
 /**
  * Expands a record type. By default expands the record to accept any string key.
 

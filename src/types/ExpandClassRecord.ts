@@ -1,6 +1,6 @@
 /** @packageDocumentation @module types */
-import type { ExpandRecord } from "./ExpandRecord"
 
+import type { ExpandRecord } from "./ExpandRecord"
 
 /**
  * Does {@link ExpandRecord} on a property of a class. Useful for permanently casting a class's key (e.g. entries) with additional keys or more permissive entry keys.
@@ -18,7 +18,7 @@ import type { ExpandRecord } from "./ExpandRecord"
  *
  * expanded. // a still gets suggested
  * expanded.anything // no error
- * ```ts
+ * ```
  */
 export type ExpandClassRecord<
 	TClass,

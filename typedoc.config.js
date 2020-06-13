@@ -18,10 +18,11 @@ module.exports = {
 		"**/*index.ts",
 	],
 	// prevents typedoc autodetecting installed plugins
-	// explitcly listing them makes things easier to debug
+	// explicitly listing them makes things easier to debug
 	plugin: [
 		"typedoc-neo-theme",
 		"typedoc-plugin-external-module-name",
+		"typedoc-plugin-param-names",
 	],
 	"source": [
 		{ "path": pkg.repository + "/tree/master/", "line": "L" }

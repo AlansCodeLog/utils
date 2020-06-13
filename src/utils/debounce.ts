@@ -4,6 +4,10 @@ import type { AnyFunction } from "@/types"
 
 
 type Debounced<T extends (...args: any) => any> = ((...args: Parameters<T>) => void)
+// #todo not sure why eslint is complaining??? env.node is set to true
+// eslint-disable-next-line no-undef
+type DebounceQueue = Record<string, { leading?: boolean, timeout?: NodeJS.Timeout | number }>
+
 /**
  * Returns a debounced function.
  *
@@ -23,7 +27,8 @@ type Debounced<T extends (...args: any) => any> = ((...args: Parameters<T>) => v
  *
  * ### Queues
  *
- * To use queues, either pass `{queues: true} or {queues: {}}`. You can also have multiple debounced functions share a queue (e.g. save and delete):
+ * To use queues, either pass `{ queues: true }` or `{ queues: {} }`. You can also have multiple debounced functions share a queue (e.g. save and delete):
+ *
  * ```ts
  * let my_shared_queue = {}
  * let save = debounce(_save, 1000, {
@@ -47,12 +52,14 @@ type Debounced<T extends (...args: any) => any> = ((...args: Parameters<T>) => v
  * ```
  *
  * So the following would debounce the callback based on the id the function was called with:
+ *
  * ```ts
  * function _save(id, some, other, arguments) {
  * 	//...
  * }
  * let save = debounce(_save, 1000)
  * // equivalent of debounce(_save, 1000, {index: 0})
+ * ```
  *
  * If you need to debounce based on something more complicated (a property of an argument or multiple arguments) index can be a function that returns the key to use.
  * ```ts
@@ -67,16 +74,22 @@ type Debounced<T extends (...args: any) => any> = ((...args: Parameters<T>) => v
  * ```
  *
  * @param callback The function to debounce.
+ *
  * @param wait How long to wait before calling the function after the last call. Defaults to 0
+ *
  * @param options optional
- * @param options.queues Whether to use queues, or queues object to use.
- * @param options.index The index number of the argument that will be used as the key to the queues if queues are enabled.
- * @param options.trailing Whether the call is delayed until the end of the timeout. Defaults to true.
- * @param options.leading Whether the first call is called immediately, and all subsequent calls ignored. Be sure to pass `trailing:false` if you only want a leading trigger.
- * @note If trailing and leading are both set to true, trailing will only fire if there were multiple calls before the wait period timed out.
+ *
+ * `options.queues` Whether to use queues, or queues object to use.
+ *
+ * `options.index` The index number of the argument that will be used as the key to the queues if queues are enabled.
+ *
+ * `options.trailing` Whether the call is delayed until the end of the timeout. Defaults to true.
+ *
+ * `options.leading` Whether the first call is called immediately, and all subsequent calls ignored, defaults to false. Note that if trailing and leading are both set to true, trailing will only fire if there were multiple calls before the wait period timed out.
+ *
  * @returns {function} The debounced function.
  */
-type DebounceQueue = Record<string, { leading?: boolean, timeout?: NodeJS.Timeout }>
+// #awaiting https://github.com/TypeStrong/typedoc/pull/621 + various variations of the same issue for vscode
 export function debounce<
 	T extends
 		AnyFunction =
@@ -86,8 +99,7 @@ export function debounce<
 		boolean | DebounceQueue
 >(callback: T, wait: number = 0,
 	{
-		// @ts-expect-error
-		queue = false,
+		queue = false as TQueued,
 		index = queue ? 0 : undefined,
 		leading = false,
 		trailing = true,
@@ -128,7 +140,7 @@ export function debounce<
 
 		if (queues[key]) {
 			queues[key].leading = false
-			clearTimeout(queues[key].timeout!)
+			clearTimeout(queues[key].timeout as number)
 		} else {
 			queues[key] = { leading: false }
 			if (leading) {

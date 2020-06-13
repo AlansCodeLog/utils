@@ -1,5 +1,5 @@
 /** @packageDocumentation @module types */
-/** @packageDocumentation @module types */
+
 /** Like `Partial<T>` but deep. */
 export type DeepPartial<T> = {
 	[P in keyof T]?:

@@ -1,5 +1,4 @@
 import { expect } from "chai"
-import { performance } from "perf_hooks"
 
 import { test_name } from "@/testing"
 import { debounce } from "@/utils/debounce"
