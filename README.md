@@ -26,7 +26,7 @@ import { keys, debounce, ... } from "@alanscodelog/utils"
 
 // keys({...})
 ```
- You can also import an entire set, although this is not reccomended because it makes it so the imports can't be treeshaking. Still it's possible because it's ocassionally useful for prototyping.
+ You can also import an entire set, although this is not recommended because it makes it so the imports can't be treeshaked. Still it's possible because it's occasionally useful for prototyping.
 
 ```ts
 import {utils, testing, retypes, types} from "@alanscodelog/utils"
