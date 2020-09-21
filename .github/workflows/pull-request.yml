@@ -44,7 +44,8 @@ jobs:
     - run: yarn install --frozen-lockfile
       if: "env.USE_LOCKFILE == 'true'"
 
-    - run: yarn install
+    # #awaiting --ignore engines is temporary because of "typedoc-plugin-param-names" having engines >=12
+    - run: yarn install --ignore-engines
       if: "env.USE_LOCKFILE == 'false'"
 
     - name: Commits to Lint
