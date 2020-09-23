@@ -1,12 +1,7 @@
 /** @packageDocumentation @module utils */
 
-import type { AnyFunction } from "@/types"
+import type { AnyFunction, Debounced, DebounceQueue } from "@/types"
 
-
-type Debounced<T extends (...args: any) => any> = ((...args: Parameters<T>) => void)
-// #todo not sure why eslint is complaining??? env.node is set to true
-// eslint-disable-next-line no-undef
-type DebounceQueue = Record<string, { leading?: boolean, timeout?: NodeJS.Timeout | number }>
 
 /**
  * Returns a debounced function.
@@ -62,6 +57,7 @@ type DebounceQueue = Record<string, { leading?: boolean, timeout?: NodeJS.Timeou
  * ```
  *
  * If you need to debounce based on something more complicated (a property of an argument or multiple arguments) index can be a function that returns the key to use.
+ *
  * ```ts
  * let save = debounce(_save, 1000, {
  * 	index: (arguments) => {
@@ -77,7 +73,7 @@ type DebounceQueue = Record<string, { leading?: boolean, timeout?: NodeJS.Timeou
  *
  * @param wait How long to wait before calling the function after the last call. Defaults to 0
  *
- * @param options optional
+ * @param options
  *
  * `options.queues` Whether to use queues, or queues object to use.
  *

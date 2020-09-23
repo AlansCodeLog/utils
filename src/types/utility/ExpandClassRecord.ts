@@ -8,7 +8,7 @@ import type { ExpandRecord } from "./ExpandRecord"
  * For example:
  *
  * ```ts
- * let obj = new MyClass([{key:"a"}])
+ * let obj = new Entries([{key:"a"}])
  * // obj.entries = {a: {key: "a"}}
  *
  * let expanded = obj as ExpandClassRecord<typeof obj, "entries", "b">
@@ -16,13 +16,17 @@ import type { ExpandRecord } from "./ExpandRecord"
  *
  * let permissive = obj as ExpandClassRecord<typeof obj, "entries">
  *
- * expanded. // a still gets suggested
- * expanded.anything // no error
+ * permissive.entries. // a still gets suggested
+ * permissive.entries.anything // no error
  * ```
  */
 export type ExpandClassRecord<
 	TClass,
 	TKey extends keyof TClass,
-	TAdd extends string | number = keyof TClass[TKey] & string,
-	TValue = TClass[TKey][keyof TClass[TKey]]
+	TAdd extends
+		string | number =
+		string,
+	TValue extends
+		TClass[TKey][keyof TClass[TKey]] | any =
+		TClass[TKey][keyof TClass[TKey]]
 > = TClass & { [T in TKey]: ExpandRecord<TClass[TKey], TAdd, TValue> }

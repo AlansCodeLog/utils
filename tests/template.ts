@@ -1,4 +1,5 @@
 import { expect } from "chai"
+import { expectType } from "ts-expect"
 
 import { test_name } from "@/testing"
 

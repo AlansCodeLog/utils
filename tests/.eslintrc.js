@@ -6,10 +6,13 @@ module.exports ={
 		// ./node_modules/@alanscodelog/eslint-config/tests.js
 		"@alanscodelog/eslint-config/tests",
 	],
-	// TOCONFIGURE
 	rules: {
+		// we need access to ../test_helpers
+		"no-restricted-imports": "off",
 		// I like to toggle these on occasionally, but otherwise keep them off
-		// "import/no-unused-modules": [ "warn", { unusedExports: true, missingExports: false /* interferes with ts */ } ],
-		// "@typescript-eslint/no-unnecessary-condition": [ "warn", { checkArrayPredicates: true, ignoreRhs: false /* ??? */ } ],
+		"import/no-unused-modules": [ "warn", { unusedExports: true, missingExports: false /* interferes with ts */ } ],
+		"@typescript-eslint/no-unnecessary-condition": [ "warn", {
+			allowConstantLoopConditions: true
+		} ],
 	}
 }
