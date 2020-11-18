@@ -16,7 +16,7 @@ export const keys = Object.keys as <
 		string | number | symbol =
 		any,
 	T extends
-		Record<any, any> =
-		Record<any, any>
->(o: T) => Keys<T, TKey>
+		Record<TKey, any> =
+		Record<TKey, any>
+>(o: T) => Keys<T>
 
