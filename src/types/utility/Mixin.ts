@@ -3,6 +3,8 @@
 import type { AnyFunction } from "./AnyFunction"
 import type { OrToAnd } from "./OrToAnd"
 
+
+type AnyClassForMixin = { __constructor: AnyFunction }
 /**
  * See {@link mixin `mixin`}
  *
@@ -12,16 +14,15 @@ import type { OrToAnd } from "./OrToAnd"
  * // NOT
  * interface Base extends Mixins<Mixin1 & Mixin2> {}
  * ```
-*/
+ */
 export type Mixin<
-	TClass extends { __constructor: AnyFunction } | any,
+	TClass extends AnyClassForMixin | any,
 	TParams extends
-		TClass extends { __constructor: AnyFunction } ? Parameters<TClass["__constructor"]> : [{}] =
-		TClass extends { __constructor: AnyFunction } ? Parameters<TClass["__constructor"]> : [{}],
-	TFirst extends TParams[0] = TParams[0]
+	TClass extends AnyClassForMixin ? Parameters<TClass["__constructor"]> : [{}] =
+	TClass extends AnyClassForMixin ? Parameters<TClass["__constructor"]> : [{}],
+	TFirst extends TParams[0] = TParams[0],
 > =
 	& Omit<OrToAnd<TClass>, "__constructor">
 	& {
-		// eslint-disable-next-line @typescript-eslint/naming-convention
 		__mixin(opts: OrToAnd<TFirst>): void
 	}

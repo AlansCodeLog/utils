@@ -28,7 +28,7 @@ export function push_if_not_in<
 		any[],
 	T extends
 		any[] | readonly any[] =
-		any[] | readonly any[]
+		any[] | readonly any[],
 >(mutated: TMutated, ...arrays: T[]): TMutated & T {
 	for (let array of arrays) {
 		for (let key of array) {

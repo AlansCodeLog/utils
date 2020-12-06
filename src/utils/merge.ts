@@ -32,7 +32,7 @@ export function merge<
 	TOthers extends
 		(Record<string, any> | any[] | readonly any[])[] =
 		(Record<string, any> | any[] | readonly any[])[],
-	TOther extends TOthers[number] = TOthers[number]
+	TOther extends TOthers[number] = TOthers[number],
 >(
 	base: TBase | undefined,
 	...others: TOthers

@@ -1,4 +1,4 @@
-import { expect } from "chai"
+import { expect } from "@tests/chai"
 import { expectType, TypeEqual } from "ts-expect"
 
 import { test_name } from "@/testing"
@@ -40,7 +40,7 @@ describe(test_name(), () => {
 		}
 		class Entries<
 			T extends Entry[],
-			TEntries = RecordFromArray<T, "id">
+			TEntries = RecordFromArray<T, "id">,
 
 		> {
 			entries!: TEntries

@@ -1,4 +1,4 @@
-import { expect } from "chai"
+import { expect } from "@tests/chai"
 import { performance } from "perf_hooks"
 
 import { test_name } from "@/testing"

@@ -28,5 +28,5 @@ export type ExpandClassRecord<
 		string,
 	TValue extends
 		TClass[TKey][keyof TClass[TKey]] | any =
-		TClass[TKey][keyof TClass[TKey]]
+		TClass[TKey][keyof TClass[TKey]],
 > = TClass & { [T in TKey]: ExpandRecord<TClass[TKey], TAdd, TValue> }

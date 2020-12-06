@@ -13,9 +13,9 @@ export function walk<
 	TSave extends true | false = false,
 	TRes extends
 		TSave extends true ? any : undefined =
-		TSave extends true ? any : undefined
+		TSave extends true ? any : undefined,
 >(
-	obj: object | any[],
+	obj: any | any[],
 	walker: (el: any) => undefined | any,
 	{
 		save = false as TSave,
@@ -29,7 +29,7 @@ export function walk<
 	} = {},
 ): TRes {
 	// eslint-disable-next-line prefer-rest-params
-	let is_recursive_call = arguments[3] || false // private parameter
+	let is_recursive_call = arguments[3] as boolean || false // private parameter
 	// eslint-disable-next-line prefer-rest-params
 	let opts = arguments[2] // minor optimization to re-use the options object
 

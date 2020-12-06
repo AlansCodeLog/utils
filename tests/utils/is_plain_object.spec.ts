@@ -1,4 +1,4 @@
-import { expect } from "chai"
+import { expect } from "@tests/chai"
 
 import { test_name } from "@/testing"
 import { is_plain_object } from "@/utils"

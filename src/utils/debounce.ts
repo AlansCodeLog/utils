@@ -92,7 +92,7 @@ export function debounce<
 		AnyFunction,
 	TQueued extends
 		boolean | DebounceQueue =
-		boolean | DebounceQueue
+		boolean | DebounceQueue,
 >(callback: T, wait: number = 0,
 	{
 		queue = false as TQueued,

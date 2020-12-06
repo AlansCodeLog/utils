@@ -25,7 +25,7 @@ export function override<
 	TOthers extends
 		(Record<string, any>)[] =
 		(Record<string, any>)[],
-	TOther extends TOthers[number] = TOthers[number]
+	TOther extends TOthers[number] = TOthers[number],
 >(
 	base: TBase,
 	...overrides: TOthers

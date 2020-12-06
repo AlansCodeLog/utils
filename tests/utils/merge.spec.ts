@@ -1,9 +1,8 @@
-import { expect } from "chai"
+import { expect } from "@tests/chai"
+import { complex_obj } from "@tests/test_helpers/constants"
 
 import { inspect_error, test_name } from "@/testing"
 import { merge } from "@/utils"
-
-import { complex_obj } from "../test_helpers/constants"
 
 
 describe(test_name(), () => {

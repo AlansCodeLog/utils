@@ -1,12 +1,11 @@
-import { expect } from "chai"
+import { expect } from "@tests/chai"
+import { complex_obj } from "@tests/test_helpers/constants"
 
 import { test_name } from "@/testing"
 import { crop, pretty, strip_indent, trim_lines } from "@/utils"
 
-import { complex_obj } from "../test_helpers/constants"
 
-
-const test1 = (...args1: any) => (...args2: any) => console.log(args1, args2)
+const test1 = (...args1: any) => (...args2: any) => { console.log(args1, args2) }
 test1`one${undefined}`
 
 

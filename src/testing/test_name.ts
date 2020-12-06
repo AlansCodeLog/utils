@@ -31,7 +31,6 @@ import { escape } from "@/utils"
  *
  * It will throw if it can't find a test name.
  */
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function test_name({ nest = true, __filename }: { nest?: boolean, __filename?: string } = {}, sep: string = path.sep): string {
 	sep = path.sep === "\\" ? "\\\\" : "/"
 	let regex = `${escape(path.resolve(process.cwd()))}${sep}(test|tests)${sep}`

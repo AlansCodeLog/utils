@@ -39,7 +39,7 @@ export function readable(
 function default_stringify(val: any): string {
 	if (Array.isArray(val)) return is_empty(val) ? "[]" : "[...]"
 	if (typeof val === "object" && val !== null) {
-		if (val.constructor && val.constructor.name !== "Object") return `${val.constructor.name} instance`
+		if (val.constructor?.name !== "Object") return `${val.constructor.name} instance`
 		return is_empty(keys(val)) ? "{}" : "{...}"
 	}
 	if (typeof val === "function") return val.name === "" ? "anonymous function" : `${val.name} function`

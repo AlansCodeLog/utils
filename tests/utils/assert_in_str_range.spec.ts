@@ -1,4 +1,4 @@
-import { expect } from "chai"
+import { expect } from "@tests/chai"
 
 import { inspect_error, test_name } from "@/testing"
 import { assert_in_str_range } from "@/utils/assert_in_str_range"

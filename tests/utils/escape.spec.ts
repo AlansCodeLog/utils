@@ -1,4 +1,4 @@
-import { expect } from "chai"
+import { expect } from "@tests/chai"
 
 import { test_name } from "@/testing"
 import { escape } from "@/utils"

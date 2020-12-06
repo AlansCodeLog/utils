@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/unbound-method */
-import { expect } from "chai"
+import { expect } from "@tests/chai"
 import { expectType, TypeEqual } from "ts-expect"
 
 import { inspect_error, test_name } from "@/testing"

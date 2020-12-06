@@ -66,7 +66,7 @@ export function multisplice<
 		MULTISPLICE_ITEM,
 	TItems extends
 		TInsert extends MULTISPLICE_ITEM.SINGLE ? TArray[number] : TArray[number][] =
-		TInsert extends MULTISPLICE_ITEM.SINGLE ? TArray[number] : TArray[number][]
+		TInsert extends MULTISPLICE_ITEM.SINGLE ? TArray[number] : TArray[number][],
 >(
 	array: TArray,
 	indexes: number | number[],
@@ -152,5 +152,5 @@ export enum MULTISPLICE_ITEM {
 	 * Same as `MATCH_INDEX` but the length of the items array doesn't have to match.
 	 * e.g. insert `[1,2]` at positions `[0,1,2]` in array `[1,2,3]  = [1, 1, 2, 2, 3]`
 	 */
-	MATCH_INDEX_LOOSE = "MATCH_INDEX_LOOSE"
+	MATCH_INDEX_LOOSE = "MATCH_INDEX_LOOSE",
 }

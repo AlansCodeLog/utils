@@ -1,4 +1,4 @@
-import { expect } from "chai"
+import { expect } from "@tests/chai"
 import path from "path"
 
 import { inspect_error, test_name } from "@/testing"
@@ -13,14 +13,12 @@ describe(test_name(), () => {
 	})
 	// note for these two, their return varies depending on where the test is running, but if they're equal we can be sure they're working without having to mock path.sep
 	it("works with windows paths", () => {
-		// eslint-disable-next-line @typescript-eslint/unbound-method
 		let cwd = process.cwd
 		process.cwd = () => "c:\\some-project"
 		expect(test_name({ __filename: `c:\\some-project\\test\\testing\\test_name.spec.ts` })).to.equal(`testing${path.sep}test_name`)
 		process.cwd = cwd
 	})
 	it("works with unix paths", () => {
-		// eslint-disable-next-line @typescript-eslint/unbound-method
 		let cwd = process.cwd
 		process.cwd = () => "/c/some-project"
 		expect(test_name({ __filename: `/c/some-project/test/testing/test_name.spec.ts` })).to.equal(`testing${path.sep}test_name`)

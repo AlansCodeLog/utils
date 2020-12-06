@@ -7,25 +7,21 @@
 	"scripts": {
 		"babel:run": "npx babel-node --extensions \".ts,.js\" --",
 		"babel:run:dev": "npx onchange -i \"src/**/*.ts\" -- npx babel-node --extensions \".ts,.js\" --",
-
 		"build:babel": "npx babel --extensions \".ts,.js\" src --out-dir dist --source-maps inline",
 		"build:watch": "npm run build:babel -- --watch",
 		"build:clean": "rm -rf dist && npm run build",
 		"build:types": "npx tsc -p tsconfig.types.json && npx dts-alias -p tsconfig.types.json",
 		"build": "npm run build:babel && npm run build:types",
 
-		"lint:eslint": "npx eslint --max-warnings=0 --report-unused-disable-directives",
+		"lint:eslint": "npx eslint \"{src,tests}/**/*.{js,ts}\" \"*.{js,ts}\" --max-warnings=0 --report-unused-disable-directives",
 		"lint:types": "npx tsc --noEmit --pretty",
 		"lint:commits": "npx commitlint --from $(git rev-list HEAD --not --remotes | tail -1)^ --to HEAD --verbose",
 		"lint": "npm run lint:types && npm run lint:eslint",
-
 		"coverage": "npm run test -- --coverage",
 		"coverage:dev": "npx http-server coverage/lcov-report --port=5000 & onchange -k -i \"jest.config.js\" --  npm run coverage -- --watch",
-
 		"test": "npx jest test --verbose",
 		"test:debug": "node --inspect-brk node_modules/jest/bin/jest test --verbose",
 		"test:inspect-errors": "set INSPECT_ERRORS=true && npx test",
-
 		"doc": "npx typedoc --options typedoc.config.js",
 		"doc:dev": "npx http-server docs --port=5001 & npx onchange -i \"src/**/*.ts\" \"typedoc.config.js\" -- npm run doc",
 		"doc:check-invalid": "npx typedoc --options typedoc.config.js --listInvalidSymbolLinks",
@@ -34,7 +30,6 @@
 		"actions:debug": "act -r -v -j build-only",
 
 		"gen:exports": "npx indexit update",
-
 		"audit:prod": "yarn audit --level moderate --groups dependencies",
 		"prepare": "npm run build"
 	},
@@ -93,7 +88,7 @@
 		"typedoc-plugin-param-names":"^1.1.0",
 
 		"typescript": "^4.1.2",
-		"@alanscodelog/tsconfigs": "^2.1.2",
+		"@alanscodelog/tsconfigs": "^2.2.1",
 		"dts-alias":"^1.0.3",
 
 		"husky": "^4.3.4",
@@ -116,7 +111,7 @@
 	"@comments": {
 		"scripts": {
 			"lint:commits": "Lints all unpushed commits in the active branch.",
-			"test:inspect_errors":"For use with my inspect_error utility function from @alanscodelog/utils",
+			"test:inspect_errors": "For use with my inspect_error utility function from @alanscodelog/utils",
 			"prepare": "Needed so that if we pull the package from git it will get built and installed properly.",
 			"actions:debug": "For debugging github build action locally with nektos/act. Requires act and docker. Note: Cache will never work locally because of https://github.com/nektos/act/issues/285"
 		}
@@ -124,6 +119,5 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"TEMPLATE:6dd30c4": "Ignore. Commit of the template this was created with / last updated to."
+	"TEMPLATE:5588fac": "Ignore. Commit of the template this was created with / last updated to."
 }
-

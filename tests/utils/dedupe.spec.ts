@@ -1,9 +1,8 @@
-import { expect } from "chai"
+import { expect } from "@tests/chai"
+import { complex_array } from "@tests/test_helpers/constants"
 
 import { test_name } from "@/testing"
 import { dedupe } from "@/utils"
-
-import { complex_array } from "../test_helpers/constants"
 
 
 describe(test_name(), () => {

@@ -1,9 +1,8 @@
-import { expect } from "chai"
+import { expect } from "@tests/chai"
+import { Animal } from "@tests/test_helpers/constants"
 
 import { test_name } from "@/testing"
 import { is_primitive } from "@/utils"
-
-import { Animal } from "../test_helpers/constants"
 
 
 function func(): void {}

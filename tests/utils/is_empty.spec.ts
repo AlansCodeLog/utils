@@ -1,4 +1,4 @@
-import { expect } from "chai"
+import { expect } from "@tests/chai"
 import { expectType, TypeEqual } from "ts-expect"
 
 import { keys } from "@/retypes/keys"

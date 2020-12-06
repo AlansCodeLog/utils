@@ -1,4 +1,4 @@
-import { expect } from "chai"
+import { expect } from "@tests/chai"
 import { expectType, TypeEqual } from "ts-expect"
 
 import { keys } from "@/retypes"
@@ -14,7 +14,7 @@ describe(test_name(), () => {
 		// should have no type errors
 		obj_keys.forEach(key => { obj[key] })
 		expectType<TypeEqual<typeof obj_keys, (keyof typeof obj)[]>>(true)
-		expectType<TypeEqual<typeof obj_keys, (string|number)[]>>(true)
+		expectType<TypeEqual<typeof obj_keys, (string | number)[]>>(true)
 		expectType<TypeEqual<Keys<typeof obj>, (keyof typeof obj)[]>>(true)
 	})
 	it("works", () => {
@@ -26,11 +26,11 @@ describe(test_name(), () => {
 		// should have no type errors
 		obj_keys.forEach(key => { obj[key] })
 		expectType<TypeEqual<typeof obj_keys, (keyof typeof obj)[]>>(true)
-		expectType<TypeEqual<typeof obj_keys, (0| "b" |typeof sym_a)[]>>(true)
+		expectType<TypeEqual<typeof obj_keys, (0 | "b" | typeof sym_a)[]>>(true)
 		expectType<TypeEqual<Keys<typeof obj>, (keyof typeof obj)[]>>(true)
 	})
 	it("works with Record<string, string>", () => {
-		let obj: {a: string} & Record<string, string> = { a: "a" }
+		let obj: { a: string } & Record<string, string> = { a: "a" }
 		let obj_keys = keys(obj)
 		// should have no type errors
 		obj_keys.forEach(key => { obj[key] })
@@ -39,7 +39,8 @@ describe(test_name(), () => {
 		expectType<TypeEqual<Keys<typeof obj>, (keyof typeof obj)[]>>(true)
 	})
 	it("does \"not\" work with {[key:string]}", () => {
-		let obj: {[key: string]: string} = { a: "a" }
+		// eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
+		let obj: { [key: string]: string } = { a: "a" }
 		let obj_keys = keys(obj)
 		// should have no type errors
 		obj_keys.forEach(key => { obj[key] })

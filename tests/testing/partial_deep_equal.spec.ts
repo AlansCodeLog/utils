@@ -1,8 +1,7 @@
+import { expect } from "@tests/chai"
 import { expectType } from "ts-expect"
 
 import { test_name } from "@/testing"
-
-import { expect } from "../chai"
 
 
 describe(test_name(), () => {

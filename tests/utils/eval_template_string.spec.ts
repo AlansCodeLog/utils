@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-base-to-string */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { expect } from "chai"
+import { expect } from "@tests/chai"
+import { complex_obj } from "@tests/test_helpers/constants"
 
 import { test_name } from "@/testing"
 import { eval_template_string } from "@/utils"
-
-import { complex_obj } from "../test_helpers/constants"
 
 
 let obj = { ...complex_obj, b: undefined }
