@@ -2,10 +2,11 @@ const pkg = require("./package.json")
 const fs = require("fs")
 const path = require("path")
 
+
 module.exports = {
-	readme: 'README.md',
+	readme: "README.md",
 	mode: "modules",
-	inputFiles: [ "src" ],
+	inputFiles: ["src"],
 	out: "docs",
 	excludeNotExported: true,
 	excludePrivate: true,
@@ -13,29 +14,29 @@ module.exports = {
 	ignoreCompilerErrors: true,
 	theme: "./node_modules/typedoc-neo-theme/bin/default",
 	exclude: [
-		"tests/**/*",
 		// not excluding index files causes problems
 		"**/*index.ts",
 	],
+	source: [{
+		path: `${pkg.repository.url}/tree/master/`,
+		line: "L",
+	}],
 	// prevents typedoc autodetecting installed plugins
-	// explicitly listing them makes things easier to debug
+	// explicity listing them makes things easier to debug
 	plugin: [
 		"typedoc-neo-theme",
 		"typedoc-plugin-external-module-name",
 		"typedoc-plugin-param-names",
 	],
-	"source": [
-		{ "path": pkg.repository + "/tree/master/", "line": "L" }
-	],
-	//topbar
-	"links": [
-		{ "label": "Repository", "url": pkg.repository },
-		{ "label": "Issues", "url": pkg.repository + "/issues" }
+	// topbar
+	links: [
+		{ label: "Repository", url: pkg.repository },
+		{ label: "Issues", url: `${pkg.repository}/issues` },
 	],
 	// creates an outline using all the top level directories in the src folder
 	outline: [
 		fs.readdirSync("src")
 			.filter(dir => fs.statSync(path.join("src", dir)).isDirectory())
-			.reduce((obj, curr) => { obj[ curr ] = curr; return obj }, {})
-	]
-};
+			.reduce((obj, curr) => { obj[curr] = curr; return obj }, {}),
+	],
+}
