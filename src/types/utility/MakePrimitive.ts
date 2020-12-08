@@ -1,3 +1,4 @@
+/** @packageDocumentation @module types */
 /**
  * Converts a literal type back to a "primitive" (i.e. collective type).
  *
@@ -8,7 +9,7 @@
  *
  * Can optionally ignore booleans by passing false to the second type parameter.
  */
-export type Primitive<T, TIgnoreBooleans extends boolean = false> =
+export type MakePrimitive<T, TIgnoreBooleans extends boolean = false> =
 	T extends string
 	? string
 	: T extends number

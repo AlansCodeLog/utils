@@ -57,6 +57,8 @@ jobs:
 
     - run: yarn build
 
+    - run: yarn lint:eslint # tests command will lint types
+
     - run: yarn test
 
     - name: Release

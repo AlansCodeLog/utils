@@ -1,8 +1,7 @@
-import { expect } from "@tests/chai"
-
 import { test_name } from "@/testing"
 import type { ErrorW } from "@/types"
 import { run } from "@/utils/run"
+import { expect } from "@tests/chai"
 
 
 describe(test_name(), () => {

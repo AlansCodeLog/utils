@@ -1,8 +1,6 @@
-import { expect } from "@tests/chai"
-import { expectType, TypeEqual } from "ts-expect"
-
-import { test_name } from "@/testing"
+import { expect_type, test_name } from "@/testing"
 import { is_blank } from "@/utils"
+import { expect } from "@tests/chai"
 
 
 describe(test_name(), () => {
@@ -14,8 +12,8 @@ describe(test_name(), () => {
 	it("types work", () => {
 		let value = ""
 		let test = is_blank("")
-		expectType<TypeEqual<typeof test, boolean>>(true)
-		if (is_blank(value)) { expectType<TypeEqual<typeof value, "">>(true) }
-		if (!is_blank(value)) { expectType<TypeEqual<typeof value, string>>(true) }
+		expect_type<typeof test, "===", boolean>(true)
+		if (is_blank(value)) { expect_type<typeof value, "===", "">(true) }
+		if (!is_blank(value)) { expect_type<typeof value, "===", string>(true) }
 	})
 })

@@ -1,7 +1,6 @@
-import { expect } from "@tests/chai"
-
 import { inspect_error, test_name } from "@/testing"
 import { insert } from "@/utils"
+import { expect } from "@tests/chai"
 
 
 function naive_insert(str: string, into_str: string, range: number | [number, number]): string {

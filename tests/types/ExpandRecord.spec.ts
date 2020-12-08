@@ -1,7 +1,4 @@
-import { expect } from "@tests/chai"
-import { expectType, TypeEqual } from "ts-expect"
-
-import { test_name } from "@/testing"
+import { expect_type, test_name } from "@/testing"
 import type { ExpandClassRecord, ExpandRecord, RecordFromArray } from "@/types"
 
 
@@ -22,27 +19,27 @@ let entries = instance.entries
 describe(test_name(), () => {
 	it("works with specific keys", () => {
 		let cast_entries = (entries as ExpandRecord<typeof entries, "c" | "d" | "e">)
-		expectType<TypeEqual<typeof cast_entries.c.id, string>>(true)
-		expectType<TypeEqual<typeof cast_entries.d.id, string>>(true)
-		expectType<TypeEqual<typeof cast_entries.e.id, string>>(true)
+		expect_type<typeof cast_entries.c.id, "===", string>(true)
+		expect_type<typeof cast_entries.d.id, "===", string>(true)
+		expect_type<typeof cast_entries.e.id, "===", string>(true)
 	})
 	it("works with string keys", () => {
 		let cast_entries = (entries as ExpandRecord<typeof entries>)
-		expectType<TypeEqual<typeof cast_entries.c.id, string>>(true)
-		expectType<TypeEqual<typeof cast_entries[string]["id"], string>>(true)
+		expect_type<typeof cast_entries.c.id, "===", string>(true)
+		expect_type<typeof cast_entries[string]["id"], "===", string>(true)
 	})
 	it("works with classes (ExpandClassRecord)", () => {
 		let expanded = instance as ExpandClassRecord<typeof instance, "entries", "c">
-		expectType<TypeEqual<typeof expanded.entries, {
+		expect_type<typeof expanded.entries, "===", {
 			a: {id: string}
 			b: {id: string}
 			c: {id: string}
-		}>>(true)
+		}>(true)
 		let permissive = instance as ExpandClassRecord<typeof instance, "entries">
-		expectType<TypeEqual<typeof permissive.entries, {
+		expect_type<typeof permissive.entries, "===", {
 			a: {id: string}
 			b: {id: string}
 			[key: string]: {id: string}
-		}>>(true)
+		}>(true)
 	})
 })

@@ -1,8 +1,7 @@
-import { expect } from "@tests/chai"
-
 import { inspect_error, test_name } from "@/testing"
 import { multisplice } from "@/utils"
 import { MULTISPLICE_ITEM } from "@/utils/multisplice"
+import { expect } from "@tests/chai"
 
 
 describe(test_name(), () => {

@@ -1,6 +1,6 @@
 /** @packageDocumentation @module types */
 
-import type { Primitive } from "@/types"
+import type { MakePrimitive } from "@/types"
 
 /**
  * Creates a map from an array (of objects) T, keyed by it's object's TKey property value, with values of TValue.
@@ -83,12 +83,12 @@ export type RecordFromArray<
 		? {
 			[KV in keyof TValue]:
 				KV extends TKey
-					? Primitive<TValue[KV]>
+					? MakePrimitive<TValue[KV]>
 					: TValue[KV]
 		} & {
 			[KE in keyof TExtra]:
 				KE extends TKey
-					? Primitive<TValue[KE]>
+					? MakePrimitive<TValue[KE]>
 					: TExtra[KE]
 		}
 		: never

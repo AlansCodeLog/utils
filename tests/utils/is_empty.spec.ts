@@ -1,9 +1,7 @@
-import { expect } from "@tests/chai"
-import { expectType, TypeEqual } from "ts-expect"
-
 import { keys } from "@/retypes/keys"
-import { test_name } from "@/testing"
+import { expect_type, test_name } from "@/testing"
 import { is_empty } from "@/utils"
+import { expect } from "@tests/chai"
 
 
 describe(test_name(), () => {
@@ -16,33 +14,33 @@ describe(test_name(), () => {
 	describe("types work", () => {
 		it("value: any[] = [] ", () => {
 			let value: any[] = []
-			if (is_empty(value)) expectType<TypeEqual<typeof value, []>>(true)
-			else expectType<TypeEqual<typeof value, any[]>>(true)
+			if (is_empty(value)) expect_type<typeof value, "===", []>(true)
+			else expect_type<typeof value, "===", any[]>(true)
 		})
 		it("value = [\"A\"]", () => {
 			let value = ["A"]
-			if (is_empty(value)) expectType<TypeEqual<typeof value, []>>(true)
-			else expectType<TypeEqual<typeof value, string[]>>(true)
+			if (is_empty(value)) expect_type<typeof value, "===", []>(true)
+			else expect_type<typeof value, "===", string[]>(true)
 		})
 		it("value: [] = []", () => {
 			let value: [] = []
-			if (is_empty(value)) expectType<TypeEqual<typeof value, []>>(true)
-			else expectType<TypeEqual<typeof value, never>>(true)
+			if (is_empty(value)) expect_type<typeof value, "===", []>(true)
+			else expect_type<typeof value, "===", never>(true)
 		})
 		it("value:  [\"A\"] = [\"A\"]", () => {
 			let value: ["A"] = ["A"]
-			if (is_empty(value)) expectType<TypeEqual<typeof value, never>>(true)
-			else expectType<TypeEqual<typeof value, ["A"]>>(true)
+			if (is_empty(value)) expect_type<typeof value, "===", never>(true)
+			else expect_type<typeof value, "===", ["A"]>(true)
 		})
 		it("value = [] as const", () => {
 			let value = [] as const
-			if (is_empty(value)) expectType<TypeEqual<typeof value, readonly []>>(true)
-			else expectType<TypeEqual<typeof value, never>>(true)
+			if (is_empty(value)) expect_type<typeof value, "===", readonly []>(true)
+			else expect_type<typeof value, "===", never>(true)
 		})
 		it("value = [\"A\"] as const", () => {
 			let value = ["A"] as const
-			if (is_empty(value)) expectType<TypeEqual<typeof value, never>>(true)
-			else expectType<TypeEqual<typeof value, readonly ["A"]>>(true)
+			if (is_empty(value)) expect_type<typeof value, "===", never>(true)
+			else expect_type<typeof value, "===", readonly ["A"]>(true)
 		})
 	})
 })

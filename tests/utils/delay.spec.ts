@@ -1,8 +1,6 @@
-import { expect } from "@tests/chai"
-import { performance } from "perf_hooks"
-
 import { test_name } from "@/testing"
 import { delay } from "@/utils"
+import { expect } from "@tests/chai"
 
 
 describe(test_name(), () => {

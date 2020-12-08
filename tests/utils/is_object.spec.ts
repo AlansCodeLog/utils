@@ -1,7 +1,6 @@
-import { expect } from "@tests/chai"
-
 import { test_name } from "@/testing"
 import { is_object } from "@/utils"
+import { expect } from "@tests/chai"
 
 
 class Animal { }

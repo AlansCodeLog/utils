@@ -1,7 +1,4 @@
-import { expect } from "@tests/chai"
-import { expectType, TypeEqual } from "ts-expect"
-
-import { test_name } from "@/testing"
+import { expect_type, test_name } from "@/testing"
 import type { RecordFromArray } from "@/types"
 
 
@@ -9,29 +6,29 @@ describe(test_name(), () => {
 	it("words with types", () => {
 		type Arr = [{ id: "a" }, { id: "b" }]
 		type Entries = RecordFromArray<Arr, "id">
-		expectType<TypeEqual<Entries["a"]["id"], string>>(true)
-		expectType<TypeEqual<Entries, {
+		expect_type<Entries["a"]["id"], "===", string>(true)
+		expect_type<Entries, "===", {
 			a: { id: string }
 			b: { id: string }
-		}>>(true)
+		}>(true)
 	})
 	it("works with overrides", () => {
 		type Arr = [{ id: "a" }, { id: "b" }]
 		type Entries = RecordFromArray<Arr, "id", { other: string }>
-		expectType<TypeEqual<Entries["a"], {id: string, other: string}>>(true)
-		expectType<TypeEqual<Entries, {
+		expect_type<Entries["a"], "===", {id: string, other: string}>(true)
+		expect_type<Entries, "===", {
 			a: { id: string, other: string }
 			b: { id: string, other: string }
-		}>>(true)
+		}>(true)
 	})
 	it("incorrect override has no effect", () => {
 		type Arr = [{ id: "a" }, { id: "b" }]
 		type Entries = RecordFromArray<Arr, "id", { other: string, id: number }>
-		expectType<TypeEqual<Entries["a"], {id: string, other: string}>>(true)
-		expectType<TypeEqual<Entries, {
+		expect_type<Entries["a"], "===", {id: string, other: string}>(true)
+		expect_type<Entries, "===", {
 			a: { id: string, other: string }
 			b: { id: string, other: string }
-		}>>(true)
+		}>(true)
 	})
 	it("works with classes", () => {
 		class Entry<TName extends string = string> {
@@ -47,11 +44,11 @@ describe(test_name(), () => {
 			constructor(_obj: T) { }
 		}
 		let entries = new Entries([new Entry("a"), new Entry("b")]).entries
-		expectType<TypeEqual<typeof entries.a.id, string>>(true)
-		expectType<TypeEqual<typeof entries, {
+		expect_type<typeof entries.a.id, "===", string>(true)
+		expect_type<typeof entries, "===", {
 			a: Entry<string>
 			b: Entry<string>
-		}>>(true)
+		}>(true)
 	})
 	it("works with functions", () => {
 		function entry<TName extends string = string>(_id: TName): { id: TName } {
@@ -61,10 +58,10 @@ describe(test_name(), () => {
 			return undefined as any
 		}
 		let entries = record([entry("a"), entry("b")])
-		expectType<TypeEqual<typeof entries.a.id, string>>(true)
-		expectType<TypeEqual<typeof entries, {
+		expect_type<typeof entries.a.id, "===", string>(true)
+		expect_type<typeof entries, "===", {
 			a: { id: string }
 			b: { id: string }
-		}>>(true)
+		}>(true)
 	})
 })

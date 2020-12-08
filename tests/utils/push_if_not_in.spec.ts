@@ -1,7 +1,6 @@
-import { expect } from "@tests/chai"
-
 import { test_name } from "@/testing"
 import { push_if_not_in } from "@/utils"
+import { expect } from "@tests/chai"
 
 
 describe(test_name(), () => {

@@ -1,8 +1,6 @@
-import { expect } from "@tests/chai"
-import { expectType, TypeEqual } from "ts-expect"
-
-import { test_name } from "@/testing"
+import { expect_type, test_name } from "@/testing"
 import { is_defined } from "@/utils"
+import { expect } from "@tests/chai"
 
 
 describe(test_name(), () => {
@@ -15,8 +13,8 @@ describe(test_name(), () => {
 	it("types work", () => {
 		let value
 		let test = is_defined(value)
-		expectType<TypeEqual<typeof test, boolean>>(true)
-		if (is_defined(value)) { expectType<TypeEqual<typeof value, undefined>>(true) }
-		if (!is_defined(value)) { expectType<TypeEqual<never, typeof value>>(true) }
+		expect_type<typeof test, "===", boolean>(true)
+		if (is_defined(value)) { expect_type<typeof value, "===", undefined>(true) }
+		if (!is_defined(value)) { expect_type<never, "===", typeof value>(true) }
 	})
 })

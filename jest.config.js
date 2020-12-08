@@ -28,9 +28,11 @@ module.exports = {
 	collectCoverageFrom: [
 		"**/src/**/*.ts",
 		"!**/node_modules/**",
-		"!**/src/retypes/*.ts",
-		"!**/src/types/*.ts",
+		"!**/src/retypes/**/*",
+		"!**/src/types/**/*",
+		"!**/src/utils/browser_save_file.ts", // #future
 		"!**/src/testing/inspect_error.ts",
+		"!**/src/testing/expect_type.ts",
 	],
 	coveragePathIgnorePatterns: [
 		".*?/index.ts",

@@ -17,11 +17,14 @@
 		"lint:types": "npx tsc --noEmit --pretty",
 		"lint:commits": "npx commitlint --from $(git rev-list HEAD --not --remotes | tail -1)^ --to HEAD --verbose",
 		"lint": "npm run lint:types && npm run lint:eslint",
+
 		"coverage": "npm run test -- --coverage",
 		"coverage:dev": "npx http-server coverage/lcov-report --port=5000 & onchange -k -i \"jest.config.js\" --  npm run coverage -- --watch",
-		"test": "npx jest test --verbose",
+
+		"test": "npm run lint:types && npx jest test --verbose",
 		"test:debug": "node --inspect-brk node_modules/jest/bin/jest test --verbose",
 		"test:inspect-errors": "set INSPECT_ERRORS=true && npx test",
+
 		"doc": "npx typedoc --options typedoc.config.js",
 		"doc:dev": "npx http-server docs --port=5001 & npx onchange -i \"src/**/*.ts\" \"typedoc.config.js\" -- npm run doc",
 		"doc:check-invalid": "npx typedoc --options typedoc.config.js --listInvalidSymbolLinks",
@@ -80,7 +83,6 @@
 		"jest-watch-typeahead": "^0.6.1",
 		"@types/chai": "^4.2.14",
 		"@types/jest": "^26.0.16",
-		"ts-expect": "^1.1.0",
 
 		"typedoc": "^0.19.2",
 		"typedoc-neo-theme": "^1.0.10",
@@ -110,6 +112,7 @@
 	"engines": { "node": ">=10.0.0" },
 	"@comments": {
 		"scripts": {
+			"test": "Runs `lint:types` after so that we can test type assertions. See ./src/testing/expect_type.ts for more details.",
 			"lint:commits": "Lints all unpushed commits in the active branch.",
 			"test:inspect_errors": "For use with my inspect_error utility function from @alanscodelog/utils",
 			"prepare": "Needed so that if we pull the package from git it will get built and installed properly.",

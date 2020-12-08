@@ -1,9 +1,7 @@
-import { expect } from "@tests/chai"
-import { expectType, TypeEqual } from "ts-expect"
-
-import { inspect_error, test_name } from "@/testing"
+import { expect_type, inspect_error, test_name } from "@/testing"
 import type { Mixin } from "@/types"
 import { mixin } from "@/utils"
+import { expect } from "@tests/chai"
 
 
 class BaseIncorrect {
@@ -79,16 +77,16 @@ describe(test_name(), () => {
 	})
 	it("types work", () => {
 		type mixin_type = (opts: { mixin1: string } & { mixin2: number }) => void
-		expectType<TypeEqual<Base["__mixin"], mixin_type>>(true)
-		expectType<TypeEqual<Base["manually_initiated"], string>>(true)
-		expectType<TypeEqual<Base["manually_initiated2"], number>>(true)
+		expect_type<Base["__mixin"], "===", mixin_type>(true)
+		expect_type<Base["manually_initiated"], "===", string>(true)
+		expect_type<Base["manually_initiated2"], "===", number>(true)
 		// unfortunately this must be wrong
-		expectType<TypeEqual<Base["never_initiated"], string>>(true)
-		expectType<TypeEqual<Base["type"], string>>(true)
-		expectType<TypeEqual<Base["mixin_only"], () => void>>(true)
-		expectType<TypeEqual<Base["base_only"], () => void>>(true)
-		expectType<TypeEqual<Base["walk"], (str: string) => string>>(false)
-		expectType<TypeEqual<typeof Base["speak"], (str: string) => string>>(false)
+		expect_type<Base["never_initiated"], "===", string>(true)
+		expect_type<Base["type"], "===", string>(true)
+		expect_type<Base["mixin_only"], "===", () => void>(true)
+		expect_type<Base["base_only"], "===", () => void>(true)
+		expect_type<(str: string) => string, "==>", Base["walk"]>(false)
+		expect_type<(str: string) => string, "==>", typeof Base["speak"]>(false)
 	})
 	it("throws error if __mixin is defined on the base class", () => {
 		expect(inspect_error(() => {

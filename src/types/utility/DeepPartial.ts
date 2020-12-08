@@ -1,6 +1,6 @@
 /** @packageDocumentation @module types */
 
-/** Like `Partial<T>` but deep. */
+/** Like `Partial` but deep. */
 export type DeepPartial<T> = {
 	[P in keyof T]?:
 	T[P] extends (infer U)[]

@@ -1,9 +1,7 @@
-import { expect } from "@tests/chai"
-import { expectType, TypeEqual } from "ts-expect"
-
 import { keys } from "@/retypes"
-import { test_name } from "@/testing"
+import { expect_type, test_name } from "@/testing"
 import type { Keys } from "@/types"
+import { expect } from "@tests/chai"
 
 
 describe(test_name(), () => {
@@ -13,9 +11,9 @@ describe(test_name(), () => {
 		let obj_keys = keys(obj)
 		// should have no type errors
 		obj_keys.forEach(key => { obj[key] })
-		expectType<TypeEqual<typeof obj_keys, (keyof typeof obj)[]>>(true)
-		expectType<TypeEqual<typeof obj_keys, (string | number)[]>>(true)
-		expectType<TypeEqual<Keys<typeof obj>, (keyof typeof obj)[]>>(true)
+		expect_type<typeof obj_keys, "===", (keyof typeof obj)[]>(true)
+		expect_type<typeof obj_keys, "===", (string | number)[]>(true)
+		expect_type<Keys<typeof obj>, "===", (keyof typeof obj)[]>(true)
 	})
 	it("works", () => {
 		const sym_a: unique symbol = Symbol("a")
@@ -25,18 +23,18 @@ describe(test_name(), () => {
 		let obj_keys = keys(obj)
 		// should have no type errors
 		obj_keys.forEach(key => { obj[key] })
-		expectType<TypeEqual<typeof obj_keys, (keyof typeof obj)[]>>(true)
-		expectType<TypeEqual<typeof obj_keys, (0 | "b" | typeof sym_a)[]>>(true)
-		expectType<TypeEqual<Keys<typeof obj>, (keyof typeof obj)[]>>(true)
+		expect_type<typeof obj_keys, "===", (keyof typeof obj)[]>(true)
+		expect_type<typeof obj_keys, "===", (0 | "b" | typeof sym_a)[]>(true)
+		expect_type<Keys<typeof obj>, "===", (keyof typeof obj)[]>(true)
 	})
 	it("works with Record<string, string>", () => {
 		let obj: { a: string } & Record<string, string> = { a: "a" }
 		let obj_keys = keys(obj)
 		// should have no type errors
 		obj_keys.forEach(key => { obj[key] })
-		expectType<TypeEqual<typeof obj_keys, (keyof typeof obj)[]>>(true)
-		expectType<TypeEqual<typeof obj_keys, string[]>>(true)
-		expectType<TypeEqual<Keys<typeof obj>, (keyof typeof obj)[]>>(true)
+		expect_type<typeof obj_keys, "===", (keyof typeof obj)[]>(true)
+		expect_type<typeof obj_keys, "===", string[]>(true)
+		expect_type<Keys<typeof obj>, "===", (keyof typeof obj)[]>(true)
 	})
 	it("does \"not\" work with {[key:string]}", () => {
 		// eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
@@ -45,16 +43,16 @@ describe(test_name(), () => {
 		// should have no type errors
 		obj_keys.forEach(key => { obj[key] })
 
-		expectType<TypeEqual<typeof obj_keys, (keyof typeof obj)[]>>(true)
-		expectType<TypeEqual<typeof obj_keys, (string | number)[]>>(true)
-		expectType<TypeEqual<Keys<typeof obj>, (keyof typeof obj)[]>>(true)
+		expect_type<typeof obj_keys, "===", (keyof typeof obj)[]>(true)
+		expect_type<typeof obj_keys, "===", (string | number)[]>(true)
+		expect_type<Keys<typeof obj>, "===", (keyof typeof obj)[]>(true)
 
 		// force extract only strings
-		expectType<TypeEqual<Keys<typeof obj, string>, string[]>>(true)
+		expect_type<Keys<typeof obj, string>, "===", string[]>(true)
 
 		let obj_keys2 = keys<string>(obj)
 		obj_keys2.forEach(key => { obj[key] })
-		expectType<TypeEqual<typeof obj_keys2, string[]>>(true)
+		expect_type<typeof obj_keys2, "===", string[]>(true)
 	})
 	it("sort of works with arrays", () => {
 		let obj = ["a", "b", "c"]
@@ -62,7 +60,7 @@ describe(test_name(), () => {
 		// should have no type errors
 		obj_keys.forEach(key => { obj[key] })
 		expect(obj_keys).to.deep.equal(["0", "1", "2"])
-		expectType<TypeEqual<typeof obj_keys, number[]>>(true)
-		expectType<TypeEqual<Keys<typeof obj>, number[]>>(true)
+		expect_type<typeof obj_keys, "===", number[]>(true)
+		expect_type<Keys<typeof obj>, "===", number[]>(true)
 	})
 })

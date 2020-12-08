@@ -1,6 +1,5 @@
-import { expect } from "@tests/chai"
-
 import { inspect_error, test_name } from "@/testing"
+import { expect } from "@tests/chai"
 
 
 let original_warn = console.warn

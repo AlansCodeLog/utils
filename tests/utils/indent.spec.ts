@@ -1,8 +1,6 @@
-import { expect } from "@tests/chai"
-import { expectType } from "ts-expect"
-
 import { test_name } from "@/testing"
 import { crop, indent, pretty } from "@/utils"
+import { expect } from "@tests/chai"
 
 
 const obj = { a: "a", b: "b", c: "c" }
