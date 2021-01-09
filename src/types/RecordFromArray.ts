@@ -1,4 +1,5 @@
-/** @packageDocumentation @module types */
+import type { MakePrimitive } from "@/types"
+
 /**
  * Creates a map from an array (of objects) T, keyed by it's object's TKey property value, with values of TValue.
  *
@@ -6,67 +7,88 @@
  *
  *
  * ```ts
- * type obj = { prop: string }
- * type arr = [{ prop: "a" }, { prop: "b" }]
- * // @ts-ignore
- * type record = RecordFromArray<arr, "prop", obj>
+ * type Arr = [{ id: "a" }, { id: "b" }]
+ * type Entries = RecordFromArray<Arr, "id">
  *
  * ```
- * Record now autocompletes properly, e.g. `record.` suggests `a` and `b` because it's type looks like this:
+ * A variable of type `Entries` now autocompletes properly, e.g. `entries.` suggests `a` and `b` because it's type looks like this:
  *
  * ```ts
- * type record = {
- * 		a: {prop: string},
- * 		b: {prop: string}
+ * type Entries = {
+ * 		a: { id: string },
+ * 		b: { id: string }
  * }
  * ```
  *
- * It requires a `@ts-ignore` in this case (normally it would not) because we need to override the value type with `{ prop: string }` otherwise the value becomes a union of *all* the values for *each* value (e.g. `a`, `b` for each `a`,`b`.).
+ * The type could be made stricter (e.g. `a: {id: "a"}`) but this is usually inconvenient. So `TKey` is always turned into a primitive type.
  *
- * It's intended for more complex situations where you have some `entry`/`Entry` function/class with a generic for the key type that serves to "capture" it, otherwise we'd just get `Record<string, Entry>`. That's why in the example above a const array type is used (although it's not the same thing which is another reason why the above requires the `@ts-ignore`).
+ * The type of the final value can also be overriden (except for the original key, which unfortunately you will get no warning if you try to override).
  *
- * Also note that if you want to pass a const array to `record`/`Record`, you need to make the function/class extend the readonly version of the array, e.g. `T extends Entry[] | readonly Entry[]`.
+ * ```ts
+ * type Entries = RecordFromArray<Arr, "id", { extra:string }>
+ * // results in
+ * type Entries = {
+ * 		a: { id: string, extra:string },
+ * 		b: { id: string, extra: string }
+ * }
+ * ```
+ *
+ * It's intended for more complex situations where you have some `entry`/`Entry` function/class with a generic for the key type that serves to "capture" it, otherwise we'd just get `Record<string, Entry>`.
  *
  * Using classes:
  * ```ts
  * // The TName generic type "captures" the id.
  * class Entry<TName extends string = string> {
- * 	id: TName
- * 	constructor(id: TName) { }
+ * 	id!: TName
+ * 	constructor(_id: TName) { }
  * }
- * class Record<T extends Entry[], TEntries = RecordFromArray<T, "id">> {
- * 	entries: TEntries
- * 	constructor(obj: T) { }
+ * class Entries<
+ * 	T extends Entry[],
+ * 	TEntries = RecordFromArray<T, "id">
+ * > {
+ * 	entries!: TEntries
+ * 	constructor(_obj: T) { }
  * }
- * let entries = new Record([new Entry("a"), new Entry("b")]).entries
+ * const entries = new Entries([new Entry("a"), new Entry("b")]).entries
  * ```
- * The type if hovered over it will just say: `RecordFromArray<...bunch of confusing types...>` but it's just this:
+ * The type if hovered over it will just say: `RecordFromArray<...bunch of confusing types...>` but it's just this again except each value is an instance of `Entry`:
+ *
  * ```ts
  * type entries = {
- * 	a: {id: "a"} // <= Entry instance
- * 	b: {id: "b"} // <= Entry instance
+ * 	a: { id: string } // aka Entry<string>
+ * 	b: { id: string } // aka Entry<string>
  * }
  *  ```
  *
  * Using functions:
  *
+ * Here the types will be slightly clearer since there isn't a class wrapping each entry.
+ *
  * ```ts
  * function entry<TName extends string = string>(id: TName): {id: TName} { }
  * function record<T extends {id: string}[]>(arr: T): RecordFromArray<T, "id"> { }
- * let entries = record([entry("a")])
- * ```
- * In this case the type is clearer when you hover over it: `Record<"a" | "b", { id: string }>`, but it expands to the same thing as with classes (except the entries aren't instances of anything).
- * ```ts
- * type entries = {
- * 	a: {id: "a"}
- * 	b: {id: "b"}
- * }
+ * const entries = record([entry("a"), entry("b")])
  * ```
  */
 export type RecordFromArray<
 	T extends any[] | readonly any[],
 	TKey extends string & keyof T[number],
-	TValue extends
-		T extends readonly any[] ? Readonly<T[number]> : T[number] =
-		T extends readonly any[] ? Readonly<T[number]> : T[number]
-> = Record<T[number][TKey], TValue>
+	TExtra extends Record<any, any> = {},
+	TValue extends Record<TKey, any> = T[number],
+> = {
+	[K in TValue[TKey]]:
+		TValue extends { [k in TKey]: K }
+		? {
+			[KV in keyof TValue]:
+				KV extends TKey
+					? MakePrimitive<TValue[KV]>
+					: TValue[KV]
+		} & {
+			[KE in keyof TExtra]:
+				KE extends TKey
+					? MakePrimitive<TValue[KE]>
+					: TExtra[KE]
+		}
+		: never
+}
+

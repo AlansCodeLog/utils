@@ -1,9 +1,8 @@
-import { expect } from "chai"
+import { testName } from "@/testing"
+import { expect } from "@tests/chai"
 
-import { test_name } from "@/testing"
 
-
-describe(test_name(), () => {
+describe(testName(), () => {
 	it("missing tests", () => {
 		expect(true).to.equal(false)
 	})

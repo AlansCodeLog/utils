@@ -22,9 +22,11 @@ There's four types of utility functions available:
 - `testing` - functions that are only useful for testing purposes
 - `retypes` - existing functions typed as something else (e.g. Object.keys cast to a type that's useful for iterating, etc)
 - `types` - all the types used internally + any utility types
+And there's also:
+- `colors` - contains the basic ansi escape codes, for small scripts, or debugging, where I don't need to add chalk.
 
 ```ts
-// everything can be imported directly from the package
+// everything can be imported directly from the package (except individual colors)
 import { keys, debounce, ... } from "@alanscodelog/utils"
 ```
  You can also import an entire set, although this is not recommended because it makes it so the imports can't be treeshaken. Still it's possible because it's occasionally useful for prototyping.
