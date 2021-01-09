@@ -1,27 +1,26 @@
-import { expect } from "chai"
-
-import { test_name } from "@/testing"
+import { testName } from "@/testing"
 import { inspect } from "@/utils"
+import { expect } from "@tests/chai"
 
 
-describe(test_name(), () => {
+describe(testName(), () => {
 	let columns: number
 	beforeEach(() => { columns = process.stdout.columns })
 	afterEach(() => { process.stdout.columns = columns })
 
 	it("works", () => {
-		let dashes = "-".repeat(10)
-		let dashes_expected = `\u001b[32m'${"-".repeat(10)}'\u001b[39m`
-		let expected = `{ a: ${dashes_expected}, b: ${dashes_expected}, c: [ ${dashes_expected} ] }`
+		const dashes = "-".repeat(10)
+		const dashesExpected = `\u001b[32m'${"-".repeat(10)}'\u001b[39m`
+		const expected = `{ a: ${dashesExpected}, b: ${dashesExpected}, c: [ ${dashesExpected} ] }`
 		process.stdout.columns = `{ a: '${dashes}', b: '${dashes}', c: [ '${dashes}' ] }`.length
 			+ 9 // see @/utils/inspect.ts function for why
 
-		let obj = {
+		const obj = {
 			a: dashes,
 			b: dashes,
 			c: [dashes],
 		}
-		let log = console.log
+		const log = console.log
 		console.log = (item: any) => {
 			expect(item).to.equal(expected)
 		}

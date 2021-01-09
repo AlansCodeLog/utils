@@ -1,17 +1,15 @@
-/** @packageDocumentation @module testing */
-
 /**
  * Wrapper to log the errors thrown by functions in tests because test libraries (e.g. jest, test) won't log thrown error messages. Allows inspecting the error message manually if/as needed.
  *
  * The actual logging can be turned on/off with the last parameter or you can force them all on by setting the INSPECT_ERRORS environment variable.
  *
  * ```ts
- * expect(inspect_error(() => {
+ * expect(inspectError(() => {
  * 	throw new Error("")
  * }, true)).to.throw()
  * ```
  */
-export function inspect_error(func: (...args: any[]) => any, inspect: boolean = false) {
+export function inspectError(func: (...args: any[]) => any, inspect: boolean = false) {
 	return (): void => {
 		try {
 			func()
