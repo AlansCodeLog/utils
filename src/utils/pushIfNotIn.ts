@@ -28,13 +28,11 @@ export function pushIfNotIn<
 		any[] | readonly any[],
 >(
 	mutated: TMutated,
-	...arrays: T
+	...entries: T
 	// prevent never[] from getting added when [] is passed to avoid mutation
 ): TMutated extends never[] ? T : TMutated & T {
-	for (const array of arrays) {
-		for (const key of array) {
-			if (!mutated.includes(key)) mutated.push(key)
-		}
+	for (const value of entries) {
+		if (!mutated.includes(value)) mutated.push(value)
 	}
 	return mutated as any
 }

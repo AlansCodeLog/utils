@@ -84,7 +84,7 @@ export function merge<
 				`)
 			}
 
-			const keys = pushIfNotIn(keysOf(obj), keysOf(other))
+			const keys = pushIfNotIn(keysOf(obj), ...keysOf(other))
 			for (const prop of keys) {
 				const baseVal = obj[prop]
 				const otherVal = other[prop]
