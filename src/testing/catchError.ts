@@ -11,7 +11,7 @@
  * expect(error).to.partial.deep.equal({code: 1, type:"SOME_TYPE"})
  * ```
  */
-export function catchError(func: (...args: any[]) => any): unknown {
+export function catchError(func: (...args: any[]) => any): any {
 	try {
 		func()
 	} catch (e: unknown) {
