@@ -82,7 +82,7 @@ export function debounce<
 >(callback: T, wait: number = 0,
 	{
 		queue = false as TQueued,
-		index = queue ? 0 : undefined,
+		index = (queue ? 0 : undefined) as any,
 		leading = false,
 		trailing = true,
 	}: {
