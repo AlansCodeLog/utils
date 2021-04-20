@@ -32,7 +32,7 @@ export async function run(command: string, cwd?: string): Promise<string> {
 
 	if (code !== 0) {
 		const err = new Error(`${code}, ${error}`)
-		;(err as ErrorW<{code: any}>).code = code
+		;(err as ErrorW<{ code: any }>).code = code
 		throw err
 	}
 

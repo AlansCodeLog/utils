@@ -15,7 +15,7 @@ describe(testName(), () => {
 	it("works with overrides", () => {
 		type Arr = [{ id: "a" }, { id: "b" }]
 		type Entries = RecordFromArray<Arr, "id", { other: string }>
-		expectType<Entries["a"], "===", {id: string, other: string}>(true)
+		expectType<Entries["a"], "===", { id: string, other: string }>(true)
 		expectType<Entries, "===", {
 			a: { id: string, other: string }
 			b: { id: string, other: string }
@@ -24,7 +24,7 @@ describe(testName(), () => {
 	it("incorrect override has no effect", () => {
 		type Arr = [{ id: "a" }, { id: "b" }]
 		type Entries = RecordFromArray<Arr, "id", { other: string, id: number }>
-		expectType<Entries["a"], "===", {id: string, other: string}>(true)
+		expectType<Entries["a"], "===", { id: string, other: string }>(true)
 		expectType<Entries, "===", {
 			a: { id: string, other: string }
 			b: { id: string, other: string }

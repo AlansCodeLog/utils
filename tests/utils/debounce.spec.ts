@@ -195,7 +195,7 @@ describe(testName(), () => {
 			1: 0,
 			2: 0,
 		}
-		const func = (_ignored: any, { id }: {id: keyof typeof count}) => {
+		const func = (_ignored: any, { id }: { id: keyof typeof count }) => {
 			count[id]++
 		}
 		const debounced = debounce(func, 1000, { queue: true, index: args => args[1].id })

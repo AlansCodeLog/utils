@@ -46,7 +46,7 @@ class Mixin1 {
 }
 class Mixin2 {
 	manuallyInitiated2!: number
-	_constructor({ mixin2 }: {mixin2: number}) {
+	_constructor({ mixin2 }: { mixin2: number }) {
 		this.manuallyInitiated2 = mixin2
 	}
 }

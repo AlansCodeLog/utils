@@ -5,17 +5,17 @@ describe(testName(), () => {
 	it("works with optional keys", () => {
 		type Base = { a: string, b?: string }
 		expectType<Base, "===", { a: string }>(false)
-		expectType<Base, "===", { a: string, b: string}>(false)
-		expectType<Base, "===", { a: string, c: string}>(false)
-		expectType<Base, "===", { b?: string}>(false)
-		expectType<Base, "===", { a: string, b?: string}>(true)
+		expectType<Base, "===", { a: string, b: string }>(false)
+		expectType<Base, "===", { a: string, c: string }>(false)
+		expectType<Base, "===", { b?: string }>(false)
+		expectType<Base, "===", { a: string, b?: string }>(true)
 	})
 	it("works with arrays", () => {
 		type Base = ["a", { a: string, b?: string }]
-		expectType<Base, "===", [{ a: string, b?: string}]>(false)
-		expectType<Base, "===", ["a", { a: string, b: string}]>(false)
+		expectType<Base, "===", [{ a: string, b?: string }]>(false)
+		expectType<Base, "===", ["a", { a: string, b: string }]>(false)
 		expectType<Base, "===", ["a"]>(false)
-		expectType<Base, "===", ["a", { a: string, b?: string}]>(true)
+		expectType<Base, "===", ["a", { a: string, b?: string }]>(true)
 	})
 	it("works with arrays (readonly vs not)", () => {
 		type Base = readonly ["a"]
@@ -40,6 +40,6 @@ describe(testName(), () => {
 	})
 	it(`works with unions`, () => {
 		type Base = { a: string } & { a: number }
-		expectType<Base, "===", {a: never}>(true)
+		expectType<Base, "===", { a: never }>(true)
 	})
 })

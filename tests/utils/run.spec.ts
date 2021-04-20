@@ -12,7 +12,7 @@ describe(testName(), () => {
 	})
 	it("captures exit code as error code", async done => {
 		const res = await run("node tests/_helpers/exitWithCode2.js")
-			.catch(err => err as ErrorW<{code: number}>)
+			.catch(err => err as ErrorW<{ code: number }>)
 		expect((res as ErrorW<{ code: number }>).code).to.equal(2)
 		done()
 	})

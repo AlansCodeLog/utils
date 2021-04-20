@@ -31,15 +31,15 @@ describe(testName(), () => {
 	it("works with classes (ExpandClassRecord)", () => {
 		const expanded = instance as ExpandClassRecord<typeof instance, "entries", "c">
 		expectType<typeof expanded.entries, "===", {
-			a: {id: string}
-			b: {id: string}
-			c: {id: string}
+			a: { id: string }
+			b: { id: string }
+			c: { id: string }
 		}>(true)
 		const permissive = instance as ExpandClassRecord<typeof instance, "entries">
 		expectType<typeof permissive.entries, "===", {
-			a: {id: string}
-			b: {id: string}
-			[key: string]: {id: string}
+			a: { id: string }
+			b: { id: string }
+			[key: string]: { id: string }
 		}>(true)
 	})
 })

@@ -28,7 +28,7 @@ describe(testName(), () => {
 	})
 	it("does \"not\" work with {[key:string]}", () => {
 		// eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
-		const obj: { [key: string]: string } = { a: "a" }
+		const obj: {[key: string]: string } = { a: "a" }
 		const objKeys = keys(obj)
 		// should have no type errors
 		objKeys.forEach(key => { obj[key] })

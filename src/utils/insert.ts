@@ -27,7 +27,7 @@ export function insert(str: string, intoStr: string, range: number | [number, nu
 		const start = `${origRange[0]}${origRange[0] < 0 ? ` (normalized to ${range[0]})` : ""}`
 		const end = `${origRange[1]}${origRange[1] < 0 ? ` (normalized to ${range[1]})` : ""}`
 
-		const error = new Error(`Range start ${start} cannot come after range end ${end}`) as ErrorW<{range: [number, number]}>
+		const error = new Error(`Range start ${start} cannot come after range end ${end}`) as ErrorW<{ range: [number, number]}>
 		error.range = origRange
 		throw error
 	}

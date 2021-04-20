@@ -44,4 +44,4 @@ export type ExpandRecord<
 	TRecord,
 	TAdd extends string | number | symbol = string | number | symbol,
 	TValue extends TRecord[keyof TRecord] | any = TRecord[keyof TRecord],
-> = TRecord & { [Key in TAdd]: TValue}
+> = TRecord & {[Key in TAdd]: TValue }
