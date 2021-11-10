@@ -2,7 +2,7 @@ import { keys } from "@/retypes"
 import type { AnyClass, AnyFunction } from "@/types"
 
 /**
- * Mixes a series of mixins onto a class + some extra magic. Mixes in both non-static and static methods.
+ * Mixes a series of mixins onto a class + some extra magic. Mixes in all non-static methods.
  *
  * It ignores the constructors of mixins (they cannot be used even if we wanted to), but mixins can still define a `_constructor` method (which should only take in one parameter) and if there's at least one mixin with a `_constructor` they will get combined into a `_mixin` method on the object which should be called like `super` from the base's constructor (except after properties are initiated usually, see notes below).
  *
@@ -61,13 +61,18 @@ import type { AnyClass, AnyFunction } from "@/types"
  * 	}
  * }
  * // declaration merging
- * interface Base extends Mixin<Mixin1 | Mixin2> {} // the mixins need to be passed as a union type
+ * // the mixins need to be passed as a union type
+ * // and again normally, otherwise you'll get a few odd errors when extending from the base class
+ * interface Base extends Mixin<Mixin1 | Mixin2>, Mixin1, Mixin2 {
+ * 	// remove all the mixin constructors
+ * 	_constructor: never
+ * }
  * ```
  *
  * **Notes:**
  * - You cannot do something like `str = "something"` to define a property. **This won't work** because it's compiled to an assignment inside the constructor which is ignored.
  * - If a mixin makes use of a base's property it will need to declare it as if it exists (i.e. `prop!: ...`) but this type cannot differ from the type of the property on the base (typescript will complain on the interface declaration).
- * 	- If the mixin accesses the property in it's `_constructor`, be sure to call `_mixin` in the base's constructor **after** that property is defined.
+ * - If the mixin accesses the property in it's `_constructor`, be sure to call `_mixin` in the base's constructor **after** that property is defined.
  * - If the same method exists on both a base and a mixin, the base's is used and the mixin's is ignored.
  */
 export function mixin<
@@ -88,13 +93,6 @@ export function mixin<
 				Object.defineProperty(base.prototype, key, method)
 			} else if (key === "_constructor") {
 				constructors.push(method.value)
-			}
-		})
-		const staticProps = Object.getOwnPropertyDescriptors(mixinCtor)
-		keys(staticProps).forEach(key => {
-			const prop = staticProps[key]
-			if ((base as any)[key] === undefined && prop.writable && prop.configurable) {
-				Object.defineProperty(base, key, prop)
 			}
 		})
 	})

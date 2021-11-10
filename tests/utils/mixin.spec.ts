@@ -9,7 +9,7 @@ class BaseIncorrect {
 	}
 }
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-interface BaseIncorrect extends Mixin<Mixin1 | Mixin2> { }
+interface BaseIncorrect extends Mixin<Mixin1 | Mixin2>, Mixin1, Mixin2 { _constructor: never }
 
 class Base {
 	type: string
@@ -17,13 +17,14 @@ class Base {
 		this.type = "base"
 		this._mixin({ mixin1: "", mixin2: 0 })
 	}
-	static speak() {
-		return "Base Speak"
-	}
 	walk() {
 		return "Base Walk"
 	}
-	baseOnly() {}
+	baseOnly() { }
+	canAccessSpeak() {
+		// there should be no type error here
+		return this.speak()
+	}
 }
 class BaseError {
 	_mixin() { }
@@ -36,14 +37,15 @@ class Mixin1 {
 	_constructor({ mixin1 }: { mixin1: string }) {
 		this.manuallyInitiated = mixin1
 	}
-	static speak(str: string = "") {
-		return `Mixin Speak${str}`
-	}
 	walk(str: string = ""): string {
 		return `Mixin Walk${str}`
 	}
-	mixinOnly() {}
+	protected speak() {
+		return "Mixin Protected Speak"
+	}
+	mixinOnly() { }
 }
+
 class Mixin2 {
 	manuallyInitiated2!: number
 	_constructor({ mixin2 }: { mixin2: number }) {
@@ -52,10 +54,22 @@ class Mixin2 {
 }
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-interface Base extends Mixin<Mixin1 | Mixin2> { }
+interface Base extends Mixin<Mixin1 | Mixin2>, Mixin1, Mixin2 { _constructor: never }
 
 mixin(BaseIncorrect, [Mixin1, Mixin2])
 mixin(Base, [Mixin1, Mixin2])
+
+class Mixin3 extends Mixin1 {
+}
+class BaseIncorrect2 { }
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+interface BaseIncorrect2 extends Mixin<Mixin3>, Mixin3 { _constructor: never }
+mixin(BaseIncorrect2, [Mixin3])
+class Base2 { }
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+interface Base2 extends Mixin<Mixin3>, Mixin3 { _constructor: never }
+mixin(Base2, [Mixin1, Mixin3])
+
 
 describe(testName(), () => {
 	it("correctly auto merges _constructor methods", () => {
@@ -68,12 +82,17 @@ describe(testName(), () => {
 		const mixed = new Base()
 
 		expect(mixed.walk()).to.equal("Base Walk")
-		expect(Base.speak()).to.equal("Base Speak")
 	})
 	it("does not work if mixins incorrectly initialized in base's constructor", () => {
 		const mixed = new BaseIncorrect()
 		expect(mixed.neverInitiated).to.equal(undefined)
 		expect(mixed.manuallyInitiated).to.equal(undefined)
+	})
+	it("does not work if mixin extends other mixin and both not mixed", () => {
+		const mixed = new BaseIncorrect2()
+		const mixed2 = new Base2()
+		expect(mixed.walk).to.equal(undefined)
+		expect(mixed2.walk()).to.equal("Mixin Walk")
 	})
 	it("types work", () => {
 		type MixinType = (opts: { mixin1: string } & { mixin2: number }) => void
@@ -86,7 +105,6 @@ describe(testName(), () => {
 		expectType<Base["mixinOnly"], "===", () => void>(true)
 		expectType<Base["baseOnly"], "===", () => void>(true)
 		expectType<(str: string) => string, "==>", Base["walk"]>(false)
-		expectType<(str: string) => string, "==>", typeof Base["speak"]>(false)
 	})
 	it("throws error if _mixin is defined on the base class", () => {
 		expect(inspectError(() => {

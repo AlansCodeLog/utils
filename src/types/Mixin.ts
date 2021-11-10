@@ -2,16 +2,26 @@ import type { AnyFunction } from "./AnyFunction"
 import type { OrToAnd } from "./OrToAnd"
 
 
-type AnyClassForMixin = { _constructor: AnyFunction }
+type AnyClassForMixin = {
+	_constructor: AnyFunction
+}
+
 /**
- * See {@link mixin `mixin`}
+ * See {@link mixin `mixin`}.
  *
- * Note the classes should be passed as a union, otherwise they won't work. e.g:
+ * Creates the type of an object with a `_mixin` method whose first parameter is a combination of the types of the first parameter of the `_constructor`'s of the different mixins.
+ *
+ * Note:
+ * - You must still extend from the mixins. See why below.
+ * - The classes should be passed as a union like `Mixins<Mixin1 | Mixin2>`, otherwise they won't work.
+ *
  * ```ts
- * interface Base extends Mixins<Mixin1 | Mixin2> {}
- * // NOT
- * interface Base extends Mixins<Mixin1 & Mixin2> {}
+ * interface Mixed extends Mixins<Mixin1 | Mixin2>, Mixin1, Mixin2 {
+ * 	_constructor: never
+ * }
  * ```
+ *
+ * Why do we still have to extend from the mixins? If we don't, protected methods are lost and also there might be odd errors when extending from the Mixed class itself.
  */
 export type Mixin<
 	TClass extends AnyClassForMixin | any,
@@ -20,7 +30,6 @@ export type Mixin<
 	TClass extends AnyClassForMixin ? Parameters<TClass["_constructor"]> : [{}],
 	TFirst extends TParams[0] = TParams[0],
 > =
-	& Omit<OrToAnd<TClass>, "_constructor">
 	& {
 		_mixin(opts: OrToAnd<TFirst>): void
 	}
