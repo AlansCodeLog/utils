@@ -1,7 +1,7 @@
 import { walk } from "./walk"
 
 /**
- * Pretty prints objects with tab indentation, or optionally all in a single line with a space between elements (e.g. for arrays) (see `online` option).
+ * Pretty prints objects with tab indentation, or optionally all in a single line with a space between elements (e.g. for arrays) (see `oneline` option).
  *
  * Note that if your stringify function returns values with newlines these are preserved when using the oneline option.
  *
