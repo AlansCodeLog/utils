@@ -5,35 +5,34 @@
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"scripts": {
-		"babel:run": "npx babel-node --extensions \".ts,.js\" --",
-		"babel:run:dev": "npx onchange -i \"src/**/*.ts\" -- npx babel-node --extensions \".ts,.js\" --",
-		"build:babel": "npx babel --extensions \".ts,.js\" src --out-dir dist --source-maps inline",
+		"babel:run": "babel-node --extensions \".ts,.js\" --",
+		"babel:run:dev": "onchange -i \"src/**/*.ts\" -- babel-node --extensions \".ts,.js\" --",
+		"build:babel": "babel --extensions \".ts,.js\" src --out-dir dist --source-maps inline",
 		"build:watch": "npm run build:babel -- --watch",
 		"build:clean": "rm -rf dist && npm run build",
-		"build:types": "npx tsc -p tsconfig.types.json && npx dts-alias -p tsconfig.types.json",
+		"build:types": "tsc -p tsconfig.types.json && dts-alias -p tsconfig.types.json",
 		"build": "npm run build:babel && npm run build:types",
 
-		"lint:eslint": "npx eslint \"{src,tests}/**/*.{js,ts}\" \"*.{js,ts}\" --max-warnings=0 --report-unused-disable-directives",
-		"lint:types": "npx tsc --noEmit --pretty",
-		"lint:commits": "npx commitlint --from $(git rev-list HEAD --not --remotes | tail -1)^ --to HEAD --verbose",
+		"lint:eslint": "eslint \"{src,tests}/**/*.{js,ts}\" \"*.{js,ts}\" --max-warnings=0 --report-unused-disable-directives",
+		"lint:types": "tsc --noEmit --pretty",
+		"lint:commits": "commitlint --from $(git rev-list HEAD --not --remotes | tail -1)^ --to HEAD --verbose",
 		"lint": "npm run lint:types && npm run lint:eslint",
 
 		"coverage": "npm run test -- --coverage",
-		"coverage:dev": "npx http-server coverage/lcov-report --port=5000 & onchange -k -i \"jest.config.js\" --  npm run coverage -- --watch",
+		"coverage:dev": "http-server coverage/lcov-report --port=5000 & onchange -k -i \"jest.config.js\" --  npm run coverage -- --watch",
 
-		"test": "npm run lint:types && npx jest test --verbose",
+		"test": "npm run lint:types && jest test --verbose",
 		"test:debug": "node --inspect-brk node_modules/jest/bin/jest test --verbose",
-		"test:inspect-errors": "set INSPECT_ERRORS=true && npx test",
+		"test:inspect-errors": "set INSPECT_ERRORS=true && npm run test",
 
-		"doc": "npx typedoc --options typedoc.config.js",
-		"doc:watch": "npx onchange -i \"src/**/*.ts\" \"typedoc.config.js\" -- npm run doc",
-		"doc:serve": "npx http-server docs --port=5001",
-		"doc:check-invalid": "npx typedoc --options typedoc.config.js --listInvalidSymbolLinks",
+		"doc": "typedoc --options typedoc.config.js",
+		"doc:watch": "onchange -i \"src/**/*.ts\" \"typedoc.config.js\" -- npm run doc",
+		"doc:serve": "http-server docs --port=5001",
+		"doc:check-invalid": "typedoc --options typedoc.config.js --listInvalidSymbolLinks",
 
 		"actions:debug": "act -r -v -j build-only",
 
-		"gen:exports": "npx indexit update",
-		"audit:prod": "yarn audit --level moderate --groups dependencies",
+		"gen:exports": "indexit update",
 		"prepare": "npm run build && husky install"
 	},
 	"dependencies": {
