@@ -55,7 +55,7 @@ export function merge<
 			// if we happen to be passed a reference to the same array for the override we'll get stuck in an infinite loop
 			const overrideArr = other === base ? [...other] : other
 
-			for (const item of overrideArr) (base as any[]).push(item)
+			for (const item of overrideArr) (base).push(item)
 		} else if (isObject(base)) {
 			const obj: Record<string, any> = base
 

@@ -99,7 +99,7 @@ export function debounce<
 	} = {}
 ): Debounced<T> {
 	let queues: DebounceQueue = {}
-	if (typeof queue === "object") queues = queue as DebounceQueue
+	if (typeof queue === "object") queues = queue
 
 	const type = queue
 		? typeof index as "function" | "number" | "undefined"

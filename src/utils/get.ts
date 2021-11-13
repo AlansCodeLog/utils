@@ -6,8 +6,8 @@
  * const value = get(obj, ["a", "b", 0]) // or ["a", "b", "0"]
  * const value = get(obj, []) // undefined
  * ```
- **/
-export function get(obj: any, keys: (string|number)[]): any {
+ */
+export function get(obj: any, keys: (string | number)[]): any {
 	let curr = obj
 	for (const key of keys) {
 		if (curr[key] !== undefined) {

@@ -1,6 +1,6 @@
 /**
  * Given some text, a max number of lines, characters, or both, removes duplicate newlines, normalizes them to `\n`, trims start/end, *then* trims the text according to the limits, adding trailing ellipses to the end (as necessary).
- **/
+ */
 export function snippet(text: string, {
 	lines: maxLine = 5,
 	chars: maxChars = 300,
