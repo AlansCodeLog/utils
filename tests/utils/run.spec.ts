@@ -5,15 +5,13 @@ import { expect } from "@tests/chai"
 
 
 describe(testName(), () => {
-	it("works", async done => {
+	it("works", async () => {
 		const res = await run("echo Success!")
-		expect(res).to.equal("Success!\n")
-		done()
+		expect(res.replace(/\r\n/g, "\n")).to.equal("Success!\n")
 	})
-	it("captures exit code as error code", async done => {
+	it("captures exit code as error code", async () => {
 		const res = await run("node tests/_helpers/exitWithCode2.js")
 			.catch(err => err as ErrorW<{ code: number }>)
 		expect((res as ErrorW<{ code: number }>).code).to.equal(2)
-		done()
 	})
 })

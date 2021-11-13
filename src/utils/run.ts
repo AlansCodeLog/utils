@@ -16,7 +16,8 @@ import type { ErrorW } from "@/types"
  */
 export async function run(command: string, cwd?: string): Promise<string> {
 	const parts = command.split(" ")
-	const child = spawn(parts[0], [...parts.slice(1)], { cwd })
+
+	const child = spawn(parts[0], [...parts.slice(1)], { cwd, shell: true })
 
 	let data = ""
 	for await (const chunk of child.stdout) {
