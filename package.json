@@ -12,26 +12,20 @@
 		"build:clean": "rm -rf dist && npm run build",
 		"build:types": "tsc -p tsconfig.types.json && dts-alias -p tsconfig.types.json",
 		"build": "npm run build:babel && npm run build:types",
-
 		"lint:eslint": "eslint \"{src,tests}/**/*.{js,ts}\" \"*.{js,ts}\" --max-warnings=0 --report-unused-disable-directives",
 		"lint:types": "tsc --noEmit --pretty",
 		"lint:commits": "commitlint --from $(git rev-list HEAD --not --remotes | tail -1)^ --to HEAD --verbose",
 		"lint": "npm run lint:types && npm run lint:eslint",
-
 		"coverage": "npm run test -- --coverage",
 		"coverage:dev": "http-server coverage/lcov-report --port=5000 & onchange -k -i \"jest.config.js\" --  npm run coverage -- --watch",
-
 		"test": "npm run lint:types && jest test --verbose",
 		"test:debug": "node --inspect-brk node_modules/jest/bin/jest test --verbose",
 		"test:inspect-errors": "set INSPECT_ERRORS=true && npm run test",
-
 		"doc": "typedoc --options typedoc.config.js",
 		"doc:watch": "onchange -i \"src/**/*.ts\" \"typedoc.config.js\" -- npm run doc",
 		"doc:serve": "http-server docs --port=5001",
 		"doc:check-invalid": "typedoc --options typedoc.config.js --listInvalidSymbolLinks",
-
 		"actions:debug": "act -r -v -j build-only",
-
 		"gen:exports": "indexit update",
 		"prepare": "npm run build && husky install"
 	},
@@ -40,7 +34,6 @@
 	},
 	"devDependencies": {
 		"@types/node": "^16.11.7",
-
 		"semantic-release": "^18.0.0",
 		"@semantic-release/changelog": "^6.0.1",
 		"@semantic-release/commit-analyzer": "^9.0.1",
@@ -51,7 +44,6 @@
 		"@alanscodelog/semantic-release-config": "^2.0.0",
 		"@alanscodelog/commitlint-config": "^1.0.2",
 		"commitlint": "^14.1.0",
-
 		"@babel/cli": "^7.16.0",
 		"@babel/core": "^7.16.0",
 		"@babel/node": "^7.16.0",
@@ -60,8 +52,7 @@
 		"@babel/plugin-proposal-export-namespace-from": "^7.16.0",
 		"@babel/plugin-proposal-class-properties": "^7.16.0",
 		"babel-plugin-module-resolver": "^4.1.0",
-		"@alanscodelog/babel-preset": "^1.2.0",
-
+		"@alanscodelog/babel-preset": "^2.0.0",
 		"eslint": "^7.32.0",
 		"eslint-import-resolver-typescript": "^2.5.0",
 		"eslint-plugin-import": "^2.25.3",
@@ -70,21 +61,17 @@
 		"@typescript-eslint/eslint-plugin": "^5.3.1",
 		"@typescript-eslint/parser": "^5.3.1",
 		"@alanscodelog/eslint-config": "^2.0.3",
-
 		"chai": "^4.3.4",
 		"jest": "^27.3.1",
 		"jest-watch-typeahead": "^1.0.0",
 		"@types/chai": "^4.2.22",
 		"@types/jest": "^27.0.2",
-
 		"typedoc": "^0.20.35",
 		"typedoc-neo-theme": "^1.1.0",
-		"typedoc-plugin-param-names":"^2.0.0",
-
+		"typedoc-plugin-param-names": "^2.0.0",
 		"typescript": "^4.4.4",
 		"@alanscodelog/tsconfigs": "^3.0.0",
-		"dts-alias":"^1.0.5",
-
+		"dts-alias": "^1.0.5",
 		"husky": "^7.0.4",
 		"indexit": "^2.0.1",
 		"onchange": "^7.1.0",
@@ -97,11 +84,25 @@
 		"src",
 		"dist"
 	],
-	"release": { "extends": [ "@alanscodelog/semantic-release-config" ] },
-	"commitlint": { "extends": [ "@alanscodelog" ] },
-	"babel": { "presets": [ "@alanscodelog" ] },
-	"browserslist":"> 0.5%, last 2 versions, not dead, not < 0.25%, not IE > 0, maintained node versions",
-	"engines": { "node": ">=14.0.0" },
+	"release": {
+		"extends": [
+			"@alanscodelog/semantic-release-config"
+		]
+	},
+	"commitlint": {
+		"extends": [
+			"@alanscodelog"
+		]
+	},
+	"babel": {
+		"presets": [
+			"@alanscodelog"
+		]
+	},
+	"browserslist": "> 0.5%, last 2 versions, not dead, not < 0.25%, not IE > 0, maintained node versions",
+	"engines": {
+		"node": ">=14.0.0"
+	},
 	"@comments": {
 		"scripts": {
 			"test": "Runs `lint:types` before (so that flags can be passed to the test command) so that we can test type assertions. See ./src/testing/expectType.ts for more details.",
