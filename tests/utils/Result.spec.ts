@@ -7,18 +7,7 @@ describe(testName(), () => {
 	it("import works", () => {
 		expect(Result.Ok).to.equal(Ok)
 	})
-	it("types work", () => {
-		const res = Ok()
-
-		if (res.isOk) {
-			const value = res.value
-			// @ts-expect-error should be missing
-			const error = res.error
-		} else {
-			// @ts-expect-error should be missing
-			const value = res.value
-			const error = res.error
-		}
+	it("works", () => {
 		const ok = Ok("true")
 		const err = Err("err")
 		expect(ok.isOk).to.equal(true)
@@ -31,23 +20,56 @@ describe(testName(), () => {
 		if (err.isError) {
 			expect(err.error instanceof Error).to.equal(true)
 		}
-		expectType<typeof res, "===", Result<undefined, Error>>(true)
-		const res2 = Err()
-		expectType<typeof res2, "===", Result<unknown, Error>>(true)
 	})
-	it("works with custom errors", () => {
-		class KnownError extends Error {
-			code: number
-			constructor(
-				message: string,
-				code: number
-			) {
-				super(message)
+	it("types work", () => {
+		const resOk = Ok()
+
+		if (resOk.isOk) {
+			const value = resOk.value
+			expectType<typeof value, "===", undefined>(true)
+			// @ts-expect-error should be missing
+			const error = resOk.error
+		} else {
+			// @ts-expect-error should be missing
+			const value = resOk.value
+			const error = resOk.error
+			expectType<typeof error, "===", never>(true)
+		}
+		const resErr = Err()
+
+		if (resErr.isOk) {
+			const value = resErr.value
+			expectType<typeof value, "===", never>(true)
+			// @ts-expect-error should be missing
+			const error = resErr.error
+		} else {
+			// @ts-expect-error should be missing
+			const value = resErr.value
+			const error = resErr.error
+			expectType<typeof error, "===", Error>(true)
+		}
+
+		expectType<typeof resOk, "===", Result<undefined, never>>(true)
+		expectType<typeof resErr, "===", Result<never, Error>>(true)
+		const res2 = Err()
+		expectType<typeof res2, "===", Result<never, Error>>(true)
+	})
+	it("works with function return types when using errors with generics", () => {
+		class MyError<T extends string> extends Error {
+			code: T = "error" as T
+			constructor(code: T) {
+				super()
 				this.code = code
 			}
 		}
-		const built = Err(KnownError, "Oh no! Something went wrong.", 1)
-		const manual = Err(new KnownError("Oh no! Something went wrong.", 1))
-		expectType<typeof built, "===", typeof manual>(true)
+		type ReturnType = Result<number, MyError<"b" | "c">>
+
+		function func(arr: any[]): ReturnType {
+			if (arr.includes("a")) return Ok(1)
+			if (arr.includes("b")) return Err(new MyError("b"))
+			if (arr.includes("c")) return Err(new MyError("c"))
+			// @ts-expect-error MyError<"d"> is not assignable to MyError<"b" | "c"> as expected
+			return Err(new MyError("d"))
+		}
 	})
 })
