@@ -2,6 +2,7 @@
 
 export { assertInStrRange } from "./assertInStrRange"
 export { browserSaveFile } from "./browserSaveFile"
+export { castType } from "./castType"
 export { crop } from "./crop"
 export { debounce } from "./debounce"
 export { dedupe } from "./dedupe"
