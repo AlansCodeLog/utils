@@ -1,0 +1,316 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Result | @alanscodelog/utils</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<ul class="results-priority" style="display:none">
+					</ul>
+					<a href="../index.html" class="title">@alanscodelog/utils</a>
+					&emsp;<a href="https://github.com/alanscodelog/my-utils" class="title">Repository</a>
+					&emsp;<a href="https://github.com/alanscodelog/my-utils/issues" class="title">Issues</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="utils.html">utils</a>
+				</li>
+				<li>
+					<a href="utils.result.html">Result</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-3 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="../modules.html">Modules</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-7 offset-3 col-content">
+			<h1>Namespace Result</h1>
+			<section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography tsd-comment-shorttext">
+					<div class="lead">
+						<p>Barebones result monad.</p>
+					</div>
+					</div><div class="tsd-comment tsd-typography tsd-comment-text">
+					<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Result</span><span style="color: #000000">, </span><span style="color: #001080">Ok</span><span style="color: #000000">, </span><span style="color: #001080">Err</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@alanscodelog/utils&quot;</span>
+
+<span style="color: #008000">// you can also access Ok and Err like Result.Ok and Result.Err</span>
+
+<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">compute</span><span style="color: #000000">(</span><span style="color: #001080">x</span><span style="color: #000000">?: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">Result</span><span style="color: #000000">&lt;</span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #267F99">Error</span><span style="color: #000000">&gt; {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">x</span>
+<span style="color: #000000">        ? </span><span style="color: #795E26">Ok</span><span style="color: #000000">(</span><span style="color: #001080">x</span><span style="color: #000000">)</span>
+<span style="color: #000000">        </span><span style="color: #008000">// error automatically constructed from string.</span>
+<span style="color: #000000">        : </span><span style="color: #795E26">Err</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Oh no! Something went wrong.&quot;</span><span style="color: #000000">)</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">res</span><span style="color: #000000"> = </span><span style="color: #795E26">compute</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;a&quot;</span><span style="color: #000000">)</span>
+
+<span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #001080">isOk</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">value</span><span style="color: #000000"> = </span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000"> </span><span style="color: #008000">// string</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">error</span><span style="color: #000000"> = </span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #001080">error</span><span style="color: #000000"> </span><span style="color: #008000">// error! property doesn&#039;t exist</span>
+<span style="color: #000000">} </span><span style="color: #AF00DB">else</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">value</span><span style="color: #000000"> = </span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000"> </span><span style="color: #008000">// error! property doesn&#039;t exist</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">error</span><span style="color: #000000"> = </span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #001080">error</span><span style="color: #000000"> </span><span style="color: #008000">//    error instance</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #008000">// with custom error</span>
+
+<span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">KnownError</span><span style="color: #000000"> </span><span style="color: #0000FF">extends</span><span style="color: #000000"> </span><span style="color: #267F99">Error</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">code</span><span style="color: #000000">: </span><span style="color: #267F99">number</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">constructor</span><span style="color: #000000">(</span>
+<span style="color: #000000">        </span><span style="color: #001080">message</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #001080">code</span><span style="color: #000000">: </span><span style="color: #267F99">number</span>
+<span style="color: #000000">    ) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">super</span><span style="color: #000000">(</span><span style="color: #001080">message</span><span style="color: #000000">)</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">code</span><span style="color: #000000"> = </span><span style="color: #001080">code</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">compute</span><span style="color: #000000">(</span><span style="color: #001080">x</span><span style="color: #000000">?: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">Result</span><span style="color: #000000">&lt;</span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #267F99">KnownError</span><span style="color: #000000">&gt; {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">x</span>
+<span style="color: #000000">        ? </span><span style="color: #795E26">Ok</span><span style="color: #000000">(</span><span style="color: #001080">x</span><span style="color: #000000">)</span>
+<span style="color: #000000">        </span><span style="color: #008000">// error automatically constructed from error class with parameters checked</span>
+<span style="color: #000000">        : </span><span style="color: #795E26">Err</span><span style="color: #000000">(</span><span style="color: #001080">KnownError</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;Oh no! Something went wrong.&quot;</span><span style="color: #000000">, </span><span style="color: #098658">1</span><span style="color: #000000">)</span>
+<span style="color: #000000">        </span><span style="color: #008000">// equivilant of:</span>
+<span style="color: #000000">        </span><span style="color: #008000">// : Err(new KnownError(&quot;Oh no! Something went wrong.&quot;, 1))</span>
+<span style="color: #000000">}</span>
+
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">value</span><span style="color: #000000"> = </span><span style="color: #795E26">Ok</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;value&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">unwrap</span><span style="color: #000000">() </span><span style="color: #008000">// &quot;value&quot;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">value</span><span style="color: #000000"> = </span><span style="color: #795E26">Err</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Err&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">unwrap</span><span style="color: #000000">() </span><span style="color: #008000">// will throw</span>
+
+</code></pre>
+			</div></section>
+			<section class="tsd-panel-group tsd-index-group">
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="utils.result.html#errresult" class="tsd-kind-icon">Err<wbr>Result</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter"><a href="utils.result.html#okresult" class="tsd-kind-icon">Ok<wbr>Result</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-namespace tsd-has-type-parameter"><a href="utils.result.html#err" class="tsd-kind-icon">Err</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-namespace tsd-has-type-parameter"><a href="utils.result.html#ok" class="tsd-kind-icon">Ok</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
+					<a name="errresult" class="tsd-anchor"></a>
+					<h3>Err<wbr>Result</h3>
+					<div class="tsd-signature tsd-kind-icon">Err<wbr>Result&lt;E&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ErrResultImpl</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in
+								<a href="undefined/tree/master/utils/Result.ts#L100">
+									utils/Result.ts:100
+								</a>
+							</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>E<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter">
+					<a name="okresult" class="tsd-anchor"></a>
+					<h3>Ok<wbr>Result</h3>
+					<div class="tsd-signature tsd-kind-icon">Ok<wbr>Result&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OkResultImpl</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in
+								<a href="undefined/tree/master/utils/Result.ts#L99">
+									utils/Result.ts:99
+								</a>
+							</li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace tsd-has-type-parameter">
+					<a name="err" class="tsd-anchor"></a>
+					<h3>Err</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">Err&lt;E&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="utils.result.html" class="tsd-signature-type">Result</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">Err&lt;E&gt;<span class="tsd-signature-symbol">(</span>val<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="utils.result.html" class="tsd-signature-type">Result</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">E extends Error ? E : Error</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in
+										<a href="undefined/tree/master/utils/Result.ts#L102">
+											utils/Result.ts:102
+										</a>
+									</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>E<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="utils.result.html" class="tsd-signature-type">Result</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">E</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in
+										<a href="undefined/tree/master/utils/Result.ts#L103">
+											utils/Result.ts:103
+										</a>
+									</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>E<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>val: <span class="tsd-signature-type">E</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="utils.result.html" class="tsd-signature-type">Result</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">E extends Error ? E : Error</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace tsd-has-type-parameter">
+					<a name="ok" class="tsd-anchor"></a>
+					<h3>Ok</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">Ok&lt;T&gt;<span class="tsd-signature-symbol">(</span>val<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="utils.result.html" class="tsd-signature-type">Result</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in
+										<a href="undefined/tree/master/utils/Result.ts#L96">
+											utils/Result.ts:96
+										</a>
+									</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>val: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> = ...</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="utils.result.html" class="tsd-signature-type">Result</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<!--{&quot;options&quot;:&quot;typedoc.config.js&quot;,&quot;tsconfig&quot;:&quot;/home/runner/work/my-utils/my-utils&quot;,&quot;entryPoints&quot;:[&quot;src/colors/index.ts&quot;,&quot;src/retypes/index.ts&quot;,&quot;src/testing/index.ts&quot;,&quot;src/types/index.ts&quot;,&quot;src/utils/index.ts&quot;],&quot;exclude&quot;:[],&quot;externalPattern&quot;:[&quot;**/node_modules/**&quot;],&quot;excludeExternals&quot;:true,&quot;excludeNotDocumented&quot;:false,&quot;excludeInternal&quot;:false,&quot;excludePrivate&quot;:true,&quot;excludeProtected&quot;:false,&quot;disableSources&quot;:false,&quot;disableAliases&quot;:false,&quot;includes&quot;:&quot;&quot;,&quot;media&quot;:&quot;&quot;,&quot;watch&quot;:false,&quot;preserveWatchOutput&quot;:false,&quot;emit&quot;:false,&quot;out&quot;:&quot;docs&quot;,&quot;json&quot;:&quot;&quot;,&quot;pretty&quot;:true,&quot;theme&quot;:&quot;./node_modules/typedoc-neo-theme/bin/default&quot;,&quot;highlightTheme&quot;:&quot;light-plus&quot;,&quot;name&quot;:&quot;&quot;,&quot;includeVersion&quot;:false,&quot;excludeTags&quot;:[],&quot;readme&quot;:&quot;README.md&quot;,&quot;defaultCategory&quot;:&quot;Other&quot;,&quot;categoryOrder&quot;:[],&quot;categorizeByGroup&quot;:true,&quot;gitRevision&quot;:&quot;&quot;,&quot;gitRemote&quot;:&quot;origin&quot;,&quot;gaID&quot;:&quot;&quot;,&quot;gaSite&quot;:&quot;auto&quot;,&quot;hideGenerator&quot;:false,&quot;toc&quot;:[],&quot;disableOutputCheck&quot;:false,&quot;help&quot;:false,&quot;version&quot;:false,&quot;showConfig&quot;:false,&quot;plugin&quot;:[&quot;typedoc-neo-theme&quot;,&quot;typedoc-plugin-param-names&quot;],&quot;logger&quot;:&quot;console&quot;,&quot;logLevel&quot;:1,&quot;listInvalidSymbolLinks&quot;:false,&quot;links&quot;:[{&quot;label&quot;:&quot;Repository&quot;,&quot;url&quot;:&quot;https://github.com/alanscodelog/my-utils&quot;},{&quot;label&quot;:&quot;Issues&quot;,&quot;url&quot;:&quot;https://github.com/alanscodelog/my-utils/issues&quot;}],&quot;source&quot;:[{&quot;path&quot;:&quot;undefined/tree/master/&quot;,&quot;line&quot;:&quot;L&quot;}],&quot;namedParamName&quot;:&quot;options&quot;,&quot;detectNamedParamFromComments&quot;:true,&quot;changeNamedParamTag&quot;:true}-->
+		</div>
+		<div class="col-2 col-menu secondary-menu">
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter root">
+						<a href="utils.result.html#errresult" class="tsd-kind-icon">Err<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-has-type-parameter root">
+						<a href="utils.result.html#okresult" class="tsd-kind-icon">Ok<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-namespace tsd-has-type-parameter root">
+						<a href="utils.result.html#err" class="tsd-kind-icon">Err</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-namespace tsd-has-type-parameter root">
+						<a href="utils.result.html#ok" class="tsd-kind-icon">Ok</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
