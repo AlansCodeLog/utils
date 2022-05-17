@@ -8,7 +8,6 @@ class BaseIncorrect {
 	constructor() {
 	}
 }
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface BaseIncorrect extends Mixin<Mixin1 | Mixin2>, Mixin1, Mixin2 { _constructor: never }
 
 class Base {
@@ -53,7 +52,6 @@ class Mixin2 {
 	}
 }
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface Base extends Mixin<Mixin1 | Mixin2>, Mixin1, Mixin2 { _constructor: never }
 
 mixin(BaseIncorrect, [Mixin1, Mixin2])
@@ -62,11 +60,9 @@ mixin(Base, [Mixin1, Mixin2])
 class Mixin3 extends Mixin1 {
 }
 class BaseIncorrect2 { }
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface BaseIncorrect2 extends Mixin<Mixin3>, Mixin3 { _constructor: never }
 mixin(BaseIncorrect2, [Mixin3])
 class Base2 { }
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 interface Base2 extends Mixin<Mixin3>, Mixin3 { _constructor: never }
 mixin(Base2, [Mixin1, Mixin3])
 

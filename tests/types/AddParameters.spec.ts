@@ -4,6 +4,7 @@ import type { AddParameters } from "@/types/AddParameters"
 
 describe(testName(), () => {
 	it("works", () => {
+		// eslint-disable-next-line @typescript-eslint/naming-convention
 		function someFunc(param: string = "") {
 			// eslint-disable-next-line prefer-rest-params
 			const isRecursiveCall: boolean = arguments[1] ?? false

@@ -64,6 +64,7 @@ describe(testName(), () => {
 		}
 		type ReturnType = Result<number, MyError<"b" | "c">>
 
+		// eslint-disable-next-line @typescript-eslint/naming-convention
 		function func(arr: any[]): ReturnType {
 			if (arr.includes("a")) return Ok(1)
 			if (arr.includes("b")) return Err(new MyError("b"))

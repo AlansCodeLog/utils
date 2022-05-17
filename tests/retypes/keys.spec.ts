@@ -7,6 +7,7 @@ import { expect } from "@tests/chai"
 describe(testName(), () => {
 	it("works", () => {
 		const symA: unique symbol = Symbol("a")
+		// eslint-disable-next-line @typescript-eslint/naming-convention
 		const obj: { [symA]: string, b: string, 0: string } = {
 			[symA]: "a", b: "b", 0: "c",
 		}

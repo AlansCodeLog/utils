@@ -176,6 +176,7 @@ export function debounce<
 						delete queues[key]?.resolve
 						delete queues[key]?.reject
 					}
+					// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 					clearTimeout(queues[key].timeout!)
 				}
 			}
@@ -230,6 +231,7 @@ export function debounce<
 				if (isThrottle) {
 					queues[key].timeout = queues[key].timeout ?? setTimeout(timerFunc, wait)
 				} else if (queues[key]?.timeout) {
+					// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 					clearTimeout(queues[key].timeout!)
 				}
 			}
@@ -237,6 +239,7 @@ export function debounce<
 		}
 	}
 	const cancel = (key: any = ""): void => {
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 		if (queues[key].timeout) clearTimeout(queues[key].timeout!)
 		delete queues[key]
 	}
