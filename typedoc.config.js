@@ -1,4 +1,4 @@
-const pkg = require("./package.json")
+// const pkg = require("./package.json")
 const fs = require("fs")
 const path = require("path")
 
@@ -12,22 +12,25 @@ module.exports = {
 	// excludeNotExported: true,
 	excludePrivate: true,
 	excludeExternals: true,
-	theme: "./node_modules/typedoc-neo-theme/bin/default",
-	source: [{
-		path: `${pkg.repository.url}/tree/master/`,
-		line: "L",
-	}],
+	githubPages: true,
+	// theme: "./node_modules/typedoc-neo-theme/bin/default",
+	// source: [{
+	// 	path: `${pkg.repository}/tree/master/`,
+	// 	line: "L",
+	// }],
 	// prevents typedoc auto-detecting installed plugins
 	// explicity listing them also makes things easier to debug
-	plugin: [
-		"typedoc-neo-theme",
-		"typedoc-plugin-param-names",
-	],
+	// plugin: [
+	// 	"typedoc-neo-theme",
+	// ],
 	// // temporarily turn off plugins (just setting plugin: [] will not work)
 	// plugin:"none",
 	// topbar
-	links: [
-		{ label: "Repository", url: pkg.repository },
-		{ label: "Issues", url: `${pkg.repository}/issues` },
-	],
+	// links: [
+	// 	{ label: "Repository", url: pkg.repository },
+	// 	{ label: "Issues", url: `${pkg.repository}/issues` },
+	// ],
+	validation: {
+		invalidLink: true,
+	},
 }

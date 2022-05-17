@@ -12,7 +12,7 @@
  * 		${indent(pretty(obj), 2)}
  * 	`)
  * ```
- * ```txt
+ * ```
  * 		^the code is indented 2 tabs, so that's what the count should be
  * Produces:
  * Some message:
@@ -28,7 +28,7 @@
  * 			${indent(pretty(obj), 2)}
  * 	`)
  * ```
- * ```txt
+ * ```
  * 			^the code is indented 3 tabs
  *  Produces:
  *  Some message:

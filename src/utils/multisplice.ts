@@ -60,9 +60,9 @@ export function multisplice<
 	count: number = 1,
 	item?: TItems,
 	{
-		/** See {@link MULTISPLICE_ITEM}. */
 		insert = MULTISPLICE_ITEM.SINGLE as TInsert,
 	}: {
+		/** See {@link MULTISPLICE_ITEM}. */
 		insert?: TInsert
 	} = {}
 ): {
