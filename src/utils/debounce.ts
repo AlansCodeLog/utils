@@ -1,10 +1,25 @@
+import { getQueueKey } from "@/internal/getQueueKey"
 import type { AnyFunction, Debounced, DebounceQueue } from "@/types"
+import type { AnyPromise } from "@/types/AnyPromise"
+
+import { castType } from "."
 
 
 /**
  * Returns a debounced function.
  *
- * Has all the typical options (e.g. trailing, leading) for a debounce function, but it can also create debounced queues.
+ * Has all the typical options (e.g. trailing, leading) for a debounce function and the ability to cancel/flush the debounced funciton.
+ *
+ * ```ts
+ *
+ * const callback = () => {}
+ * const debounced = debounce(callback, 1000)
+ *
+ * debounced.cancel() // clear all timeouts
+ * debounced.flush() // if there's a pending funciton, call it then cancel
+ * ```
+ *
+ * AND it can also create debounced queues.
  *
  * # Debounced Queues
  *
@@ -67,6 +82,31 @@ import type { AnyFunction, Debounced, DebounceQueue } from "@/types"
  * })
  * ```
  *
+ * # Promisified Debounce
+ *
+ * The function also supports wrapping async by passing `{promisify: true}`. We must tell the function whether to promisify since [we can't/shouldn't deferentiate between regular and async function](https://stackoverflow.com/questions/38508420/how-to-know-if-a-function-is-async).
+ *
+ * When promisify is enabled, when the funciton is debounced, the callback will be called with `Error("Debounced")` as the first param. This is so that when awaiting you can tell whether the result is a real result, or just the debounce.
+ *
+ * You can check what type of result it is with the {@link isDebouncedResult} utilty funciton.
+ *
+ * ```ts
+ * const callback = (maybeArg) => {
+ * 	// change what is returned when the funciton is debounced, if needed
+ * 	if (isDebouncedResult(maybeArg)) return maybeArg
+ * 	// do stuff
+ * 	if (!ok) throw new Error("Custom Error")
+ * }
+ * const debounced = debounce(callback, 1000, { promisify: true })
+ * const res = await debounced().catch(err => {
+ * 	// if needed errors from the callback can be caught here
+ * })
+ *
+ * if (!isDebouncedResult(res)) {
+ * 	// ...
+ * }
+ * ```
+ *
  * @param callback The function to debounce.
  *
  * @param wait How long to wait before calling the function after the last call. Defaults to 0
@@ -74,74 +114,145 @@ import type { AnyFunction, Debounced, DebounceQueue } from "@/types"
 // #awaiting https://github.com/TypeStrong/typedoc/pull/621 + various variations of the same issue for vscode
 export function debounce<
 	T extends
-		AnyFunction =
-		AnyFunction,
+		AnyFunction | AnyPromise =
+		AnyFunction | AnyPromise,
 	TQueued extends
 		boolean | DebounceQueue =
-		boolean | DebounceQueue,
+	boolean | DebounceQueue,
+	TPromisify extends boolean = boolean,
 >(callback: T, wait: number = 0,
 	{
 		queue = false as TQueued,
 		index = (queue ? 0 : undefined) as any,
 		leading = false,
 		trailing = true,
+		promisify = false as TPromisify,
 	}: {
-		/** Whether to use queues, or queues object to use. */
+		/** Whether to use queues, or a queues object to use. */
 		queue?: TQueued | DebounceQueue
 		/** The index number of the argument that will be used as the key to the queues if queues are enabled. */
 		index?: TQueued extends true
 			? number | ((...args: Parameters<T>) => number)
-		: undefined
-		/** Whether the call is delayed until the end of the timeout. Defaults to true. */
+			: undefined
+			/** Whether the first call is called immediately, and all subsequent calls ignored, defaults to false. Note that if trailing and leading are both set to true, trailing will only fire if there were multiple calls before the wait period timed out. */
 		leading?: boolean
-		/** Whether the first call is called immediately, and all subsequent calls ignored, defaults to false. Note that if trailing and leading are both set to true, trailing will only fire if there were multiple calls before the wait period timed out. */
+		/** Whether the call is delayed until the end of the timeout. Defaults to true. */
 		trailing?: boolean
+		/** Whether to promisify the debounced function.*/
+		promisify?: TPromisify
 	} = {}
-): Debounced<T> {
+): Debounced<T, TPromisify> {
+	// eslint-disable-next-line prefer-rest-params
+	const isThrottle = arguments[3] ?? false
 	let queues: DebounceQueue = {}
 	if (typeof queue === "object") queues = queue
 
 	const type = queue
 		? typeof index as "function" | "number" | "undefined"
-		: undefined
+		: "undefined"
 
-	// this is a "fake" parameter, all the arguments are still in args
-	// see https://www.typescriptlang.org/docs/handbook/functions.html#this-parameters
-	return function(this: any, ...args: any[]) {
-		const context = this
+	let debounced
+	if (promisify) {
+		debounced = function async(...args: any[]): any {
+			castType<AnyPromise>(callback)
+			const key: keyof DebounceQueue = getQueueKey(type, index, args)
 
-		let key!: keyof DebounceQueue
-		switch (type) {
-			case "function":
-				key = (index as AnyFunction)(args)
-				break
-			case "number":
-				key = args[index as number]
-				break
-			case "undefined":
-				key = "" // no key, singular debounce
-				break
-			default: break
-		}
-
-		if (queues[key]) {
-			queues[key].leading = false
-			clearTimeout(queues[key].timeout as number)
-		} else {
-			queues[key] = { leading: false }
-			if (leading) {
-				queues[key].leading = true
-				callback.apply(context, args)
+			const timerFunc = (): void => {
+				if (trailing && queues[key]?._args && queues[key]?.resolve) {
+					queues[key]?.resolve()
+					return // entry deleted by resolve
+				}
+				delete queues[key]
 			}
+
+			queues[key] = queues[key] || {}
+			if (queues[key]?.timeout !== undefined || !leading) {
+				queues[key]._args = args
+				if (isThrottle) {
+					queues[key].timeout = queues[key].timeout ?? setTimeout(timerFunc, wait)
+				} else if (queues[key]?.timeout) {
+					if (queues[key]?.reject) {
+						queues[key]?.reject()
+						delete queues[key]?.resolve
+						delete queues[key]?.reject
+					}
+					clearTimeout(queues[key].timeout!)
+				}
+			}
+			if (!isThrottle) {
+				queues[key].timeout = setTimeout(timerFunc, wait)
+			}
+			return new Promise<void>((resolve, reject) => {
+				if (queues[key]?.timeout === undefined && leading) {
+					queues[key].resolve()
+					delete queues[key]?.resolve
+					delete queues[key]?.reject
+					if (isThrottle) {
+						queues[key].timeout = setTimeout(timerFunc, wait)
+					}
+				}
+				queues[key].resolve = resolve
+				queues[key].reject = reject
+			}).then(async () => {
+				// eslint-disable-next-line @typescript-eslint/no-shadow
+				const args = queues[key]._args
+				delete queues[key]
+				return callback(...args)
+			// eslint-disable-next-line @typescript-eslint/no-use-before-define
+			}).catch(async () => callback(debounceError))
 		}
+	} else {
+		// this is a "fake" parameter, all the arguments are still in args
+		// see https://www.typescriptlang.org/docs/handbook/functions.html#this-parameters
+		debounced = function(this: any, ...args: any[]): void {
+			castType<AnyFunction>(callback)
+			const context = this
 
-		queues[key].timeout = setTimeout(() => {
-			const wasLeading = queues[key]!.leading
-			delete queues[key]
-			if (wasLeading) { return }
-			if (!trailing) { return }
+			const key: keyof DebounceQueue = getQueueKey(type, index, args)
 
-			callback.apply(context, args)
-		}, wait)
+
+			const timerFunc = (): void => {
+				if (trailing && queues[key]?._args) {
+					callback.apply(queues[key]._context, queues[key]._args)
+				}
+				delete queues[key]
+			}
+
+			queues[key] = queues[key] || {}
+			if (queues[key]?.timeout === undefined && leading) {
+				callback.apply(context, args)
+				if (isThrottle) {
+					queues[key].timeout = setTimeout(timerFunc, wait)
+				}
+			} else {
+				queues[key]._context = context
+				queues[key]._args = args
+				if (isThrottle) {
+					queues[key].timeout = queues[key].timeout ?? setTimeout(timerFunc, wait)
+				} else if (queues[key]?.timeout) {
+					clearTimeout(queues[key].timeout!)
+				}
+			}
+			if (!isThrottle) queues[key].timeout = setTimeout(timerFunc, wait)
+		}
 	}
+	const cancel = (key: any = ""): void => {
+		if (queues[key].timeout) clearTimeout(queues[key].timeout!)
+		delete queues[key]
+	}
+	const flush = (key: any = ""): void => {
+		if (trailing && queues[key]?._args) {
+			castType<AnyFunction>(callback)
+			callback.apply(queues[key]?._context, queues[key]._args)
+		}
+		cancel(key)
+	}
+	// @ts-expect-error .
+	debounced.cancel = cancel
+	// @ts-expect-error .
+	debounced.flush = flush
+	return debounced as any
 }
+/** @internal */
+// use single frozen instance since this might be getting created quite a lot
+export const debounceError = Object.freeze(new Error("Debounced"))
