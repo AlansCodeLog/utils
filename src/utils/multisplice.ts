@@ -131,7 +131,7 @@ export enum MULTISPLICE_ITEM {
 	SINGLE = "SINGLE",
 	/**
 	 * Items needs to be an array. Inserts each item of the array at the corresponding indexes passed. The length of the items array and the indexes passed must be the same.
-	 * e.g. insert `[1,2,3]` at positions `[0,1,2]` in array `[1,2,3]  = [1, 1, 2, 2, 3, 3]`
+	 * e.g. insert `[1,2,3]` at positions `[0,1,2]` in array `[1,2,3]` = `[1, 1, 2, 2, 3, 3]`
 	 */
 	MATCH_INDEX = "MATCH_INDEX",
 	/**
