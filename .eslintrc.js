@@ -1,11 +1,8 @@
-/** @type {import('eslint').Linter.Config} */
-module.exports = {
+/** @type {import('@typescript-eslint/utils').TSESLint.Linter.Config} */
+export default {
 	root: true,
 	extends: [
 		// https://github.com/AlansCodeLog/my-eslint-config
-		// extends:
-		// ./node_modules/@alanscodelog/eslint-config/js.js
-		// prev + ./node_modules/@alanscodelog/eslint-config/typescript.js (default)
 		"@alanscodelog/eslint-config",
 	],
 	// for vscode, so it doesn't try to lint files in here when we open them
