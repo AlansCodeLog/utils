@@ -1,7 +1,8 @@
+import { describe, expect, it } from "vitest"
+
 import { inspectError, testName } from "@/testing"
 import { merge } from "@/utils"
-
-import { complexObj } from "../_helpers/constants.js"
+import { complexObj } from "@tests/_helpers/constants.js"
 
 
 describe(testName(), () => {

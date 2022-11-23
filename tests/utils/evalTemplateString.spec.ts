@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-base-to-string */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
+import { describe, expect, it } from "vitest"
+
 import { testName } from "@/testing"
 import { evalTemplateString } from "@/utils"
-
-import { complexObj } from "../_helpers/constants.js"
+import { complexObj } from "@tests/_helpers/constants.js"
 
 
 const obj = { ...complexObj, b: undefined }

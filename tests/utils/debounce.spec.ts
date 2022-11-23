@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
+import { describe, expect, it, vi } from "vitest"
+
 import { testName } from "@/testing"
 import { debounce, isDebouncedResult } from "@/utils"
 
 
-
-jest.useFakeTimers()
+vi.useFakeTimers()
 
 describe(testName(), () => {
 	it("debounces - trailing (default)", () => {
 		let num = 0
-		const func = jest.fn((amount: number = 1) => {
+		const func = vi.fn((amount: number = 1) => {
 			num = amount
 		})
 		const debounced = debounce(func, 1000, { })
@@ -19,17 +20,17 @@ describe(testName(), () => {
 		expect(func.mock.calls.length).to.equal(0)
 		expect(num).to.equal(0)
 
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		expect(func.mock.calls.length).to.equal(1)
 		expect(num).to.equal(3)
 		debounced(4)
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		expect(func.mock.calls.length).to.equal(2)
 		expect(num).to.equal(4)
 	})
 	it("debounces - leading", () => {
 		let num = 0
-		const func = jest.fn((amount: number = 1) => {
+		const func = vi.fn((amount: number = 1) => {
 			num = amount
 		})
 		const debounced = debounce(func, 1000, { leading: true, trailing: false })
@@ -39,7 +40,7 @@ describe(testName(), () => {
 		expect(func.mock.calls.length).to.equal(1)
 		expect(num).to.equal(1)
 
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		expect(func.mock.calls.length).to.equal(1)
 		expect(num).to.equal(1)
 		debounced(4)
@@ -48,7 +49,7 @@ describe(testName(), () => {
 	})
 	it("debounces - trailing and leading", () => {
 		let num = 0
-		const func = jest.fn((amount: number = 1) => {
+		const func = vi.fn((amount: number = 1) => {
 			num = amount
 		})
 		const debounced = debounce(func, 1000, { leading: true, trailing: true })
@@ -58,18 +59,18 @@ describe(testName(), () => {
 		expect(func.mock.calls.length).to.equal(1)
 		expect(num).to.equal(1)
 
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		expect(func.mock.calls.length).to.equal(2)
 		expect(num).to.equal(3)
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		debounced(4)
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		expect(func.mock.calls.length).to.equal(3)
 		expect(num).to.equal(4)
 	})
 	it("debounces - both false", () => {
 		let num = 0
-		const func = jest.fn((amount: number = 1) => {
+		const func = vi.fn((amount: number = 1) => {
 			num = amount
 		})
 		const debounced = debounce(func, 1000, { leading: false, trailing: false })
@@ -77,7 +78,7 @@ describe(testName(), () => {
 		debounced(2)
 		debounced(3)
 		expect(func.mock.calls.length).to.equal(0)
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		expect(func.mock.calls.length).to.equal(0)
 	})
 	it("debounces - queued", () => {
@@ -96,7 +97,7 @@ describe(testName(), () => {
 		debounced(2, 5)
 		expect(items[1]).to.equal(0)
 		expect(items[2]).to.equal(0)
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		expect(items[1]).to.equal(2)
 		expect(items[2]).to.equal(5)
 	})
@@ -129,7 +130,7 @@ describe(testName(), () => {
 		expect(res[1].num).to.equal(0)
 		expect(res[2].num).to.equal(0)
 
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		expect(res[1].num).to.equal(3)
 		expect(res[2].num).to.equal(6)
 		expect(res[1].type).to.equal("save")
@@ -149,7 +150,7 @@ describe(testName(), () => {
 		expect(items[1]).to.equal(0)
 		expect(items[2]).to.equal(0)
 
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		expect(items[1]).to.equal(1)
 		expect(items[2]).to.equal(2)
 	})
@@ -167,7 +168,7 @@ describe(testName(), () => {
 		expect(items[1]).to.equal(0)
 		expect(items[2]).to.equal(0)
 
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		expect(items[1]).to.equal(1)
 		expect(items[2]).to.equal(2)
 	})
@@ -181,16 +182,16 @@ describe(testName(), () => {
 		const debounced = debounce(func, 1000, { promisify: true })
 
 		const a1 = debounced(1)
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		const res1 = await a1
 		expect(res1).to.equal(1)
 		const a2 = debounced(2)
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		const res2 = await a2
 		expect(res2).to.equal(2)
 
 		const a3 = debounced(3)
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		const res3 = await a3
 		expect(res3).to.equal(3)
 	})
@@ -205,7 +206,7 @@ describe(testName(), () => {
 
 		for (let i = 0; i < 10000; i++) {
 			const a1 = debounced(i)
-			jest.advanceTimersByTime(1001)
+			vi.advanceTimersByTime(1001)
 			// eslint-disable-next-line no-await-in-loop
 			const res1 = await a1
 			expect(res1).to.equal(i)
@@ -224,7 +225,7 @@ describe(testName(), () => {
 		const a1 = debounced(1)
 		const a2 = debounced(2)
 		const a3 = debounced(3)
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		const res3 = await a3
 		// the following would have already been cancelled, we await just to extract the answer
 		const res2 = await a2
@@ -247,7 +248,7 @@ describe(testName(), () => {
 			expect(err).to.be.instanceOf(Error)
 			return true
 		})
-		jest.advanceTimersByTime(1001)
+		vi.advanceTimersByTime(1001)
 		const res3 = await a1
 		expect(res3).to.equal(true)
 	})

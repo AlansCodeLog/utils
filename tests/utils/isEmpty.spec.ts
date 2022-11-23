@@ -1,7 +1,8 @@
-import { keys } from "@/retypes/keys"
+import { describe, expect, it } from "vitest"
+
+import { keys } from "@/retypes"
 import { expectType, testName } from "@/testing"
 import { isEmpty } from "@/utils"
-
 
 
 describe(testName(), () => {

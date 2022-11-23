@@ -1,4 +1,8 @@
+import { chai, describe, expect, it } from "vitest"
+
 import { inspectError, partialDeepEqual, testName } from "@/testing"
+
+
 chai.use(partialDeepEqual)
 
 describe(testName(), () => {

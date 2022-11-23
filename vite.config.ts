@@ -48,11 +48,8 @@ export default ({ mode }: { mode: string }) => defineConfig({
 			sourcemap: "inline",
 		}),
 	},
-	resolve: {
-		alias: [
-			// absolute path needed because of https://github.com/vitest-dev/vitest/issues/2425
-			{ find: /^@\/(.*)/, replacement: `${path.resolve("src")}/$1/index.ts` },
-		],
+	test: {
+		cache: process.env.CI ? false : undefined,
 	},
 	// resolve: {
 	// 	alias: [

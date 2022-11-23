@@ -1,3 +1,5 @@
+import { describe, expect, it } from "vitest"
+
 import { expectType, testName } from "@/testing"
 import type { RecordFromArray } from "@/types"
 

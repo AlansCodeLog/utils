@@ -1,6 +1,7 @@
+import { describe, expect, it } from "vitest"
+
 import { testName } from "@/testing"
 import { walk } from "@/utils"
-
 
 
 describe(testName(), () => {
@@ -32,7 +33,7 @@ describe(testName(), () => {
 	it("works with circular references", () => {
 		const obj = {
 			a: "a",
-			b: {}
+			b: {},
 		}
 		obj.b = obj
 		const items: any[] = []
@@ -44,11 +45,11 @@ describe(testName(), () => {
 		}
 		expected.b = expected
 		expect(obj).to.deep.equal(expected)
-		const clone_expected = {
+		const cloneExpected = {
 			a: "a-",
-			b: {}
+			b: {},
 		}
-		clone_expected.b = clone_expected
-		expect(clone).to.deep.equal(clone_expected)
+		cloneExpected.b = cloneExpected
+		expect(clone).to.deep.equal(cloneExpected)
 	})
 })

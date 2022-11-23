@@ -23,12 +23,12 @@
 		"lint:commits": "commitlint --from $(git rev-list HEAD --not --remotes | tail -1)^ --to HEAD --verbose",
 		"lint": "npm run lint:types && npm run lint:eslint",
 
-		"coverage": "npm run test -- --coverage",
-		"coverage:dev": "http-server coverage/lcov-report --port=5000 & onchange -k -i \"jest.config.js\" --  npm run coverage -- --watch",
+		"coverage": "vitest --coverage",
+		"coverage:dev": "vitest --watch --coverage",
 
-		"test": "npm run lint:types && jest test --verbose",
-		"test:debug": "node --inspect-brk node_modules/jest/bin/jest test --verbose",
-		"test:inspect-errors": "set INSPECT_ERRORS=true && npm run test",
+		"test": "npm run lint:types && vitest",
+		"test:watch": "vitest --watch",
+		"test:inspect-errors": "cross-env INSPECT_ERRORS=true npm run test",
 
 		"doc": "typedoc --options typedoc.config.cjs",
 		"doc:watch": "onchange -i \"src/**/*.ts\" \"typedoc.config.cjs\" -- npm run doc",
@@ -46,6 +46,8 @@
 		"tsc-alias":"1.7.1",
 		"vite":"^3.2.4",
 		"vitest":"^0.25.3",
+		"@vitest/coverage-c8":"0.25.3",
+		"@types/chai":"4.3.4",
 
 		"semantic-release": "^18.0.0",
 		"@semantic-release/changelog": "^6.0.1",
@@ -80,7 +82,7 @@
 		"husky": "^8.0.1",
 		"indexit": "^2.1.0-beta.1",
 		"onchange": "^7.1.0",
-		"http-server": "^14.1.0"
+		"cross-env": "^7.0.3"
 	},
 	"author": "Alan <alanscodelog@gmail.com>",
 	"repository": "https://github.com/alanscodelog/my-utils",
@@ -96,7 +98,7 @@
 		"scripts": {
 			"test": "Runs `lint:types` before (so that flags can be passed to the test command) so that we can test type assertions. See ./src/testing/expectType.ts for more details.",
 			"lint:commits": "Lints all unpushed commits in the active branch.",
-			"test:inspect-errors": "For use with my inspectError utility function from @alanscodelog/utils",
+			"test:inspect-errors": "For use with the inspectError utility function.",
 			"prepare": "Needed so that if we pull the package from git it will get built and installed properly.",
 			"actions:debug": "For debugging github build action locally with nektos/act. Requires act and docker. Note: Cache will never work locally because of https://github.com/nektos/act/issues/285"
 		}

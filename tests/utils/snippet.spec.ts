@@ -1,6 +1,7 @@
+import { describe, expect, it } from "vitest"
+
 import { testName } from "@/testing"
 import { snippet } from "@/utils"
-import { expect } from "@tests/chai"
 
 
 describe(testName(), () => {
