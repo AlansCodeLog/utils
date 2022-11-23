@@ -1,4 +1,4 @@
-import { walk } from "./walk"
+import { walk } from "./walk.js"
 
 /**
  * Pretty prints objects with tab indentation, or optionally all in a single line with a space between elements (e.g. for arrays) (see `oneline` option).

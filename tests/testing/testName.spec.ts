@@ -1,7 +1,6 @@
 import path from "path"
 
 import { inspectError, testName } from "@/testing"
-import { expect } from "@tests/chai"
 
 
 describe(testName(), () => {

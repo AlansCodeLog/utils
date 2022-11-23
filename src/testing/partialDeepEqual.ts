@@ -18,7 +18,7 @@ declare global {
 }
 
 /**
- * A chai plugin that adds the ability to partially deep check for object equality. Note that it checks any **DEFINED** keys, if a key is undefined, it's assumed you want to check that that property should be undefined.
+ * A chai plugin that adds the ability to partially deep check for object equality. Note that it checks any **DEFINED** keys, if a key is undefined, it's assumed you want to check that the property should be undefined.
  *
  * Passes a modified expected object ("filling" its missing properties) to chai so only differences with the expected object are shown by chai.
  *
@@ -46,7 +46,7 @@ declare global {
  *
  *
  * // importing should modify chai's types correctly (overriding deep.equal/equals/eq)
- * import { partialDeepEqual } from "@/testing"
+ * import { partialDeepEqual } from "./testing.js"
  * // ...other plugin imports
  *
  * chai.use(partialDeepEqual)

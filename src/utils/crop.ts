@@ -1,6 +1,6 @@
-import { evalTemplateString } from "./evalTemplateString"
-import { stripIndent } from "./stripIndent"
-import { trimLines } from "./trimLines"
+import { evalTemplateString } from "./evalTemplateString.js"
+import { stripIndent } from "./stripIndent.js"
+import { trimLines } from "./trimLines.js"
 
 /**
  * "Crops" template strings to remove the excess whitespace needed to make the code more readable.

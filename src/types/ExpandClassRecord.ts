@@ -1,4 +1,4 @@
-import type { ExpandRecord } from "./ExpandRecord"
+import type { ExpandRecord } from "./ExpandRecord.js"
 
 /**
  * Does {@link ExpandRecord} on a property of a class. Useful for permanently casting a class's key (e.g. entries) with additional keys or more permissive entry keys.

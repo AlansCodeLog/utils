@@ -1,5 +1,5 @@
-import type { AnyFunction } from "./AnyFunction"
-import type { OrToAnd } from "./OrToAnd"
+import type { AnyFunction } from "./AnyFunction.js"
+import type { OrToAnd } from "./OrToAnd.js"
 
 
 type AnyClassForMixin = {

@@ -2,8 +2,15 @@
 	"name": "@alanscodelog/utils",
 	"description": "My utility functions and typescript types.",
 	"version": "0.0.0-semantically-released",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"type": "module",
+	"exports": {
+		".": { "types": "./dist/index.d.ts", "require": "./dist/index.cjs", "import": "./dist/index.js" },
+		"./*": { "types": "./dist/*/index.d.ts", "require": "./dist/*/index.cjs", "import": "./dist/*/index.js" },
+		"./node": { "types": "./dist/index_node.d.ts", "require": "./dist/index_node.cjs", "import": "./dist/index_node.js" }
+	},
 	"scripts": {
 		"babel:run": "babel-node --extensions \".ts,.js\" --",
 		"babel:run:dev": "onchange -i \"src/**/*.ts\" -- babel-node --extensions \".ts,.js\" --",
@@ -25,14 +32,14 @@
 		"test:debug": "node --inspect-brk node_modules/jest/bin/jest test --verbose",
 		"test:inspect-errors": "set INSPECT_ERRORS=true && npm run test",
 
-		"doc": "typedoc --options typedoc.config.js",
-		"doc:watch": "onchange -i \"src/**/*.ts\" \"typedoc.config.js\" -- npm run doc",
+		"doc": "typedoc --options typedoc.config.cjs",
+		"doc:watch": "onchange -i \"src/**/*.ts\" \"typedoc.config.cjs\" -- npm run doc",
 		"doc:serve": "http-server docs --port=5001",
-		"doc:check-invalid": "typedoc --options typedoc.config.js --listInvalidSymbolLinks",
+		"doc:check-invalid": "typedoc --options typedoc.config.cjs --listInvalidSymbolLinks",
 
 		"actions:debug": "act -r -v -j build-only",
 
-		"gen:exports": "indexit update",
+		"gen:exports": "indexit update -o '${path}.js'",
 		"prepare": "npm run build && husky install"
 	},
 	"dependencies": {
@@ -84,7 +91,7 @@
 		"dts-alias":"^1.0.5",
 
 		"husky": "^8.0.1",
-		"indexit": "^2.0.1",
+		"indexit": "^2.1.0-beta.1",
 		"onchange": "^7.1.0",
 		"http-server": "^14.1.0"
 	},
@@ -97,9 +104,7 @@
 	],
 	"release": { "extends": [ "@alanscodelog/semantic-release-config" ] },
 	"commitlint": { "extends": [ "@alanscodelog" ] },
-	"babel": { "presets": [ "@alanscodelog" ] },
-	"browserslist":"> 0.5%, last 2 versions, not dead, not < 0.25%, not IE > 0, maintained node versions",
-	"engines": { "node": ">=14.0.0" },
+	"engines": { "node": ">=16.0.0" },
 	"@comments": {
 		"scripts": {
 			"test": "Runs `lint:types` before (so that flags can be passed to the test command) so that we can test type assertions. See ./src/testing/expectType.ts for more details.",

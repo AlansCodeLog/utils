@@ -1,5 +1,5 @@
-import type { EmptyArray } from "./EmptyArray"
-import type { NonEmptyArray } from "./NonEmptyArray"
+import type { EmptyArray } from "./EmptyArray.js"
+import type { NonEmptyArray } from "./NonEmptyArray.js"
 
 /**
  * Returns true if we can be sure the array is empty, false if we can be sure it's not, and boolean otherwise.

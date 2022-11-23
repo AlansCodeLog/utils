@@ -1,4 +1,4 @@
-import type { DeepRequired } from "./DeepRequired"
+import type { DeepRequired } from "./DeepRequired.js"
 
 
 type PrimitiveEqual<T, TOther> = [T] extends [TOther] ? [TOther] extends [T] ? true : false : false

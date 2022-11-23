@@ -1,4 +1,4 @@
-import { debounceError } from "./debounce"
+import { debounceError } from "./debounce.js"
 
 
 export function isDebouncedResult(result?: any): boolean {

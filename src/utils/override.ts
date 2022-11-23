@@ -1,5 +1,5 @@
-import { isPlainObject } from "./isPlainObject"
-import { pushIfNotIn } from "./pushIfNotIn"
+import { isPlainObject } from "./isPlainObject.js"
+import { pushIfNotIn } from "./pushIfNotIn.js"
 
 import { keys as keysOf } from "@/retypes"
 

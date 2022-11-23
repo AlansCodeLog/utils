@@ -1,6 +1,6 @@
 import { testName } from "@/testing"
-import { throttle } from "@/utils/throttle"
-import { expect } from "@tests/chai"
+import { throttle } from "@/utils"
+
 
 
 jest.useFakeTimers()

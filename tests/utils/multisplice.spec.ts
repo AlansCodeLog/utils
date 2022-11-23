@@ -1,7 +1,7 @@
 import { inspectError, testName } from "@/testing"
 import { multisplice } from "@/utils"
 import { MULTISPLICE_ITEM } from "@/utils/multisplice"
-import { expect } from "@tests/chai"
+
 
 
 describe(testName(), () => {

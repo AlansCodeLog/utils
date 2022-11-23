@@ -1,6 +1,5 @@
 import { testName } from "@/testing"
-import type { AddParameters } from "@/types/AddParameters"
-
+import type { AddParameters } from "@/types"
 
 describe(testName(), () => {
 	it("works", () => {

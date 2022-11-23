@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { testName } from "@/testing"
 import { evalTemplateString } from "@/utils"
-import { complexObj } from "@tests/_helpers/constants"
-import { expect } from "@tests/chai"
+
+import { complexObj } from "../_helpers/constants.js"
 
 
 const obj = { ...complexObj, b: undefined }

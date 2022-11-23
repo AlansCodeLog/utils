@@ -1,4 +1,4 @@
-import { expectType, testName } from "@/testing"
+import {expectType, testName} from "@/testing/index.js"
 import { pushIfNotIn } from "@/utils"
 import { expect } from "@tests/chai"
 

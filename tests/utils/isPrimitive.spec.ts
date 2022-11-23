@@ -1,7 +1,7 @@
 import { testName } from "@/testing"
 import { isPrimitive } from "@/utils"
-import { Animal } from "@tests/_helpers/constants"
-import { expect } from "@tests/chai"
+
+import { Animal } from "../_helpers/constants.js"
 
 
 function func(): void {}

@@ -1,5 +1,4 @@
-import { inspectError, testName } from "@/testing"
-import { expect } from "@tests/chai"
+import { inspectError, testName } from "@/testing";
 
 
 const originalWarn = console.warn

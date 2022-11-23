@@ -1,7 +1,7 @@
 import { expectType, inspectError, testName } from "@/testing"
 import type { Mixin } from "@/types"
 import { mixin } from "@/utils"
-import { expect } from "@tests/chai"
+
 
 
 class BaseIncorrect {

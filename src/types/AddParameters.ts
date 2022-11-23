@@ -1,4 +1,4 @@
-import type { AnyFunction } from "./AnyFunction"
+import type { AnyFunction } from "./AnyFunction.js"
 
 /**
  * Allows retyping of functions. Useful for calling functions with hidden parameters (for recursion).

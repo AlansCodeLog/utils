@@ -1,6 +1,6 @@
+import { inspect } from "@/node_utils"
 import { testName } from "@/testing"
-import { inspect } from "@/utils"
-import { expect } from "@tests/chai"
+
 
 
 describe(testName(), () => {

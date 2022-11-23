@@ -1,7 +1,6 @@
 import { expectType, testName } from "@/testing"
 import type { ExpandClassRecord, ExpandRecord, RecordFromArray } from "@/types"
 
-
 class Entry<TName extends string = string> {
 	id!: TName
 	constructor(_id: TName) { }

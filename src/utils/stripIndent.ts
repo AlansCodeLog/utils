@@ -1,4 +1,4 @@
-import { isDefined } from "./isDefined"
+import { isDefined } from "./isDefined.js"
 
 /**
  * Trims extra indents from a string.

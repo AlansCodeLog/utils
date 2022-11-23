@@ -1,6 +1,6 @@
 import { inspectError, testName } from "@/testing"
-import { assertInStrRange } from "@/utils/assertInStrRange"
-import { expect } from "@tests/chai"
+import { assertInStrRange } from "@/utils"
+
 
 
 describe(testName(), () => {

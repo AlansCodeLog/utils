@@ -1,6 +1,6 @@
 import { inspectError, testName } from "@/testing"
 import { insert } from "@/utils"
-import { expect } from "@tests/chai"
+
 
 
 function naiveInsert(str: string, intoStr: string, range: number | [number, number]): string {

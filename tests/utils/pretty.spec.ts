@@ -1,7 +1,7 @@
 import { testName } from "@/testing"
 import { crop, pretty } from "@/utils"
-import { complexObj } from "@tests/_helpers/constants"
-import { expect } from "@tests/chai"
+
+import { complexObj } from "../_helpers/constants.js"
 
 
 const test1 = (...args1: any) => (...args2: any) => { console.log(args1, args2) }

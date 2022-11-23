@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { testName } from "@/testing"
-import { debounce } from "@/utils/debounce"
-import { isDebouncedResult } from "@/utils/isDebouncedResult"
-import { expect } from "@tests/chai"
+import { debounce, isDebouncedResult } from "@/utils"
+
 
 
 jest.useFakeTimers()

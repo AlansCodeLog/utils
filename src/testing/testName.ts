@@ -36,10 +36,15 @@ export function testName({ nest = true, __filename }: { nest?: boolean, __filena
 	const regex = `${escapeRegex(path.resolve(process.cwd()))}${sep}(test|tests)${sep}`
 	const regexp = new RegExp(regex, "i")
 
-	const filename = __filename ?? (new Error()).stack
+	const errorStack = (new Error()).stack
 		?.split("\n")
 		.find(line => line.match(regexp) !== null)
-		?.match(/\((.*?)\)/)?.[1]
+	// temporary backwards compatibility
+	const regexOriginal = /\((.*?)\)/
+	const regexFileRegex = /(\/.*\/.*?)\:/
+
+
+	const filename = __filename ?? errorStack?.match(regexOriginal)?.[1] ?? errorStack?.match(regexFileRegex)?.[1]
 
 	if (filename === undefined) throw new Error("Could not find test file path.")
 
@@ -48,5 +53,6 @@ export function testName({ nest = true, __filename }: { nest?: boolean, __filena
 	const name = nest
 		? path.relative(process.cwd(), filepath).match(/(?:test|tests)(?:\/|\\)(.*?(?:\/|\\)?.*?)\./)![1]
 		: filepath.match(/.*(?:\/|\\)(.*?)\./)![1]
+
 	return name
 }

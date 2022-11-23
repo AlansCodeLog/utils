@@ -1,5 +1,5 @@
 /** @type {import('@typescript-eslint/utils').TSESLint.Linter.Config} */
-export default {
+module.exports = {
 	root: true,
 	extends: [
 		// https://github.com/AlansCodeLog/my-eslint-config

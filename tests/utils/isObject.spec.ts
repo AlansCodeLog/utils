@@ -1,6 +1,6 @@
 import { testName } from "@/testing"
 import { isObject } from "@/utils"
-import { expect } from "@tests/chai"
+
 
 
 class Animal { }

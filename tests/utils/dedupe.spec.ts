@@ -1,7 +1,7 @@
 import { testName } from "@/testing"
 import { dedupe } from "@/utils"
-import { complexArray } from "@tests/_helpers/constants"
-import { expect } from "@tests/chai"
+
+import { complexArray } from "../_helpers/constants.js"
 
 
 describe(testName(), () => {

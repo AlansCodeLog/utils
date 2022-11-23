@@ -1,6 +1,6 @@
 import { expectType, testName } from "@/testing"
 import { isArray } from "@/utils"
-import { expect } from "@tests/chai"
+
 
 
 describe(testName(), () => {

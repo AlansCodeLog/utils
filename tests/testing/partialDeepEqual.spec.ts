@@ -1,6 +1,5 @@
-import { testName } from "@/testing"
-import { expect } from "@tests/chai"
-
+import { inspectError, partialDeepEqual, testName } from "@/testing"
+chai.use(partialDeepEqual)
 
 describe(testName(), () => {
 	it("works", () => {
