@@ -41,7 +41,7 @@ export function testName({ nest = true, __filename }: { nest?: boolean, __filena
 		.find(line => line.match(regexp) !== null)
 	// temporary backwards compatibility
 	const regexOriginal = /\((.*?)\)/
-	const regexFileRegex = /(\/.*\/.*?)\:/
+	const regexFileRegex = /(\/.*\/.*?):/
 
 
 	const filename = __filename ?? errorStack?.match(regexOriginal)?.[1] ?? errorStack?.match(regexFileRegex)?.[1]

@@ -1,13 +1,13 @@
 /* eslint-disable*/
 // @ts-nocheck
 import { isArray, pretty } from "@/utils"
-import type chai from "chai"
+import type chai from "@types/chai"
 
 declare global {
 	export namespace Chai {
 		interface Assertion {
 			partial: {
-				deep: Deep & {
+				deep:  & {
 					eq: (value: any, message?: string, prettyLogObjects?: boolean) => Assertion
 					equal: (value: any, message?:string, prettyLogObjects?: boolean) => Assertion
 					equals: (value: any, message?: string, prettyLogObjects?: boolean) => Assertion

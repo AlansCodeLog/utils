@@ -16,8 +16,8 @@ abstract class ResultBase<TVal, TErr extends Error | never> {
 
 class OkResultImpl<TVal> extends ResultBase<TVal, never> {
 	value: TVal
-	readonly isOk: true = true
-	readonly isError: false = false
+	readonly isOk: true = true as const
+	readonly isError: false = false as const
 	constructor(val: TVal) {
 		super()
 		this.value = val
@@ -29,8 +29,8 @@ class OkResultImpl<TVal> extends ResultBase<TVal, never> {
 
 class ErrResultImpl<TErr extends Error = Error> extends ResultBase<never, TErr> {
 	error: TErr
-	readonly isOk: false = false
-	readonly isError: true = true
+	readonly isOk: false = false as const
+	readonly isError: true = true as const
 	constructor(val: TErr) {
 		super()
 		this.error = val

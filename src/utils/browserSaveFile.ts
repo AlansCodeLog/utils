@@ -10,7 +10,7 @@
  * @env browser
  */
 export function browserSaveFile(name: string, contents: string, { type = "text/plain", lastModified }: FilePropertyBag = {}): void {
-	if (window === undefined) throw "This function can only be used in the browser."
+	if (window === undefined) throw new Error("browserSaveFile can only be used in the browser.")
 	const url = window.URL.createObjectURL(new File([contents], name, { type, lastModified }))
 	const link = document.createElement("a")
 	link.href = url

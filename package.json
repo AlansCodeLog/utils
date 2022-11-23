@@ -78,7 +78,7 @@
 		"@alanscodelog/tsconfigs": "^3.0.0",
 
 		"husky": "^8.0.2",
-		"indexit": "^2.1.0-beta.1",
+		"indexit": "^2.1.0-beta.2",
 		"onchange": "^7.1.0",
 		"http-server": "^14.1.1",
 		"cross-env": "^7.0.3"
@@ -104,6 +104,5 @@
 	},
 	"publishConfig": {
 		"access": "public"
-	},
-	"TEMPLATE:5588fac": "Ignore. Commit of the template this was created with / last updated to."
+	}
 }

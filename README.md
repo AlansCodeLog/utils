@@ -22,6 +22,7 @@ There's four types of utility functions available, with some having node only va
 - `testing` - functions that are only useful for testing purposes
 - `retypes` - existing functions typed as something else (e.g. Object.keys cast to a type that's useful for iterating, etc)
 - `types` - all the types used internally + any utility types
+	- Also includes any enums.
 And there's also:
 - `colors` - contains the basic ansi escape codes, for small scripts, or debugging, where I don't need to add chalk.
 

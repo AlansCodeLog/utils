@@ -10,7 +10,7 @@
 		"paths": {
 			// classic (non-esm) non-prefixed style paths unless refering to specific file (@/somefile.js, @/path/to/some/file.js)
 			"@/*": ["src/*", "src/*/index.js"],
-			"@tests/*": ["src/*", "tests/*/index.js"],
+			"@tests/*": ["tests/*", "tests/*/index.js"]
 		},
 	},
 	"types" : [
@@ -23,9 +23,7 @@
 	"include": [
 		"src/**/*.ts",
 		"tests/**/*.ts",
-		"*.ts",
-		"*.cjs",
-		"*.js"
+		"*.ts"
 	],
 	"exclude": [
 	],

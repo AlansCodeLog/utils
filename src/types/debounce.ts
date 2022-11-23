@@ -1,4 +1,4 @@
-import type { AnyFunction, AnyPromise, AnyTimer } from "./index.js"
+import type { AnyFunction, AnyPromise, AnyTimer } from "@/types"
 
 
 export type Debounced<T extends AnyFunction | AnyPromise, TPromisify extends boolean = false> =
