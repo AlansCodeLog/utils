@@ -12,13 +12,11 @@
 		"./node": { "types": "./dist/index_node.d.ts", "require": "./dist/index_node.cjs", "import": "./dist/index_node.js" }
 	},
 	"scripts": {
-		"babel:run": "babel-node --extensions \".ts,.js\" --",
-		"babel:run:dev": "onchange -i \"src/**/*.ts\" -- babel-node --extensions \".ts,.js\" --",
-		"build:babel": "babel --extensions \".ts,.js\" src --out-dir dist --source-maps inline",
-		"build:watch": "npm run build:babel -- --watch",
-		"build:clean": "rm -rf dist && npm run build",
-		"build:types": "tsc -p tsconfig.types.json && dts-alias -p tsconfig.types.json",
-		"build": "npm run build:babel && npm run build:types",
+		"build": "vite build",
+		"build:dev": "vite build --mode development",
+
+		"build:types": "tsc -p tsconfig.types.json && npm run build:types:fix",
+		"build:types:fix": "tsc-alias -p tsconfig.types.json --debug",
 
 		"lint:eslint": "eslint \"{src,tests}/**/*.{js,ts}\" \"*.{js,ts}\" --max-warnings=0 --report-unused-disable-directives",
 		"lint:types": "tsc --noEmit --pretty",
@@ -43,10 +41,11 @@
 		"prepare": "npm run build && husky install"
 	},
 	"dependencies": {
-		"core-js": "^3.22.5"
 	},
 	"devDependencies": {
-		"@types/node": "^17.0.34",
+		"tsc-alias":"1.7.1",
+		"vite":"^3.2.4",
+		"vitest":"^0.25.3",
 
 		"semantic-release": "^18.0.0",
 		"@semantic-release/changelog": "^6.0.1",
@@ -59,18 +58,7 @@
 		"@alanscodelog/commitlint-config": "^2.0.0",
 		"commitlint": "^17.0.0",
 
-		"@babel/cli": "^7.17.10",
-		"@babel/core": "^7.17.12",
-		"@babel/node": "^7.17.10",
-		"@babel/preset-env": "^7.17.12",
-		"@babel/preset-typescript": "^7.17.12",
-		"@babel/plugin-proposal-export-namespace-from": "^7.17.12",
-		"@babel/plugin-proposal-class-properties": "^7.17.12",
-		"babel-plugin-module-resolver": "^4.1.0",
-		"@alanscodelog/babel-preset": "^2.0.0",
-
-		"eslint": "^8.15.0",
-		"eslint-import-resolver-typescript": "^2.7.1",
+		"eslint-import-resolver-typescript": "^3.5.2",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-simple-import-sort": "^7.0.0",
 		"eslint-plugin-jsdoc": "39.2.9",
@@ -88,7 +76,6 @@
 
 		"typescript": "^4.6.4",
 		"@alanscodelog/tsconfigs": "^3.0.0",
-		"dts-alias":"^1.0.5",
 
 		"husky": "^8.0.1",
 		"indexit": "^2.1.0-beta.1",

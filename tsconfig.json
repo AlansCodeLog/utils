@@ -28,5 +28,8 @@
 		"*.js"
 	],
 	"exclude": [
-	]
+	],
+	"tsc-alias": {
+		"resolveFullPaths": true
+	}
 }
