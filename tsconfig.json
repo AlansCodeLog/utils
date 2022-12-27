@@ -1,33 +1,31 @@
 // https://www.typescriptlang.org/tsconfig/
 {
 	// ./node_modules/@alanscodelog/tsconfigs/tsconfig.json
-	// https://github.com/AlansCodeLog/my-tsconfigs
+	// https://github.com/AlansCodeLog/tsconfigs
 	"extends": "@alanscodelog/tsconfigs",
 	"compilerOptions": {
 		"outDir": "dist",
-		"baseUrl": ".",
+		"baseUrl": "src",
+		"module": "NodeNext",
 		"moduleResolution": "NodeNext",
 		"paths": {
-			// classic (non-esm) non-prefixed style paths unless refering to specific file (@/somefile.js, @/path/to/some/file.js)
-			"@/*": ["src/*", "src/*/index.js"],
-			"@tests/*": ["tests/*", "tests/*/index.js"]
-		},
+		}
 	},
 	"types" : [
-		"jest",
 		"node"
 	],
 	"lib": [
-		"esnext",
+		"esnext"
 	],
 	"include": [
 		"src/**/*.ts",
 		"tests/**/*.ts",
+		// so eslint doesn't bother us, we don't build with tsc anyways, and to emit types, there's tsconfig.types.json
 		"*.ts"
 	],
 	"exclude": [
 	],
 	"tsc-alias": {
-		"resolveFullPaths": true
+		"resolveFullPaths": true // for esm compatibility
 	}
 }

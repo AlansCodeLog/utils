@@ -14,19 +14,19 @@
 	"scripts": {
 		"build": "vite build",
 		"build:dev": "vite build --mode development",
-
 		"build:types": "tsc -p tsconfig.types.json && npm run build:types:fix",
 		"build:types:fix": "tsc-alias -p tsconfig.types.json --debug",
 
-		"lint:eslint": "eslint \"{src,tests}/**/*.{js,ts}\" \"*.{js,ts}\" --max-warnings=0 --report-unused-disable-directives",
+		"lint:eslint": "eslint \"{src,tests}/**/*.{cjs,js,ts}\" \"*.{cjs,js,ts}\" --max-warnings=0 --report-unused-disable-directives",
 		"lint:types": "tsc --noEmit --pretty",
 		"lint:commits": "commitlint --from $(git rev-list HEAD --not --remotes | tail -1)^ --to HEAD --verbose",
+		"lint:imports": "madge --circular --extensions ts ./src",
 		"lint": "npm run lint:types && npm run lint:eslint",
 
 		"coverage": "vitest --coverage",
 		"coverage:dev": "vitest --watch --coverage",
 
-		"test": "npm run lint:types && vitest",
+		"test": "npm run lint:types && vitest run",
 		"test:watch": "vitest --watch",
 		"test:inspect-errors": "cross-env INSPECT_ERRORS=true npm run test",
 
@@ -36,52 +36,48 @@
 		"doc:check-invalid": "typedoc --options typedoc.config.cjs --listInvalidSymbolLinks",
 
 		"actions:debug": "act -r -v -j build-only",
-
 		"gen:exports": "indexit update -o '${path}.js'",
-		"prepare": "npm run build && husky install"
+		"prepare": "husky install && npm run build"
 	},
 	"dependencies": {
 	},
 	"devDependencies": {
-		"tsc-alias":"1.7.1",
-		"vite":"^3.2.4",
-		"vitest":"^0.25.3",
-		"@vitest/coverage-c8":"0.25.3",
-		"@types/chai":"4.3.4",
+		"vite": "^4.0.3",
+		"vitest": "^0.26.2",
+		"@vitest/coverage-c8": "^0.26.2",
+		"chai": "^4.3.7",
 
-		"semantic-release": "^19.0.5",
-		"@semantic-release/changelog": "^6.0.1",
-		"@semantic-release/commit-analyzer": "^9.0.2",
-		"@semantic-release/github": "^8.0.6",
-		"@semantic-release/npm": "^9.0.1",
-		"@semantic-release/release-notes-generator": "^10.0.3",
-		"conventional-changelog-conventionalcommits": "^5.0.0",
+		"typescript": "^4.9.4",
+		"tsc-alias": "^1.8.2",
+		"@alanscodelog/tsconfigs": "^3.0.0",
+		"@types/chai": "^4.3.4",
+		"@types/node": "^18.11.18",
+
 		"@alanscodelog/semantic-release-config": "^2.0.0",
 		"@alanscodelog/commitlint-config": "^2.0.0",
 		"commitlint": "^17.3.0",
+		"semantic-release":"^19.0.5",
 
-
-		"eslint": "^8.28.0",
+		"eslint": "^8.30.0",
 		"eslint-import-resolver-typescript": "^3.5.2",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-simple-import-sort": "^8.0.0",
-		"eslint-plugin-jsdoc": "39.6.3",
-		"@typescript-eslint/eslint-plugin": "^5.44.0",
-		"@typescript-eslint/utils": "^5.44.0",
-		"@typescript-eslint/parser": "^5.44.0",
+		"eslint-plugin-jsdoc": "^39.6.4",
+		"@typescript-eslint/eslint-plugin": "^5.47.1",
+		"@typescript-eslint/parser": "^5.47.1",
 		"@alanscodelog/eslint-config": "^3.0.2",
+		"eslint-plugin-vue": "^9.8.0",
+		"@vue/eslint-config-typescript": "^11.0.2",
 
-
-		"typedoc": "^0.23.21",
-
-		"typescript": "^4.9.3",
-		"@alanscodelog/tsconfigs": "^3.0.0",
+		"typedoc": "^0.23.23",
 
 		"husky": "^8.0.2",
-		"indexit": "^2.1.0-beta.2",
+		"indexit": "^2.0.1",
 		"onchange": "^7.1.0",
+		"concurrently": "^7.6.0",
 		"http-server": "^14.1.1",
-		"cross-env": "^7.0.3"
+		"cross-env": "^7.0.3",
+		"pnpmfile-utils": "github:AlansCodeLog/pnpmfile-utils#master"
 	},
 	"author": "Alan <alanscodelog@gmail.com>",
 	"repository": "https://github.com/alanscodelog/my-utils",
@@ -92,12 +88,12 @@
 	],
 	"release": { "extends": [ "@alanscodelog/semantic-release-config" ] },
 	"commitlint": { "extends": [ "@alanscodelog" ] },
-	"engines": { "node": ">=16.0.0" },
+	"engines": { "node": ">=14.0.0" },
 	"@comments": {
 		"scripts": {
-			"test": "Runs `lint:types` before (so that flags can be passed to the test command) so that we can test type assertions. See ./src/testing/expectType.ts for more details.",
+			"test": "Runs `lint:types` before (so that flags can be passed to the test command) so that we can test type assertions. See expect_type function in @alanscodelog/utils.",
 			"lint:commits": "Lints all unpushed commits in the active branch.",
-			"test:inspect-errors": "For use with the inspectError utility function.",
+			"test:inspect_errors": "For use with my inspect_error utility function from @alanscodelog/utils",
 			"prepare": "Needed so that if we pull the package from git it will get built and installed properly.",
 			"actions:debug": "For debugging github build action locally with nektos/act. Requires act and docker. Note: Cache will never work locally because of https://github.com/nektos/act/issues/285"
 		}

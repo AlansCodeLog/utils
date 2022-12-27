@@ -13,25 +13,26 @@ module.exports = {
 	],
 	rules: {
 	},
-	// 🟠 - I like to toggle these on occasionally, but otherwise keep off
+	settings: {
+		jsdoc: {
+			mode: "typescript",
+		}
+	},
 	overrides: [
+		{
+			files: ["./*.{js,cjs,ts,vue}"],
+			rules: {
+				"@typescript-eslint/explicit-function-return-type": "off",
+			}
+		}
 		// Eslint: https://eslint.org/docs/rules/
-		{
-			files: ["**/*.js", "**/*.ts"],
-			rules: {
-				// "import/no-unused-modules": [ "warn", { unusedExports: true, missingExports: false }] // 🟠
-				// CAREFUL: the auto fix for this one is dangerous and can remove documentation if just added to a project that has errors for it
-				// "jsdoc/empty-tags": "warn", // 🟠
-			},
-		},
-		// Typescript: https://github.com/typescript-eslint/typescript-eslint/master/packages/eslint-plugin#supported-rules
-		{
-			files: ["**/*.ts"],
-			rules: {
-				// "@typescript-eslint/strict-boolean-expressions": ["warn", {allowNullableBoolean: true}], // 🟠
-				// "@typescript-eslint/no-unnecessary-condition": "warn", // 🟠
-				// "@typescript-eslint/no-confusing-void-expression": "warn", // 🟠
-			},
-		},
+		// Typescript: https://typescript-eslint.io/rules/
+		// Vue: https://eslint.vuejs.org/rules/
+		// {
+		// 	files: ["**/*.js", "**/*.ts", "**/*.vue"],
+		// 	rules: {
+		// 	},
+		// },
 	],
 }
+
