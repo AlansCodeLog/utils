@@ -11,7 +11,7 @@ export function walk<
 		TSave extends true ? any : undefined,
 >(
 	obj: any | any[],
-	walker: (el: any) => undefined | any,
+	walker: (el: any, keyPath: string) => undefined | any,
 	{
 		save = false as TSave,
 		before = false,
@@ -26,40 +26,45 @@ export function walk<
 	} = {},
 ): TRes {
 	// eslint-disable-next-line prefer-rest-params
-	const isRecursiveCall = arguments[3] as boolean || false // private parameter
+	const isRecursiveCall = arguments[4] as boolean ?? false // private parameter
+	// eslint-disable-next-line prefer-rest-params
+	const keyPath = arguments[3] as string ?? "" // private parameter
+	const dot = `${keyPath === "" ? "" : "."}`
 	const opts = { save, before, after }
-
-	if (isRecursiveCall && before) obj = walker(obj)
+	if (isRecursiveCall && before) obj = walker(obj, keyPath)
 	let res
 	if (Array.isArray(obj)) {
 		const items = []
+		let i = 0
 		for (const item of obj) {
+			const thisKeyPath = `${keyPath}${dot}${i.toString()}`
 			res = typeof item === "object" && item !== null
 				// @ts-expect-error - passing private arg
-				? walk(item, walker, opts, true)
-				: walker(item)
+				? walk(item, walker, opts, thisKeyPath, true)
+				: walker(item, thisKeyPath)
 			if (save && res !== undefined) items.push(res)
+			i++
 		}
 		res = save ? items : undefined as any
 	} else if (obj !== null) {
 		const items: any = {}
 		for (const key of keys(obj)) {
+			const thisKeyPath = `${keyPath}${dot}${key.toString()}`
 			const item = obj[key]
 			res = typeof item === "object" && item !== null
 				// @ts-expect-error - passing private arg
-				? walk(item, walker, opts, true)
-				: walker(item)
+				? walk(item, walker, opts, thisKeyPath, true)
+				: walker(item, thisKeyPath)
 
 			if (save && res !== undefined) items[key] = res
 		}
 		res = save ? items : undefined as any
 	} else if (obj === null) {
-		res = walker(obj)
+		res = walker(obj, keyPath)
 		res = save ? res : undefined as any
 	}
 
-	if (isRecursiveCall && after) return walker(res)
+	if (isRecursiveCall && after) return walker(res, keyPath)
 
 	return res
 }
-// walk({}, () => { }, { save })
