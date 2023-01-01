@@ -45,7 +45,7 @@
 		"@alanscodelog/commitlint-config": "^2.0.0",
 		"@alanscodelog/eslint-config": "^4.0.0",
 		"@alanscodelog/semantic-release-config": "^2.0.1",
-		"@alanscodelog/tsconfigs": "^3.1.1",
+		"@alanscodelog/tsconfigs": "^3.1.2",
 		"@types/chai": "^4.3.4",
 		"@types/node": "^18.11.18",
 		"@typescript-eslint/eslint-plugin": "^5.47.1",

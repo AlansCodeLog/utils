@@ -8,15 +8,13 @@
 		"baseUrl": "src",
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext",
+		"resolveJsonModule": true,
 		"paths": {
-		}
+		},
+		"types": [ "node" ],
+		// the libs are explicitly specified because otherwise typescript includes the dom by default
+		"lib": [ "esnext" ]
 	},
-	"types" : [
-		"node"
-	],
-	"lib": [
-		"esnext"
-	],
 	"include": [
 		"src/**/*.ts",
 		"tests/**/*.ts",
