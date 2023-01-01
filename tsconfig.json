@@ -12,8 +12,7 @@
 		"paths": {
 		},
 		"types": [ "node" ],
-		// the libs are explicitly specified because otherwise typescript includes the dom by default
-		"lib": [ "esnext" ]
+		"lib": [ "dom", "esnext" ] // dom needed for browser utils
 	},
 	"include": [
 		"src/**/*.ts",
