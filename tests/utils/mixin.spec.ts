@@ -1,8 +1,6 @@
+import { expectType, inspectError, mixin, testName } from "index.js"
+import type { Mixin } from "types/index.js"
 import { describe, expect, it } from "vitest"
-
-import { expectType, inspectError, testName } from "@/testing"
-import type { Mixin } from "@/types"
-import { mixin } from "@/utils"
 
 
 class BaseIncorrect {

@@ -1,6 +1,5 @@
 import { spawn } from "child_process"
-
-import type { ErrorW } from "@/types"
+import type { ErrorW } from "types/index.js"
 
 
 /**
@@ -27,12 +26,13 @@ export async function run(command: string, cwd?: string): Promise<string> {
 	for await (const chunk of child.stderr) {
 		error += chunk as string
 	}
+
 	const code: number = await new Promise(resolve => {
 		child.on("close", resolve)
 	})
 
 	if (code !== 0) {
-		const err = new Error(`${code}, ${error}`)
+		const err = new Error(error)
 		;(err as ErrorW<{ code: any }>).code = code
 		throw err
 	}

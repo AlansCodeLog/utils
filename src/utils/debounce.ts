@@ -1,7 +1,7 @@
-import { castType } from "./castType.js"
+import { getQueueKey } from "internal/getQueueKey.js"
+import type { AnyFunction, AnyPromise, Debounced, DebounceQueue } from "types/index.js"
 
-import { getQueueKey } from "@/internal"
-import type { AnyFunction, AnyPromise, Debounced, DebounceQueue } from "@/types"
+import { castType } from "./castType.js"
 
 
 /**
@@ -164,19 +164,19 @@ export function debounce<
 				delete queues[key]
 			}
 
-			queues[key] = queues[key] || {}
+			queues[key] ??= {} as any
 			if (queues[key]?.timeout !== undefined || !leading) {
 				queues[key]._args = args
 				if (isThrottle) {
-					queues[key].timeout = queues[key].timeout ?? setTimeout(timerFunc, wait)
+					queues[key].timeout ??= setTimeout(timerFunc, wait)
 				} else if (queues[key]?.timeout) {
 					if (queues[key]?.reject) {
 						queues[key]?.reject()
 						delete queues[key]?.resolve
 						delete queues[key]?.reject
 					}
-					// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-					clearTimeout(queues[key].timeout!)
+
+					clearTimeout(queues[key].timeout)
 				}
 			}
 			if (!isThrottle) {
@@ -218,7 +218,7 @@ export function debounce<
 				delete queues[key]
 			}
 
-			queues[key] = queues[key] || {}
+			queues[key] ||= {} as any
 			if (queues[key]?.timeout === undefined && leading) {
 				callback.apply(context, args)
 				if (isThrottle) {
@@ -228,18 +228,16 @@ export function debounce<
 				queues[key]._context = context
 				queues[key]._args = args
 				if (isThrottle) {
-					queues[key].timeout = queues[key].timeout ?? setTimeout(timerFunc, wait)
+					queues[key].timeout ??= setTimeout(timerFunc, wait)
 				} else if (queues[key]?.timeout) {
-					// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-					clearTimeout(queues[key].timeout!)
+					clearTimeout(queues[key].timeout)
 				}
 			}
 			if (!isThrottle) queues[key].timeout = setTimeout(timerFunc, wait)
 		}
 	}
 	const cancel = (key: any = ""): void => {
-		// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-		if (queues[key].timeout) clearTimeout(queues[key].timeout!)
+		if (queues[key].timeout) clearTimeout(queues[key].timeout)
 		delete queues[key]
 	}
 	const flush = (key: any = ""): void => {

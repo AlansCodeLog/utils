@@ -1,7 +1,6 @@
+import { testName } from "index.js"
+import type { AddParameters } from "types/index.js"
 import { describe, expect, it } from "vitest"
-
-import { testName } from "@/testing"
-import type { AddParameters } from "@/types"
 
 
 describe(testName(), () => {

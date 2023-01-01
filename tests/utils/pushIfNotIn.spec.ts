@@ -1,7 +1,5 @@
+import { expectType, pushIfNotIn, testName } from "index.js"
 import { describe, expect, it } from "vitest"
-
-import { expectType, testName } from "@/testing"
-import { pushIfNotIn } from "@/utils"
 
 
 describe(testName(), () => {

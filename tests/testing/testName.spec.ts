@@ -1,7 +1,6 @@
+import { inspectError, testName } from "index.js"
 import path from "path"
 import { describe, expect, it } from "vitest"
-
-import { inspectError, testName } from "@/testing"
 
 
 describe(testName(), () => {

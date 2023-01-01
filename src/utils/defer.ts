@@ -1,4 +1,4 @@
-import type { AnyFunction } from "@/types"
+import type { AnyFunction } from "types/index.js"
 
 /**
  * Wraps the given function in a defered promise, such that it will not execute until the promise is externally resolved. If you reject it, you must catch it.

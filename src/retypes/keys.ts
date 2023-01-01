@@ -1,4 +1,4 @@
-import type { Keys } from "@/types"
+import type { Keys } from "types/index.js"
 
 /**
  * Because 99.999999999999% of the time we *don't* want the default typescript behavior of typing the keys as string[].

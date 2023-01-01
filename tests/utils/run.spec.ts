@@ -1,8 +1,7 @@
+import { testName } from "index.js"
+import { run } from "index_node.js"
+import type { ErrorW } from "types/index.js"
 import { describe, expect, it } from "vitest"
-
-import { run } from "@/node_utils"
-import { testName } from "@/testing"
-import type { ErrorW } from "@/types"
 
 
 describe(testName(), () => {

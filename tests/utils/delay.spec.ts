@@ -1,7 +1,5 @@
+import { delay, testName } from "index.js"
 import { describe, expect, it } from "vitest"
-
-import { testName } from "@/testing"
-import { delay } from "@/utils"
 
 
 describe(testName(), () => {

@@ -1,7 +1,5 @@
+import { assertInStrRange, inspectError, testName } from "index.js"
 import { describe, expect, it } from "vitest"
-
-import { inspectError, testName } from "@/testing"
-import { assertInStrRange } from "@/utils"
 
 
 describe(testName(), () => {

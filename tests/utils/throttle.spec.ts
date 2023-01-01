@@ -1,7 +1,5 @@
+import { testName, throttle } from "index.js"
 import { describe, expect, it, vi } from "vitest"
-
-import { testName } from "@/testing"
-import { throttle } from "@/utils"
 
 
 vi.useFakeTimers()

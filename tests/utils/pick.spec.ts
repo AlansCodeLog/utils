@@ -1,8 +1,5 @@
+import { pick, testName } from "index.js"
 import { describe, expect, it } from "vitest"
-
-import { inspectError, testName } from "@/testing"
-import { pick } from "@/utils"
-import { complexObj } from "@tests/_helpers/constants.js"
 
 
 describe(testName(), () => {

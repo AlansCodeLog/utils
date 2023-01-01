@@ -1,7 +1,5 @@
+import { expectType, isDefined, testName } from "index.js"
 import { describe, expect, it } from "vitest"
-
-import { expectType, testName } from "@/testing"
-import { isDefined } from "@/utils"
 
 
 describe(testName(), () => {

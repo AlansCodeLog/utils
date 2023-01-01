@@ -1,8 +1,7 @@
+import { crop, pretty, testName } from "index.js"
 import { describe, expect, it } from "vitest"
 
-import { testName } from "@/testing"
-import { crop, pretty } from "@/utils"
-import { complexObj } from "@tests/_helpers/constants.js"
+import { complexObj } from "../_helpers/constants.js"
 
 
 const test1 = (...args1: any) => (...args2: any) => { console.log(args1, args2) }

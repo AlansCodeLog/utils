@@ -1,4 +1,4 @@
-import type { Mutable } from "@/types"
+import type { Mutable } from "types/index.js"
 
 /**
  * Allows setting a readonly property of an object with type checking on the value.

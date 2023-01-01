@@ -1,7 +1,5 @@
+import { isPlainObject, testName } from "index.js"
 import { describe, expect, it } from "vitest"
-
-import { testName } from "@/testing"
-import { isPlainObject } from "@/utils"
 
 
 class Animal { }

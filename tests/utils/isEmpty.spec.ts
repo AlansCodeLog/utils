@@ -1,8 +1,6 @@
+import { expectType, isEmpty, testName } from "index.js"
+import { keys } from "retypes/keys.js"
 import { describe, expect, it } from "vitest"
-
-import { keys } from "@/retypes"
-import { expectType, testName } from "@/testing"
-import { isEmpty } from "@/utils"
 
 
 describe(testName(), () => {

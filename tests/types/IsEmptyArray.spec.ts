@@ -1,7 +1,6 @@
+import { expectType, testName } from "index.js"
+import type { IsEmptyArray } from "types/index.js"
 import { describe, expect, it } from "vitest"
-
-import { expectType, testName } from "@/testing"
-import type { IsEmptyArray } from "@/types"
 
 
 describe(testName(), () => {

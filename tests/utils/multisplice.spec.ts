@@ -1,8 +1,6 @@
+import { inspectError, multisplice, testName } from "index.js"
+import { MULTISPLICE_ITEM } from "types/index.js"
 import { describe, expect, it } from "vitest"
-
-import { inspectError, testName } from "@/testing"
-import { MULTISPLICE_ITEM } from "@/types"
-import { multisplice } from "@/utils"
 
 
 describe(testName(), () => {

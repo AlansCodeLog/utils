@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import type { IsAssignable, IsEqual } from "@/types"
+
+import type { IsAssignable, IsEqual } from "types/index.js"
 /**
  * Does not actually assert anything. Errors need to be caught by linting not testing, see more below.
  *

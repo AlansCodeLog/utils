@@ -1,6 +1,6 @@
-import { debounce } from "./debounce.js"
+import type { AddParameters, AnyFunction, AnyPromise, Throttled, ThrottleQueue } from "types/index.js"
 
-import type { AddParameters, AnyFunction, AnyPromise, Throttled, ThrottleQueue } from "@/types"
+import { debounce } from "./debounce.js"
 
 
 /**

@@ -1,7 +1,8 @@
 /* eslint-disable*/
 // @ts-nocheck
-import { isArray, pretty } from "@/utils"
 import type chai from "@types/chai"
+import {isArray} from "utils/isArray.js"
+import {pretty} from "utils/pretty.js"
 
 declare global {
 	export namespace Chai {

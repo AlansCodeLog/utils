@@ -1,6 +1,5 @@
+import { expectType, testName } from "index.js"
 import { describe, expect, it } from "vitest"
-
-import { expectType, testName } from "@/testing"
 
 
 describe(testName(), () => {

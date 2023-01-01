@@ -1,5 +1,5 @@
-import type { AnyFunction } from "@/types"
-import { unreachable } from "@/utils"
+import type { AnyFunction } from "types/AnyFunction.js"
+import { unreachable } from "utils/unreachable.js"
 
 
 export function getQueueKey(type: string, index: number | AnyFunction, args: any[]): string {

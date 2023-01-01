@@ -1,7 +1,5 @@
+import { inspectError, testName, unreachable } from "index.js"
 import { describe, expect, it } from "vitest"
-
-import { inspectError, testName } from "@/testing"
-import { unreachable } from "@/utils"
 
 
 describe(testName(), () => {

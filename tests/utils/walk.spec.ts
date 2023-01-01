@@ -1,7 +1,5 @@
+import { testName, walk } from "index.js"
 import { describe, expect, it } from "vitest"
-
-import { testName } from "@/testing"
-import { walk } from "@/utils"
 
 
 describe(testName(), () => {

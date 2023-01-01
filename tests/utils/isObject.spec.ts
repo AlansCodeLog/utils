@@ -1,7 +1,5 @@
+import { isObject, testName } from "index.js"
 import { describe, expect, it } from "vitest"
-
-import { testName } from "@/testing"
-import { isObject } from "@/utils"
 
 
 class Animal { }

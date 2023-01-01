@@ -1,7 +1,5 @@
+import { isWhitespace, testName } from "index.js"
 import { describe, expect, it } from "vitest"
-
-import { testName } from "@/testing"
-import { isWhitespace } from "@/utils"
 
 
 describe(testName(), () => {
