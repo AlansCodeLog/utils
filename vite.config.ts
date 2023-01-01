@@ -1,3 +1,4 @@
+import { babel } from "@rollup/plugin-babel"
 import glob from "fast-glob"
 import { builtinModules } from "module"
 import path from "path"
@@ -6,6 +7,7 @@ import type { PluginOption } from "vite"
 import tsconfigPaths from "vite-tsconfig-paths"
 import { defineConfig } from "vitest/config"
 
+import packageJson from "./package.json"
 import { run } from "./src/node_utils/run.js"
 
 
@@ -20,6 +22,19 @@ const __dirname = url.fileURLToPath(new URL(".", import.meta.url))
 // https://vitejs.dev/config/
 export default ({ mode }: { mode: string }) => defineConfig({
 	plugins: [
+		babel({
+			babelHelpers: "runtime",
+			extensions: [".js", ".mjs", "ts"],
+			presets: [
+				["@babel/preset-env", {
+					modules: false,
+					useBuiltIns: "usage",
+					debug: true,
+					corejs: packageJson.dependencies["core-js"].slice(1, 4),
+				}],
+			],
+			plugins: ["@babel/plugin-transform-runtime"],
+		}),
 		tsconfigPaths({ projects: ["./tsconfig.json"]}),
 		typesPlugin(),
 	],
@@ -35,7 +50,7 @@ export default ({ mode }: { mode: string }) => defineConfig({
 			},
 		},
 		rollupOptions: {
-			external: [...builtinModules],
+			external: [...builtinModules, /@babel\/runtime/],
 			output: {
 				preserveModulesRoot: "src",
 				preserveModules: true,

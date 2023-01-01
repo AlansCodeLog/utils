@@ -40,12 +40,18 @@
 		"prepare": "husky install && npm run build"
 	},
 	"dependencies": {
+		"core-js":"^3.27.1"
 	},
 	"devDependencies": {
 		"@alanscodelog/commitlint-config": "^2.0.0",
 		"@alanscodelog/eslint-config": "^4.0.0",
 		"@alanscodelog/semantic-release-config": "^2.0.1",
 		"@alanscodelog/tsconfigs": "^3.1.2",
+		"@babel/core":"^7.20.7",
+		"@babel/plugin-transform-runtime":"^7.19.6",
+		"@babel/preset-env":"^7.20.2",
+		"@babel/runtime":"^7.20.7",
+		"@rollup/plugin-babel":"^6.0.3",
 		"@types/chai": "^4.3.4",
 		"@types/node": "^18.11.18",
 		"@typescript-eslint/eslint-plugin": "^5.47.1",
@@ -86,6 +92,7 @@
 	"release": { "extends": [ "@alanscodelog/semantic-release-config" ] },
 	"commitlint": { "extends": [ "@alanscodelog" ] },
 	"engines": { "node": ">=14.0.0" },
+	"browserslist":"defaults and supports es6-module, maintained node versions",
 	"@comments": {
 		"scripts": {
 			"test": "Runs `lint:types` before (so that flags can be passed to the test command) so that we can test type assertions. See expect_type function in @alanscodelog/utils.",
