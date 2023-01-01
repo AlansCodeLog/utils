@@ -2,7 +2,7 @@
 module.exports = {
 	root: true,
 	extends: [
-		// https://github.com/AlansCodeLog/my-eslint-config
+		// https://github.com/AlansCodeLog/eslint-config
 		"@alanscodelog/eslint-config",
 	],
 	// for vscode, so it doesn't try to lint files in here when we open them

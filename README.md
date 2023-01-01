@@ -1,10 +1,10 @@
-![Docs](https://github.com/alanscodelog/my-utils/workflows/Docs/badge.svg)
-![Build](https://github.com/alanscodelog/my-utils/workflows/Build/badge.svg)
-[![Release](https://github.com/alanscodelog/my-utils/workflows/Release/badge.svg)](https://www.npmjs.com/package/@alanscodelog/utils)
+![Docs](https://github.com/alanscodelog/utils/workflows/Docs/badge.svg)
+![Build](https://github.com/alanscodelog/utils/workflows/Build/badge.svg)
+[![Release](https://github.com/alanscodelog/utils/workflows/Release/badge.svg)](https://www.npmjs.com/package/@alanscodelog/utils)
 
 A collection of my utility functions and types. Mostly intended for use within my own projects.
 
-# [Docs](https://alanscodelog.github.io/my-utils)
+# [Docs](https://alanscodelog.github.io/utils)
 
 # Install
 
