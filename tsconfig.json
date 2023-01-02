@@ -6,8 +6,6 @@
 	"compilerOptions": {
 		"outDir": "dist",
 		"baseUrl": "src",
-		"module": "NodeNext",
-		"moduleResolution": "NodeNext",
 		"paths": {
 		},
 		"types": [ "node" ],
