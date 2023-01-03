@@ -6,10 +6,10 @@ import type { ErrorW } from "types/index.js"
  * Async promisified spawn wrapper.
  *
  * ```ts
- * const res = await run("some command").catch(err => "")
+ * const res = await run("some command").catch(err => console.log(err))
  * ```
  *
- * Use `.catch` to catch errors. It will throw an {@link ErrorW `ErrorW`}`<{code:number>}`.
+ * Use `.catch` to catch errors. It will throw an {@link ErrorW `ErrorW`}`<{code:number, stdout:string>}` stdout is any output received before the error.
  *
  * @env nodejs
  */
@@ -33,7 +33,8 @@ export async function run(command: string, cwd?: string): Promise<string> {
 
 	if (code !== 0) {
 		const err = new Error(error)
-		;(err as ErrorW<{ code: any }>).code = code
+		;(err as ErrorW<{ code: any, data: string }>).code = code
+		;(err as ErrorW<{ code: any, stdout: string }>).stdout = data
 		throw err
 	}
 
