@@ -1,5 +1,6 @@
 import { spawn } from "child_process"
-import type { ErrorW } from "types/index.js"
+import { isArray } from "../utils/isArray.js"
+import type { ErrorW } from "../types/index.js"
 
 
 /**
@@ -11,10 +12,12 @@ import type { ErrorW } from "types/index.js"
  *
  * Use `.catch` to catch errors. It will throw an {@link ErrorW `ErrorW`}`<{code:number, stdout:string>}` stdout is any output received before the error.
  *
+ *	Command can also be an array.
+
  * @env nodejs
  */
-export async function run(command: string, cwd?: string): Promise<string> {
-	const parts = command.split(" ")
+export async function run(command: string|string[], cwd?: string): Promise<string> {
+	const parts = isArray(command) ? command : command.split(" ")
 
 	const child = spawn(parts[0], [...parts.slice(1)], { cwd, shell: true })
 
