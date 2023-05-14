@@ -14,7 +14,7 @@ import { run } from "./src/node_utils/run.js"
 const typesPlugin = (): PluginOption => ({
 	name: "typesPlugin",
 	// eslint-disable-next-line no-console
-	writeBundle: async () => run("npm run build:types").catch(e => console.log(e)).then(() => undefined),
+	writeBundle: async () => run("npm run build:types").promise.catch(e => console.log(e)).then(() => undefined),
 })
 
 // eslint-disable-next-line @typescript-eslint/naming-convention

@@ -6,11 +6,11 @@ import { describe, expect, it } from "vitest"
 
 describe(testName(), () => {
 	it("works", async () => {
-		const res = await run("echo Success!")
+		const res = await run("echo Success!").promise
 		expect(res.replace(/\r\n/g, "\n")).to.equal("Success!\n")
 	})
 	it("captures exit code as error code", async () => {
-		const res = await run("node tests/_helpers/exitWithCode2.js")
+		const res = await run("node tests/_helpers/exitWithCode2.js").promise
 			.catch(err => err as ErrorW<{ code: number }>)
 		expect((res as ErrorW<{ code: number }>).code).to.equal(2)
 	})
