@@ -43,11 +43,7 @@ export default ({ mode }: { mode: string }) => defineConfig({
 		cssCodeSplit: true,
 		lib: {
 			entry: glob.sync(path.resolve(__dirname, "src/**/*.ts")),
-			formats: ["es", "cjs"],
-			fileName: (format, entryName) => {
-				const suffix = format === "es" ? "js" : "cjs"
-				return `${entryName}.${suffix}`
-			},
+			formats: ["es"],
 		},
 		rollupOptions: {
 			external: [...builtinModules, ...Object.keys((packageJson as any).dependencies ?? {}), ...Object.keys((packageJson as any).peerDependencies ?? {}), /@babel\/runtime/],

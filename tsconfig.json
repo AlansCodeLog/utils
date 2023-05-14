@@ -6,8 +6,6 @@
 	"compilerOptions": {
 		"outDir": "dist",
 		"baseUrl": "src",
-		"paths": {
-		},
 		"types": [ "node" ],
 		"lib": [ "dom", "esnext" ] // dom needed for browser utils
 	},

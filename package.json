@@ -2,14 +2,13 @@
 	"name": "@alanscodelog/utils",
 	"description": "My utility functions and typescript types.",
 	"version": "0.0.0-semantically-released",
-	"main": "./dist/index.cjs",
 	"module": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"exports": {
-		".": { "types": "./dist/index.d.ts", "require": "./dist/index.cjs", "import": "./dist/index.js" },
-		"./*": { "types": "./dist/*/index.d.ts", "require": "./dist/*/index.cjs", "import": "./dist/*/index.js" },
-		"./node": { "types": "./dist/index_node.d.ts", "require": "./dist/index_node.cjs", "import": "./dist/index_node.js" }
+		".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+		"./*": { "types": "./dist/*/index.d.ts", "import": "./dist/*/index.js" },
+		"./node": { "types": "./dist/index_node.d.ts", "import": "./dist/index_node.js" }
 	},
 	"scripts": {
 		"build": "vite build",
