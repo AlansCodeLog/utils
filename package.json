@@ -6,52 +6,48 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"exports": {
-		".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
-		"./*": { "types": "./dist/*/index.d.ts", "import": "./dist/*/index.js" },
-		"./node": { "types": "./dist/index_node.d.ts", "import": "./dist/index_node.js" }
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./*": {
+			"types": "./dist/*/index.d.ts",
+			"import": "./dist/*/index.js"
+		},
+		"./node": {
+			"types": "./dist/index_node.d.ts",
+			"import": "./dist/index_node.js"
+		}
 	},
 	"scripts": {
 		"build": "vite build",
 		"build:dev": "vite build --mode development",
 		"build:types": "tsc -p tsconfig.types.json && npm run build:types:fix",
 		"build:types:fix": "tsc-alias -p tsconfig.types.json --debug",
-
 		"lint:eslint": "eslint \"{src,tests}/**/*.{cjs,js,ts}\" \"*.{cjs,js,ts}\" --max-warnings=0 --report-unused-disable-directives",
 		"lint:types": "tsc --noEmit --pretty",
 		"lint:commits": "commitlint --from $(git rev-list HEAD --not --remotes | tail -1)^ --to HEAD --verbose",
 		"lint:imports": "madge --circular --extensions ts ./src",
 		"lint": "npm run lint:types && npm run lint:eslint",
-
 		"coverage": "vitest --coverage",
 		"coverage:dev": "vitest --watch --coverage",
-
 		"test": "npm run lint:types && vitest run",
 		"test:watch": "vitest --watch",
 		"test:inspect-errors": "cross-env INSPECT_ERRORS=true npm run test",
-
 		"doc": "typedoc --options typedoc.config.cjs",
 		"doc:watch": "onchange -i \"src/**/*.ts\" \"typedoc.config.cjs\" -- npm run doc",
 		"doc:serve": "http-server docs --port=5001",
 		"doc:dev": "concurrently \"npm run doc:watch\" \"npm run doc:serve\"",
 		"doc:check-invalid": "typedoc --options typedoc.config.cjs --listInvalidSymbolLinks",
-
 		"actions:debug": "act -r -v -j build-only",
 		"gen:exports": "indexit update -o '${path}.js'",
 		"prepare": "husky install && npm run build"
-	},
-	"dependencies": {
-		"@babel/runtime":"^7.20.7",
-		"core-js":"^3.27.1"
 	},
 	"devDependencies": {
 		"@alanscodelog/commitlint-config": "^2.0.0",
 		"@alanscodelog/eslint-config": "^4.0.0",
 		"@alanscodelog/semantic-release-config": "^2.0.1",
 		"@alanscodelog/tsconfigs": "^3.1.3",
-		"@babel/core":"^7.20.7",
-		"@babel/preset-env":"^7.20.2",
-		"@rollup/plugin-babel":"^6.0.3",
-		"@babel/plugin-transform-runtime":"^7.19.6",
 		"@types/chai": "^4.3.4",
 		"@types/node": "^18.11.18",
 		"@typescript-eslint/eslint-plugin": "^5.47.1",
@@ -68,17 +64,17 @@
 		"eslint-plugin-simple-import-sort": "^8.0.0",
 		"eslint-plugin-vue": "^9.8.0",
 		"eslint": "^8.30.0",
-		"fast-glob":"^3.2.12",
+		"fast-glob": "^3.2.12",
 		"http-server": "^14.1.1",
 		"husky": "^8.0.2",
 		"indexit": "^2.0.1",
-		"madge":"^5.0.1",
+		"madge": "^5.0.1",
 		"onchange": "^7.1.0",
-		"semantic-release":"^19.0.5",
+		"semantic-release": "^19.0.5",
 		"tsc-alias": "^1.8.2",
 		"typedoc": "^0.23.23",
 		"typescript": "^4.9.4",
-		"vite-tsconfig-paths":"^4.0.3",
+		"vite-tsconfig-paths": "^4.0.3",
 		"vite": "^4.0.3",
 		"vitest": "^0.26.2"
 	},
@@ -89,10 +85,20 @@
 		"src",
 		"dist"
 	],
-	"release": { "extends": [ "@alanscodelog/semantic-release-config" ] },
-	"commitlint": { "extends": [ "@alanscodelog" ] },
-	"engines": { "node": ">=14.0.0" },
-	"browserslist":"defaults and supports es6-module, maintained node versions",
+	"release": {
+		"extends": [
+			"@alanscodelog/semantic-release-config"
+		]
+	},
+	"commitlint": {
+		"extends": [
+			"@alanscodelog"
+		]
+	},
+	"engines": {
+		"node": ">=14.0.0"
+	},
+	"browserslist": "defaults and supports es6-module, maintained node versions",
 	"@comments": {
 		"scripts": {
 			"test": "Runs `lint:types` before (so that flags can be passed to the test command) so that we can test type assertions. See expect_type function in @alanscodelog/utils.",
