@@ -1,4 +1,4 @@
-import { ChildProcessWithoutNullStreams, CommonSpawnOptions, spawn } from "child_process"
+import { type ChildProcessWithoutNullStreams, type CommonSpawnOptions, spawn } from "child_process"
 
 import type { ErrorW } from "../types/index.js"
 import { isArray } from "../utils/isArray.js"

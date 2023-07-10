@@ -19,7 +19,7 @@ const typesPlugin = (): PluginOption => ({
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url))
 // https://vitejs.dev/config/
-export default ({ mode }: { mode: string }) => defineConfig({
+export default async ({ mode }: { mode: string }) => defineConfig({
 	plugins: [
 		tsconfigPaths({ projects: ["./tsconfig.json"]}),
 		typesPlugin(),

@@ -31,6 +31,7 @@ import type { IsAssignable, IsEqual } from "types/index.js"
  *
  * \*I prefer avoiding `ts-jest`. It does not work well with path aliases and usually I transpile with babel instead of typescript, and I want to test the code as it would be transpiled.
  */
+// TODO vitest
 export function expectType<
 	T,
 	TOp extends OpAssignableTo | OpEqual,
