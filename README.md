@@ -34,5 +34,11 @@ import { keys, debounce, colors, ...} from "@alanscodelog/utils"
 
 // or you can import them like this to be clearer
 import { MakeOptional, ...} from "@alanscodelog/utils/types"
+// direct imports are also supported
+import {debounce} from "@alanscodelog/utils/utils/debounce.js"
 
 ```
+
+Vite seems to properly treeshake the 99.9%\* of the root imports, but it might be a problem with other bundlers, in which case import from one of the export paths.
+
+\* There is one small namespace (Result) that it does not seem to be able to treeshake, but this is regardless of where you import it from, unless you use direct imports everywhere.

@@ -11,8 +11,28 @@
 			"import": "./dist/index.js"
 		},
 		"./*": {
-			"types": "./dist/*/index.d.ts",
-			"import": "./dist/*/index.js"
+			"types": "./dist/*",
+			"import": "./dist/*"
+		},
+		"./utils": {
+			"types": "./dist/utils/index.d.ts",
+			"import": "./dist/utils/index.js"
+		},
+		"./testing": {
+			"types": "./dist/testing/index.d.ts",
+			"import": "./dist/testing/index.js"
+		},
+		"./retypes": {
+			"types": "./dist/retypes/index.d.ts",
+			"import": "./dist/retypes/index.js"
+		},
+		"./types": {
+			"types": "./dist/types/index.d.ts",
+			"import": "./dist/types/index.js"
+		},
+		"./colors": {
+			"types": "./dist/colors/index.d.ts",
+			"import": "./dist/colors/index.js"
 		},
 		"./node": {
 			"types": "./dist/index_node.d.ts",
