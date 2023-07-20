@@ -48,10 +48,9 @@ export default async ({ mode }: { mode: string }) => defineConfig({
 				preserveModules: true,
 			},
 		},
+		minify: false, // this is a library
 		...(mode === "production" ? {
-			minify: true,
 		} : {
-			minify: false,
 			sourcemap: "inline",
 		}),
 	},
