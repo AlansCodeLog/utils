@@ -40,7 +40,7 @@
 		}
 	},
 	"scripts": {
-		"build": "vite build",
+		"build": "npm run gen:exports && vite build",
 		"build:dev": "vite build --mode development",
 		"build:types": "tsc -p tsconfig.types.json && npm run build:types:fix",
 		"build:types:fix": "tsc-alias -p tsconfig.types.json --debug",
@@ -87,7 +87,7 @@
 		"fast-glob": "^3.3.0",
 		"http-server": "^14.1.1",
 		"husky": "^8.0.3",
-		"indexit": "^2.0.1",
+		"indexit": "2.1.0-beta.3",
 		"madge": "^6.1.0",
 		"onchange": "^7.1.0",
 		"semantic-release": "^21.0.7",
