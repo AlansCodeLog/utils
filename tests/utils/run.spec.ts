@@ -1,6 +1,6 @@
-import { testName } from "index.js"
+import { expectType, testName } from "index.js"
 import { run } from "index_node.js"
-import type { ErrorW } from "types/index.js"
+import type { ErrorW, RunError } from "types/index.js"
 import { describe, expect, it } from "vitest"
 
 
@@ -11,7 +11,21 @@ describe(testName(), () => {
 	})
 	it("captures exit code as error code", async () => {
 		const res = await run("node tests/_helpers/exitWithCode2.js").promise
-			.catch(err => err as ErrorW<{ code: number }>)
-		expect((res as ErrorW<{ code: number }>).code).to.equal(2)
+			.catch(err => err as RunError)
+		expect(res instanceof Error).to.equal(true)
+		if (res instanceof Error) {
+			expect(res.code).to.equal(2)
+		}
+	})
+	it("captures complicated stdout/stderr - error even on 0 exit code", async () => {
+		const res = await run("node tests/_helpers/writeToStdoutErrAndExit0.js").promise
+			.catch(err => err as RunError)
+		expect(res instanceof Error).to.equal(true)
+		if (res instanceof Error) {
+			expect(res.code).to.equal(0)
+			expect(res.stderr).to.equal("stderr")
+			expect(res.stdout).to.equal("stdoutstdout")
+			expect(res.data).to.equal("stdoutstderrstdout")
+		}
 	})
 })
