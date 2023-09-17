@@ -14,5 +14,5 @@ export function union<
 		any[] | readonly any[] =
 		any[] | readonly any[],
 >(...arrays: T[]): T {
-	return pushIfNotIn([] as any, ...arrays.flat())
+	return pushIfNotIn([] as any, ...arrays)
 }

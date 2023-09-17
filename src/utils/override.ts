@@ -30,7 +30,7 @@ export function override<
 ): TBase & TOther {
 	for (const other of overrides) {
 		const obj: Record<string, any> = base
-		const keys = pushIfNotIn(keysOf(obj), ...keysOf(other))
+		const keys = pushIfNotIn(keysOf(obj), keysOf(other))
 		for (const prop of keys) {
 			const baseVal = obj[prop]
 			const otherVal = other[prop]

@@ -1,3 +1,5 @@
+import { isArray } from "./isArray.js"
+
 /**
  * Pushes all the items passed to the first array if it doesn't already contain them.
  *
@@ -8,14 +10,15 @@
  * ```ts
  * const arr1 = ["a", "b", "b"]
  * const arr2 = ["c", "c"]
- * const arrUnion = pushIfNotIn(arr1, ...arr2)
+ * const arrUnion = pushIfNotIn(arr1, arr2)
+ * // or pushIfNotIn(arr1, ["c", "c"])
  * // arrUnion = arr1
  * // arr1/arrUnion = ["a", "b", "b", "c"]
  *
  * // or to use like unique union
  * const arr1 = ["a", "b", "b"]
  * const arr2 = ["c", "c"]
- * const arrUnion = pushIfNotIn([], ...arr1, ...arr2)
+ * const arrUnion = pushIfNotIn([], arr1, arr2)
  * // arrUnion = ["a", "b", "c"]
  * ```
  */
@@ -23,16 +26,18 @@ export function pushIfNotIn<
 	TMutated extends
 		any[] =
 		any[],
-	T extends
-		any[] | readonly any[] =
-		any[] | readonly any[],
+		T = any,
 >(
 	mutated: TMutated,
-	...entries: T
+	...entries: readonly (readonly T[])[]
 	// prevent never[] from getting added when [] is passed to avoid mutation
-): TMutated extends never[] ? T : TMutated & T {
+): TMutated extends never[] ? T[] : TMutated & T[] {
 	for (const value of entries) {
-		if (!mutated.includes(value)) mutated.push(value)
+		if (isArray(value)) {
+			for (const val of value) {
+				if (!mutated.includes(val)) mutated.push(val)
+			}
+		}
 	}
 	return mutated as any
 }
