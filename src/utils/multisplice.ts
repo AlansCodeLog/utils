@@ -50,11 +50,11 @@ import { MULTISPLICE_ITEM } from "types/index.js"
 export function multisplice<
 	TArray extends any[] = any[],
 	TInsert extends
-		MULTISPLICE_ITEM =
-		MULTISPLICE_ITEM,
+	MULTISPLICE_ITEM =
+	MULTISPLICE_ITEM,
 	TItems extends
-		TInsert extends MULTISPLICE_ITEM.SINGLE ? TArray[number] : TArray[number][] =
-		TInsert extends MULTISPLICE_ITEM.SINGLE ? TArray[number] : TArray[number][],
+	TInsert extends MULTISPLICE_ITEM.SINGLE ? TArray[number] : TArray[number][] =
+	TInsert extends MULTISPLICE_ITEM.SINGLE ? TArray[number] : TArray[number][],
 >(
 	array: TArray,
 	indexes: number | number[],
@@ -76,9 +76,8 @@ export function multisplice<
 
 	const insertItems = item !== undefined
 	const multipleItems = insertItems && Array.isArray(item) && (insert === MULTISPLICE_ITEM.MATCH_INDEX || insert === MULTISPLICE_ITEM.MATCH_INDEX_LOOSE)
-	// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+
 	if (multipleItems && insert === MULTISPLICE_ITEM.MATCH_INDEX && item!.length !== indexes.length) {
-		// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 		throw new Error(`To be able to match inserts by index, you must pass the same amount of items as indexes. You passed ${indexes.length} indexes and ${item!.length} items.`)
 	}
 
@@ -91,16 +90,16 @@ export function multisplice<
 
 		const insertion = insertItems
 			? multipleItems
-				// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+
 				? item![i]
 				: item
-				: undefined
+			: undefined
 
 		const doInsert =
-				insertItems &&
-				( // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-					insert !== MULTISPLICE_ITEM.MATCH_INDEX_LOOSE || i < item!.length
-				)
+			insertItems &&
+			(
+				insert !== MULTISPLICE_ITEM.MATCH_INDEX_LOOSE || i < item!.length
+			)
 
 		const rangeEnd = indexes[i + 1] && pos + count - 1
 		const nextPos = indexes[i + 1] && (indexes[i + 1] + insertCount)
@@ -113,7 +112,7 @@ export function multisplice<
 		if (doInsert) totalInserted++
 		// console.log(pos, array.length)
 
-		if (pos >= arr.length && count > 0) {throw new Error(`Position ${pos}  to delete at is greater than array length.`)}
+		if (pos >= arr.length && count > 0) { throw new Error(`Position ${pos}  to delete at is greater than array length.`) }
 		// if we just passed the item to insert and it was undefined it would insert undefined
 		const deleted = doInsert
 			? arr.splice(pos, count, insertion)

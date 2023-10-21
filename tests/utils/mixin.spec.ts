@@ -11,14 +11,18 @@ interface BaseIncorrect extends Mixin<Mixin1 | Mixin2>, Mixin1, Mixin2 { _constr
 
 class Base {
 	type: string
+
 	constructor() {
 		this.type = "base"
 		this._mixin({ mixin1: "", mixin2: 0 })
 	}
+
 	walk() {
 		return "Base Walk"
 	}
+
 	baseOnly() { }
+
 	canAccessSpeak() {
 		// there should be no type error here
 		return this.speak()
@@ -31,21 +35,27 @@ class BaseError {
 
 class Mixin1 {
 	neverInitiated: string = "nope"
+
 	manuallyInitiated!: string
+
 	_constructor({ mixin1 }: { mixin1: string }) {
 		this.manuallyInitiated = mixin1
 	}
+
 	walk(str: string = ""): string {
 		return `Mixin Walk${str}`
 	}
+
 	protected speak() {
 		return "Mixin Protected Speak"
 	}
+
 	mixinOnly() { }
 }
 
 class Mixin2 {
 	manuallyInitiated2!: number
+
 	_constructor({ mixin2 }: { mixin2: number }) {
 		this.manuallyInitiated2 = mixin2
 	}

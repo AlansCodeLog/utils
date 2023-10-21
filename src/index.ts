@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-imports */
+/* eslint-disable @typescript-eslint/no-restricted-imports */
 /* Manually Generated Index */
 
 export * as colors from "colors/index.js"

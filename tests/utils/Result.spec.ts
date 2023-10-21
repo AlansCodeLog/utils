@@ -56,6 +56,7 @@ describe(testName(), () => {
 	it("works with function return types when using errors with generics", () => {
 		class MyError<T extends string> extends Error {
 			code: T = "error" as T
+
 			constructor(code: T) {
 				super()
 				this.code = code

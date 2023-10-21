@@ -34,6 +34,7 @@ describe(testName(), () => {
 	it("works with classes", () => {
 		class Entry<TName extends string = string> {
 			id!: TName
+
 			constructor(_id: TName) { }
 		}
 		class Entries<
@@ -42,6 +43,7 @@ describe(testName(), () => {
 
 		> {
 			entries!: TEntries
+
 			constructor(_obj: T) { }
 		}
 		const entries = new Entries([new Entry("a"), new Entry("b")]).entries

@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest"
 
 class Entry<TName extends string = string> {
 	id!: TName
+
 	constructor(_id: TName) { }
 }
 class Entries<
@@ -13,6 +14,7 @@ class Entries<
 
 > {
 	entries!: TEntries
+
 	constructor(_obj: T) { }
 }
 const instance = new Entries([new Entry("a"), new Entry("b")])
