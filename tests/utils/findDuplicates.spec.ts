@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { findDuplicates, testName } from "../../src/index.js"
+import { findDuplicates } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 
 
 class A {}

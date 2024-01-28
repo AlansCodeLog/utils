@@ -1,8 +1,9 @@
 import { type ChildProcessWithoutNullStreams, type CommonSpawnOptions, spawn } from "child_process"
 
+import { castType } from "./castType.js"
+import { isArray } from "./isArray.js"
+
 import type { RunError } from "../types/index.js"
-import { castType } from "../utils/castType.js"
-import { isArray } from "../utils/isArray.js"
 
 
 /**
@@ -22,7 +23,7 @@ import { isArray } from "../utils/isArray.js"
  *
  *	Command can also be an array.
  *
- * @env nodejs2
+ * @env nodejs
  */
 export function run(
 	command: string | string[],
@@ -77,3 +78,4 @@ export function run(
 		child,
 	}
 }
+export type * from "../types/run.js"

@@ -5,7 +5,7 @@ import type { PluginOption } from "vite"
 import { externalizeDeps } from "vite-plugin-externalize-deps"
 import { defineConfig } from "vitest/config"
 
-import { run } from "./src/node_utils/run.js"
+import { run } from "./src/utils/run.js"
 
 
 const typesPlugin = (): PluginOption => ({

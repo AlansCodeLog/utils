@@ -10,6 +10,8 @@
  * // using the chai partialDeepEqual plugin:
  * expect(error).to.partial.deep.equal({code: 1, type:"SOME_TYPE"})
  * ```
+ *
+ * @testutil
  */
 export function catchError(func: (...args: any[]) => any): any {
 	try {

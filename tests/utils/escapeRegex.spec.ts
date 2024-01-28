@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { escapeRegex, testName } from "../../src/index.js"
+import { escapeRegex } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 
 
 describe(testName(), () => {

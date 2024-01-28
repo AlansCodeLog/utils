@@ -30,6 +30,8 @@ import type { IsAssignable, IsEqual } from "../types/index.js"
  * This does not mean this can't be used in other test files, it can, just note it's not asserting anything, only "linting" (or your editor) will reveal any errors. Similarly, in the case of tests that only test types they should still be tested (i.e. named .spec) in case an assertion is accidentally added
  *
  * \*I prefer avoiding `ts-jest`. It does not work well with path aliases and usually I transpile with babel instead of typescript, and I want to test the code as it would be transpiled.
+ *
+ * @testutil
  */
 // TODO vitest
 export function expectType<

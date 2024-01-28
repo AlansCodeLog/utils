@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest"
 
-import { testName } from "../../src/index.js"
+import type { RunError } from "../../src/index.js"
 import { run } from "../../src/index_node.js"
-import type { RunError } from "../../src/types/index.js"
+import { testName } from "../../src/testing/index.js"
 
 
 describe(testName(), () => {

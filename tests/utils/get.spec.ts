@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { get, testName } from "../../src/index.js"
+import { get } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 
 
 describe(testName(), () => {

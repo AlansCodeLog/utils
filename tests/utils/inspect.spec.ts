@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest"
 
-import { testName } from "../../src/index.js"
 import { inspect } from "../../src/index_node.js"
+import { testName } from "../../src/testing/index.js"
 
 
 describe(testName(), () => {

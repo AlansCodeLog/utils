@@ -256,3 +256,4 @@ export function debounce<
 /** @internal */
 // use single frozen instance since this might be getting created quite a lot
 export const debounceError = Object.freeze(new Error("Debounced"))
+export type * from "../types/debounce.js"

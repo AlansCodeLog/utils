@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { inspectError, testName, unreachable } from "../../src/index.js"
+import { unreachable } from "../../src/index.js"
+import { inspectError, testName } from "../../src/testing/index.js"
 
 
 describe(testName(), () => {

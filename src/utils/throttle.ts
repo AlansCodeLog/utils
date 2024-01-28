@@ -48,3 +48,5 @@ export function throttle<
 ): Throttled<T> {
 	return (debounce as AddParameters<typeof debounce, [boolean]>)(callback, wait, { queue, index, leading, trailing }, true)
 }
+
+export type * from "../types/throttle.js"

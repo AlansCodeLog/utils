@@ -12,6 +12,9 @@ module.exports = {
 		"docs",
 	],
 	rules: {
+		"jsdoc/check-tag-names": ["warn",{
+			definedTags:["packageDocumentation","testutil", "env"]
+		}]
 	},
 	settings: {
 		jsdoc: {
@@ -23,7 +26,7 @@ module.exports = {
 			files: ["./*.{js,cjs,ts,vue}"],
 			rules: {
 				"@typescript-eslint/explicit-function-return-type": "off",
-			}
+							}
 		}
 		// Eslint: https://eslint.org/docs/rules/
 		// Typescript: https://typescript-eslint.io/rules/

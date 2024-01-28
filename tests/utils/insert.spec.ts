@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { insert, inspectError, testName } from "../../src/index.js"
+import { insert, inspectError } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 
 
 function naiveInsert(str: string, intoStr: string, range: number | [number, number]): string {

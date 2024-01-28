@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { expectType, isBlank, testName } from "../../src/index.js"
+import { expectType, isBlank } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 
 
 describe(testName(), () => {

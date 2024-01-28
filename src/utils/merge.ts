@@ -4,10 +4,9 @@ import { isArray } from "./isArray.js"
 import { isObject } from "./isObject.js"
 import { isPlainObject } from "./isPlainObject.js"
 import { isPrimitive } from "./isPrimitive.js"
+import { keys as keysOf } from "./keys.js"
 import { pretty } from "./pretty.js"
 import { pushIfNotIn } from "./pushIfNotIn.js"
-
-import { keys as keysOf } from "../retypes/keys.js"
 
 
 /**

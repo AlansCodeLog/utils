@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { readable, testName } from "../../src/index.js"
+import { readable } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 import { complexArray } from "../_helpers/constants.js"
 
 

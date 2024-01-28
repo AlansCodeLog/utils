@@ -1,7 +1,6 @@
 import { isPlainObject } from "./isPlainObject.js"
+import { keys as keysOf } from "./keys.js"
 import { pushIfNotIn } from "./pushIfNotIn.js"
-
-import { keys as keysOf } from "../retypes/keys.js"
 
 
 /**

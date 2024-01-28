@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { stripIndent, testName } from "../../src/index.js"
+import { stripIndent } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 
 
 const space = " "

@@ -8,6 +8,8 @@
  * 	throw new Error("")
  * }, true)).to.throw()
  * ```
+ *
+ * @testutil
  */
 export function inspectError(func: (...args: any[]) => any, inspect: boolean = false) {
 	return (): void => {

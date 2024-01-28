@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { assertInStrRange, inspectError, testName } from "../../src/index.js"
+import { assertInStrRange, inspectError } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 
 
 describe(testName(), () => {

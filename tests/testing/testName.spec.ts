@@ -1,7 +1,7 @@
 import path from "path"
 import { describe, expect, it } from "vitest"
 
-import { inspectError, testName } from "../../src/index.js"
+import { inspectError, testName } from "../../src/testing/index.js"
 
 
 describe(testName(), () => {

@@ -11,10 +11,6 @@
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.js"
 		},
-		"./*": {
-			"types": "./dist/*",
-			"import": "./dist/*"
-		},
 		"./utils": {
 			"types": "./dist/utils/index.d.ts",
 			"import": "./dist/utils/index.js"
@@ -23,21 +19,17 @@
 			"types": "./dist/testing/index.d.ts",
 			"import": "./dist/testing/index.js"
 		},
-		"./retypes": {
-			"types": "./dist/retypes/index.d.ts",
-			"import": "./dist/retypes/index.js"
-		},
 		"./types": {
 			"types": "./dist/types/index.d.ts",
 			"import": "./dist/types/index.js"
 		},
-		"./colors": {
-			"types": "./dist/colors/index.d.ts",
-			"import": "./dist/colors/index.js"
-		},
 		"./node": {
 			"types": "./dist/index_node.d.ts",
 			"import": "./dist/index_node.js"
+		},
+		"./*": {
+			"types": "./dist/utils/*.d.ts",
+			"import": "./dist/utils/*.js"
 		}
 	},
 	"scripts": {
@@ -60,7 +52,7 @@
 		"doc:dev": "concurrently \"npm run doc:watch\" \"npm run doc:serve\"",
 		"doc:check-invalid": "typedoc --options typedoc.config.cjs --listInvalidSymbolLinks",
 		"actions:debug": "act -r -v -j build-only",
-		"gen:exports": "indexit update -o '${path}.js'",
+		"gen:exports": "indexit update -o '${path}.js' -i 'src/utils/{colors,run,inspect,expectType,catchError,testName,inspectError}.ts'",
 		"prepare": "husky install && npm run build"
 	},
 	"devDependencies": {

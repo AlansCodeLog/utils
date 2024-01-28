@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { describe, expect, it, vi } from "vitest"
 
-import { debounce, isDebouncedResult, testName } from "../../src/index.js"
+import { debounce, isDebouncedResult } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 
 
 vi.useFakeTimers()

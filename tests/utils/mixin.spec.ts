@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { expectType, inspectError, mixin, testName } from "../../src/index.js"
+import { expectType, inspectError, mixin } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 import type { Mixin } from "../../src/types/index.js"
 
 

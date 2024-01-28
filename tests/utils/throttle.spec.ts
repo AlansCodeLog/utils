@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest"
 
-import { testName, throttle } from "../../src/index.js"
+import { throttle } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 
 
 vi.useFakeTimers()

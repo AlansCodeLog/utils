@@ -1,6 +1,6 @@
 import path from "path"
 
-import { escapeRegex } from "../utils/escapeRegex.js"
+import { escapeRegex } from "./escapeRegex.js"
 
 
 /**
@@ -29,6 +29,10 @@ import { escapeRegex } from "../utils/escapeRegex.js"
  * Note: This function assumes the test directory is called test or tests and is in `process.cwd()`.
  *
  * It will throw if it can't find a test name.
+ *
+ * @testutil
+ *
+ * @env nodejs
  */
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function testName({ nest = true, __filename }: { nest?: boolean, __filename?: string } = {}, sep: string = path.sep): string {

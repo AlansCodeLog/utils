@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { testName, union } from "../../src/index.js"
+import { union } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 
 
 describe(testName(), () => {

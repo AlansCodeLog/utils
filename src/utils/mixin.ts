@@ -1,4 +1,5 @@
-import { keys } from "../retypes/keys.js"
+import { keys } from "./keys.js"
+
 import type { AnyClass, AnyFunction } from "../types/index.js"
 
 /**

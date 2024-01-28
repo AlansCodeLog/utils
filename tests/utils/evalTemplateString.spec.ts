@@ -2,7 +2,8 @@
 /* eslint-disable @typescript-eslint/no-base-to-string */
 import { describe, expect, it } from "vitest"
 
-import { evalTemplateString, testName } from "../../src/index.js"
+import { evalTemplateString } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 import { complexObj } from "../_helpers/constants.js"
 
 

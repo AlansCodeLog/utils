@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { isPrimitive, testName } from "../../src/index.js"
+import { isPrimitive } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 import { Animal } from "../_helpers/constants.js"
 
 

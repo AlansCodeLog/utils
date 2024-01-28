@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 
-import { crop, indent, pretty, testName } from "../../src/index.js"
+import { crop, indent, pretty } from "../../src/index.js"
+import { testName } from "../../src/testing/index.js"
 
 
 const obj = { a: "a", b: "b", c: "c" }
