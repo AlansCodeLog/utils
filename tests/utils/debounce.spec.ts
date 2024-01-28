@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { debounce, isDebouncedResult, testName } from "index.js"
+import { debounce, isDebouncedResult, testName } from "../../src/index.js"
 import { describe, expect, it, vi } from "vitest"
 
 

@@ -1,4 +1,4 @@
-import { pick, testName } from "index.js"
+import { pick, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

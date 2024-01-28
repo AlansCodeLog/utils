@@ -1,4 +1,4 @@
-import { get, testName } from "index.js"
+import { get, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

@@ -1,4 +1,4 @@
-import { assertInStrRange, inspectError, testName } from "index.js"
+import { assertInStrRange, inspectError, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

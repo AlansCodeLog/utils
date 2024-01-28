@@ -1,4 +1,4 @@
-import { keys as objectKeys } from "retypes/keys.js"
+import { keys as objectKeys } from "../retypes/keys.js"
 /**
  * Returns a copy of the object without the specified properties.
  */

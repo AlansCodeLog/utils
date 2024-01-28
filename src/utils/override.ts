@@ -1,4 +1,4 @@
-import { keys as keysOf } from "retypes/keys.js"
+import { keys as keysOf } from "../retypes/keys.js"
 
 import { isPlainObject } from "./isPlainObject.js"
 import { pushIfNotIn } from "./pushIfNotIn.js"

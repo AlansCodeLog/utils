@@ -1,4 +1,4 @@
-import type { AnyFunction } from "types/index.js"
+import type { AnyFunction } from "../types/index.js"
 
 /** Returns if the value is a primitive (i.e. string, number, boolean, null, undefined, or a function/class definition). */
 export function isPrimitive<T extends string | number | boolean | null | undefined | AnyFunction>(value: T | any): value is T {

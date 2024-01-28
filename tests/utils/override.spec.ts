@@ -1,4 +1,4 @@
-import { inspectError, override, testName } from "index.js"
+import { inspectError, override, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 import { complexObj } from "../_helpers/constants.js"

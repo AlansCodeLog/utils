@@ -1,4 +1,4 @@
-import { expectType, isArray, testName } from "index.js"
+import { expectType, isArray, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

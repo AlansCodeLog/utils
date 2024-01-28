@@ -1,4 +1,4 @@
-import type { ErrorW } from "types/index.js"
+import type { ErrorW } from "../types/index.js"
 
 /**
  * Inserts a string into another at the given range or position.

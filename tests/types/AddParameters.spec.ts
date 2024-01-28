@@ -1,5 +1,5 @@
-import { testName } from "index.js"
-import type { AddParameters } from "types/index.js"
+import { testName } from "../../src/index.js"
+import type { AddParameters } from "../../src/types/index.js"
 import { describe, expect, it } from "vitest"
 
 

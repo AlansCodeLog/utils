@@ -1,6 +1,6 @@
-import { expectType, testName } from "index.js"
-import { run } from "index_node.js"
-import type { ErrorW, RunError } from "types/index.js"
+import { testName } from "../../src/index.js"
+import { run } from "../../src/index_node.js"
+import type { RunError } from "../../src/types/index.js"
 import { describe, expect, it } from "vitest"
 
 

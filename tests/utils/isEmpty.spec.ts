@@ -1,5 +1,5 @@
-import { expectType, isEmpty, testName } from "index.js"
-import { keys } from "retypes/keys.js"
+import { expectType, isEmpty, testName } from "../../src/index.js"
+import { keys } from "../../src/retypes/keys.js"
 import { describe, expect, it } from "vitest"
 
 
@@ -10,7 +10,7 @@ describe(testName(), () => {
 		expect(isEmpty(keys({ A: "A" }))).to.equal(false)
 		expect(isEmpty(["A"])).to.equal(false)
 	})
-	describe("types work", () => {
+	describe("../../src/types work", () => {
 		it("value: any[] = [] ", () => {
 			const value: any[] = []
 			if (isEmpty(value)) expectType<typeof value, "===", []>(true)

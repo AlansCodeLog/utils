@@ -1,4 +1,4 @@
-import { snippet, testName } from "index.js"
+import { snippet, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

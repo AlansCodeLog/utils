@@ -1,4 +1,5 @@
-import { testName } from "index.js"
+//@ts-expect-error remove this line when copying
+import { testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

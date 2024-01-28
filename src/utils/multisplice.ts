@@ -1,5 +1,5 @@
-import type { Mutable } from "types/index.js"
-import { MULTISPLICE_ITEM } from "types/index.js"
+import type { Mutable } from "../types/index.js"
+import { MULTISPLICE_ITEM } from "../types/index.js"
 
 /**
  * Splices arrays at multiple positions and returns both the array and the removed elements for easier chaining.

@@ -1,4 +1,4 @@
-import { expectType, pushIfNotIn, testName } from "index.js"
+import { expectType, pushIfNotIn, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 
@@ -17,7 +17,7 @@ describe(testName(), () => {
 		expect(arr1).to.not.equal(arrUnion)
 		expect(arrUnion).to.deep.equal(["a", "b", "c"])
 	})
-	it("types work", () => {
+	it("../../src/types work", () => {
 		const arr1 = ["a"] as const
 		const arr2 = ["b"] as const
 		const arrUnion = pushIfNotIn([], arr1, arr2)

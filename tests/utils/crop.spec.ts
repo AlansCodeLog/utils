@@ -1,4 +1,4 @@
-import { crop, testName, trimLines } from "index.js"
+import { crop, testName, trimLines } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

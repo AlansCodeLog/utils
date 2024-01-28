@@ -1,4 +1,4 @@
-import { isObject, testName } from "index.js"
+import { isObject, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

@@ -1,4 +1,4 @@
-import { readable, testName } from "index.js"
+import { readable, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 import { complexArray } from "../_helpers/constants.js"

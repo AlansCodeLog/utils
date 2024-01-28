@@ -1,5 +1,5 @@
-import { expectType, inspectError, mixin, testName } from "index.js"
-import type { Mixin } from "types/index.js"
+import { expectType, inspectError, mixin, testName } from "../../src/index.js"
+import type { Mixin } from "../../src/types/index.js"
 import { describe, expect, it } from "vitest"
 
 
@@ -99,7 +99,7 @@ describe(testName(), () => {
 		expect(mixed.walk).to.equal(undefined)
 		expect(mixed2.walk()).to.equal("Mixin Walk")
 	})
-	it("types work", () => {
+	it("../../src/types work", () => {
 		type MixinType = (opts: { mixin1: string } & { mixin2: number }) => void
 		expectType<Base["_mixin"], "===", MixinType>(true)
 		expectType<Base["manuallyInitiated"], "===", string>(true)

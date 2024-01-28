@@ -1,4 +1,4 @@
-import { inspectError, testName } from "index.js"
+import { inspectError, testName } from "../../src/index.js"
 import path from "path"
 import { describe, expect, it } from "vitest"
 

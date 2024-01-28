@@ -1,5 +1,5 @@
 import path from "path"
-import { escapeRegex } from "utils/escapeRegex.js"
+import { escapeRegex } from "../utils/escapeRegex.js"
 
 
 /**

@@ -1,4 +1,4 @@
-import { testName, throttle } from "index.js"
+import { testName, throttle } from "../../src/index.js"
 import { describe, expect, it, vi } from "vitest"
 
 

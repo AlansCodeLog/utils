@@ -1,4 +1,4 @@
-import { isPlainObject, testName } from "index.js"
+import { isPlainObject, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

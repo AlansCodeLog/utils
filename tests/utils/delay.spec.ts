@@ -1,4 +1,4 @@
-import { delay, testName } from "index.js"
+import { delay, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

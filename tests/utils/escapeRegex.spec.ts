@@ -1,4 +1,4 @@
-import { escapeRegex, testName } from "index.js"
+import { escapeRegex, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

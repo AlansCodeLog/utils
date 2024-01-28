@@ -1,4 +1,4 @@
-import { expectType, isDefined, testName } from "index.js"
+import { expectType, isDefined, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 
@@ -9,7 +9,7 @@ describe(testName(), () => {
 		expect(isDefined("anything")).to.equal(true)
 		expect(isDefined({})).to.equal(true)
 	})
-	it("types work", () => {
+	it("../../src/types work", () => {
 		let value
 		const test = isDefined(value)
 		expectType<typeof test, "===", boolean>(true)

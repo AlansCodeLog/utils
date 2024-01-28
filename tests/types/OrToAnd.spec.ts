@@ -1,5 +1,5 @@
-import { expectType, testName } from "index.js"
-import type { OrToAnd } from "types/index.js"
+import { expectType, testName } from "../../src/index.js"
+import type { OrToAnd } from "../../src/types/index.js"
 import { describe, expect, it } from "vitest"
 
 

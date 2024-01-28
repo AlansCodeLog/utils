@@ -1,4 +1,4 @@
-import { crop, indent, pretty, testName } from "index.js"
+import { crop, indent, pretty, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

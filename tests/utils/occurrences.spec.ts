@@ -1,4 +1,4 @@
-import { occurrences, testName } from "index.js"
+import { occurrences, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

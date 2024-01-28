@@ -1,4 +1,4 @@
-import { inspectError, testName, unreachable } from "index.js"
+import { inspectError, testName, unreachable } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

@@ -1,4 +1,4 @@
-import { expectType, testName } from "index.js"
+import { expectType, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

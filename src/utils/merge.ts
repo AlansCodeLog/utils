@@ -1,4 +1,4 @@
-import { keys as keysOf } from "retypes/keys.js"
+import { keys as keysOf } from "../retypes/keys.js"
 
 import { crop } from "./crop.js"
 import { indent } from "./indent.js"

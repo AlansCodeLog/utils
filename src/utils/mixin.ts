@@ -1,5 +1,5 @@
-import { keys } from "retypes/keys.js"
-import type { AnyClass, AnyFunction } from "types/index.js"
+import { keys } from "../retypes/keys.js"
+import type { AnyClass, AnyFunction } from "../types/index.js"
 
 /**
  * Mixes a series of mixins onto a class + some extra magic. Mixes in all non-static methods.

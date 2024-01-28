@@ -1,6 +1,6 @@
-import { expectType, testName } from "index.js"
-import { keys } from "retypes/keys.js"
-import type { Keys } from "types/index.js"
+import { expectType, testName } from "../../src/index.js"
+import { keys } from "../../src/retypes/keys.js"
+import type { Keys } from "../../src/types/index.js"
 import { describe, expect, it } from "vitest"
 
 

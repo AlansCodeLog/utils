@@ -1,4 +1,4 @@
-import { Err, expectType, Ok, Result, testName } from "index.js"
+import { Err, expectType, Ok, Result, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 
@@ -20,7 +20,7 @@ describe(testName(), () => {
 			expect(err.error instanceof Error).to.equal(true)
 		}
 	})
-	it("types work", () => {
+	it("../../src/types work", () => {
 		const resOk = Ok()
 
 		if (resOk.isOk) {

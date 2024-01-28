@@ -1,4 +1,4 @@
-import { findDuplicates, testName } from "index.js"
+import { findDuplicates, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
 

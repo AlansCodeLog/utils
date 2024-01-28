@@ -1,7 +1,7 @@
-import { getQueueKey } from "internal/getQueueKey.js"
-import type { AnyFunction, AnyPromise, Debounced, DebounceQueue } from "types/index.js"
-
 import { castType } from "./castType.js"
+
+import { getQueueKey } from "../internal/getQueueKey.js"
+import type { AnyFunction, AnyPromise, Debounced, DebounceQueue } from "../types/index.js"
 
 
 /**
