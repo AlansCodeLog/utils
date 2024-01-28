@@ -11,7 +11,7 @@ export function walk<
 		TSave extends true ? any : undefined,
 >(
 	obj: any | any[],
-	walker: (el: any, keyPath: string) => undefined | any,
+	walker: (el: any, keyPath: string[]) => undefined | any,
 	{
 		save = false as TSave,
 		before = false,
@@ -28,8 +28,7 @@ export function walk<
 	// eslint-disable-next-line prefer-rest-params
 	const isRecursiveCall = arguments[4] as boolean ?? false // private parameter
 	// eslint-disable-next-line prefer-rest-params
-	const keyPath = arguments[3] as string ?? "" // private parameter
-	const dot = `${keyPath === "" ? "" : "."}`
+	const keyPath = [...(arguments[3] ?? [])] as string[] // private parameter
 	const opts = { save, before, after }
 	if (isRecursiveCall && before) obj = walker(obj, keyPath)
 	let res
@@ -37,7 +36,7 @@ export function walk<
 		const items = []
 		let i = 0
 		for (const item of obj) {
-			const thisKeyPath = `${keyPath}${dot}${i.toString()}`
+			const thisKeyPath = [...keyPath, i.toString()]
 			res = typeof item === "object" && item !== null
 				// @ts-expect-error - passing private arg
 				? walk(item, walker, opts, thisKeyPath, true)
@@ -49,7 +48,7 @@ export function walk<
 	} else if (obj !== null) {
 		const items: any = {}
 		for (const key of keys(obj)) {
-			const thisKeyPath = `${keyPath}${dot}${key.toString()}`
+			const thisKeyPath = [...keyPath, key.toString()]
 			const item = obj[key]
 			res = typeof item === "object" && item !== null
 				// @ts-expect-error - passing private arg

@@ -9,7 +9,7 @@ describe(testName(), () => {
 			b: ["b", { c: "c" }],
 		}
 		const items: any[] = []
-		const clone = walk(obj, (el: any, keyPath) => {items.push([el, keyPath])})
+		const clone = walk(obj, (el: any, keyPath) => {items.push([el, keyPath.join(".")])})
 		expect(clone).to.equal(undefined)
 		expect(items).to.deep.equal([["a", "a"], ["b", "b.0"], ["c", "b.1.c"]])
 	})
