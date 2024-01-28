@@ -3,5 +3,4 @@
 export { catchError } from "./catchError.js"
 export { expectType } from "./expectType.js"
 export { inspectError } from "./inspectError.js"
-export { partialDeepEqual } from "./partialDeepEqual.js"
 export { testName } from "./testName.js"
