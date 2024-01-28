@@ -1,5 +1,6 @@
-import { pick, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
+
+import { pick, testName } from "../../src/index.js"
 
 
 describe(testName(), () => {

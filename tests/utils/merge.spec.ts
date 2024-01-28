@@ -1,6 +1,6 @@
-import { inspectError, merge, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
+import { inspectError, merge, testName } from "../../src/index.js"
 import { complexObj } from "../_helpers/constants.js"
 
 

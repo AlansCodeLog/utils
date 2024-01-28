@@ -1,5 +1,6 @@
-import { Err, expectType, Ok, Result, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
+
+import { Err, expectType, Ok, Result, testName } from "../../src/index.js"
 
 
 describe(testName(), () => {

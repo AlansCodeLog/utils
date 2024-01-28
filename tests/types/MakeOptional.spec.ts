@@ -1,6 +1,7 @@
+import { describe, expect, it } from "vitest"
+
 import { expectType, testName } from "../../src/index.js"
 import type { MakeOptional } from "../../src/types/index.js"
-import { describe, expect, it } from "vitest"
 
 
 describe(testName(), () => {

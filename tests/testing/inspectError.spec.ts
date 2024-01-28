@@ -1,5 +1,6 @@
-import { inspectError, testName } from "../../src/index.js"
 import { afterEach, describe, expect, it, vi } from "vitest"
+
+import { inspectError, testName } from "../../src/index.js"
 
 
 const originalWarn = console.warn

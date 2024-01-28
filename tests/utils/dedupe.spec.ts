@@ -1,6 +1,6 @@
-import { dedupe, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
+import { dedupe, testName } from "../../src/index.js"
 import { complexArray } from "../_helpers/constants.js"
 
 

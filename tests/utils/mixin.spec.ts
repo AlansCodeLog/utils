@@ -1,6 +1,7 @@
+import { describe, expect, it } from "vitest"
+
 import { expectType, inspectError, mixin, testName } from "../../src/index.js"
 import type { Mixin } from "../../src/types/index.js"
-import { describe, expect, it } from "vitest"
 
 
 class BaseIncorrect {

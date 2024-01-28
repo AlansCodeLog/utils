@@ -1,5 +1,3 @@
-import { keys as keysOf } from "../retypes/keys.js"
-
 import { crop } from "./crop.js"
 import { indent } from "./indent.js"
 import { isArray } from "./isArray.js"
@@ -8,6 +6,8 @@ import { isPlainObject } from "./isPlainObject.js"
 import { isPrimitive } from "./isPrimitive.js"
 import { pretty } from "./pretty.js"
 import { pushIfNotIn } from "./pushIfNotIn.js"
+
+import { keys as keysOf } from "../retypes/keys.js"
 
 
 /**

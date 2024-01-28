@@ -1,5 +1,6 @@
+import { isEmpty } from "./isEmpty.js"
+
 import { keys } from "../retypes/keys.js"
-import { isEmpty } from "../utils/isEmpty.js"
 /**
  * Returns an array in human readable format (with an oxford comma if there are 3 or more elements).
  *

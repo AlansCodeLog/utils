@@ -1,6 +1,7 @@
+import { describe, expect, it } from "vitest"
+
 import { expectType, testName } from "../../src/index.js"
 import type { ExpandClassRecord, ExpandRecord, RecordFromArray } from "../../src/types/index.js"
-import { describe, expect, it } from "vitest"
 
 
 class Entry<TName extends string = string> {

@@ -1,5 +1,6 @@
-import { crop, testName, trimLines } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
+
+import { crop, testName, trimLines } from "../../src/index.js"
 
 
 const space = " "

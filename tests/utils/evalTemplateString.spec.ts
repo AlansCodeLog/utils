@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-base-to-string */
-import { evalTemplateString, testName } from "../../src/index.js"
 import { describe, expect, it } from "vitest"
 
+import { evalTemplateString, testName } from "../../src/index.js"
 import { complexObj } from "../_helpers/constants.js"
 
 

@@ -1,6 +1,7 @@
+import { describe, expect, it } from "vitest"
+
 import { testName } from "../../src/index.js"
 import type { AddParameters } from "../../src/types/index.js"
-import { describe, expect, it } from "vitest"
 
 
 describe(testName(), () => {
