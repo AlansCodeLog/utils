@@ -62,7 +62,7 @@ export function run(
 		})
 
 		if (code !== 0 || stderr !== "") {
-			const err = new Error(stderr)
+			const err = new Error(stderr !== "" ? stderr : data)
 			castType<RunError>(err)
 			err.code = code
 			err.data = data
