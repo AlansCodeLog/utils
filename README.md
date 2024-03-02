@@ -31,7 +31,6 @@ There are also the following subpath exports to the corresponding index file for
 - `/node` - node only utility functions
 - `/testing` - functions that are only useful for testing purposes
 - `/types` - all the types used internally + any utility types
-	- Also includes any enums.
 
 Note that while convenient, they should be avoided in certain situations. Although the package is tree-shakeable (99.9\*), if using vite, for example, it's dev server does not tree-shake the imports from index files that re-export functions. This means importing from index files (i.e. the convenience subpath exports) slows things down.
 

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest"
 
 import { inspectError, multisplice } from "../../src/index.js"
 import { testName } from "../../src/testing/index.js"
-import { MULTISPLICE_ITEM } from "../../src/types/index.js"
+import { MULTISPLICE_ITEM } from "../../src/utils/multisplice.js"
 
 
 describe(testName(), () => {
