@@ -30,6 +30,22 @@ describe(testName(), () => {
 			b: ["b-", { c: "c-" }],
 		})
 	})
+	it("clones without walker", () => {
+		const obj = {
+			a: "a",
+			b: ["b", { c: "c" }],
+		}
+		const items: any[] = []
+		const clone = walk(obj, undefined, { save: true })
+		expect(clone).to.deep.equal({
+			a: "a",
+			b: ["b", { c: "c" }],
+		})
+		expect(clone === obj).to.equal(false)
+		expect(clone.b === obj.b).to.equal(false)
+		expect(clone.b[1] === obj.b[1]).to.equal(false)
+	})
+
 	it.todo("works with circular references", () => {
 		const obj = {
 			a: "a",
