@@ -8,14 +8,14 @@ import { keys } from "./keys.js"
  * import { constantCase } from "change-case"
  *
  * const obj = { helloWorld: "hello" }
- * const newObj = changeObjKeys(obj, constantCase)
+ * const newObj = changeObjectKeys(obj, constantCase)
  * // newObject = { HELLO_WORLD: "hello" }
  *
  * // newObj must be typed manually
- * const newObj = changeObjKeys<ResType>(obj, constantCase)
+ * const newObj = changeObjectKeys<ResType>(obj, constantCase)
  * ```
  */
-export function changeObjKeys<
+export function changeObjectKeys<
 	TResObj extends Record<any, any>,
 	TObj extends Record<any, any>,
 >(
