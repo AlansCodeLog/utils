@@ -3,7 +3,7 @@
  *
  * ```ts
  * const obj = { a: { b: ["c"]} }
- * const value = get(obj, ["a", "b", 0]) // or ["a", "b", "0"]
+ * const value = get(obj, ["a", "b", 0])
  * const value = get(obj, []) // undefined
  * ```
  */
