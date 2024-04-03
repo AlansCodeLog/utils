@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest"
 
 import { expectType, inspectError, mixin } from "../../src/index.js"
-import { testName } from "../../src/testing/index.js"
 import type { Mixin } from "../../src/types/index.js"
 
 
@@ -78,30 +77,33 @@ interface Base2 extends Mixin<Mixin3>, Mixin3 { _constructor: never }
 mixin(Base2, [Mixin1, Mixin3])
 
 
-describe(testName(), () => {
-	it("correctly auto merges _constructor methods", () => {
-		const mixed = new Base()
-		expect(mixed.neverInitiated).to.equal(undefined)
-		expect(mixed.manuallyInitiated).to.equal("")
-		expect(mixed.manuallyInitiated2).to.equal(0)
-	})
-	it("correctly allows base to override Mixin methods", () => {
-		const mixed = new Base()
+it("correctly auto merges _constructor methods", () => {
+	const mixed = new Base()
+	expect(mixed.neverInitiated).to.equal(undefined)
+	expect(mixed.manuallyInitiated).to.equal("")
+	expect(mixed.manuallyInitiated2).to.equal(0)
+})
 
-		expect(mixed.walk()).to.equal("Base Walk")
-	})
-	it("does not work if mixins incorrectly initialized in base's constructor", () => {
-		const mixed = new BaseIncorrect()
-		expect(mixed.neverInitiated).to.equal(undefined)
-		expect(mixed.manuallyInitiated).to.equal(undefined)
-	})
-	it("does not work if mixin extends other mixin and both not mixed", () => {
-		const mixed = new BaseIncorrect2()
-		const mixed2 = new Base2()
-		expect(mixed.walk).to.equal(undefined)
-		expect(mixed2.walk()).to.equal("Mixin Walk")
-	})
-	it("../../src/types work", () => {
+it("correctly allows base to override Mixin methods", () => {
+	const mixed = new Base()
+
+	expect(mixed.walk()).to.equal("Base Walk")
+})
+
+it("does not work if mixins incorrectly initialized in base's constructor", () => {
+	const mixed = new BaseIncorrect()
+	expect(mixed.neverInitiated).to.equal(undefined)
+	expect(mixed.manuallyInitiated).to.equal(undefined)
+})
+
+it("does not work if mixin extends other mixin and both not mixed", () => {
+	const mixed = new BaseIncorrect2()
+	const mixed2 = new Base2()
+	expect(mixed.walk).to.equal(undefined)
+	expect(mixed2.walk()).to.equal("Mixin Walk")
+})
+
+it("../../src/types work", () => {
 		type MixinType = (opts: { mixin1: string } & { mixin2: number }) => void
 		expectType<Base["_mixin"], "===", MixinType>(true)
 		expectType<Base["manuallyInitiated"], "===", string>(true)
@@ -112,10 +114,10 @@ describe(testName(), () => {
 		expectType<Base["mixinOnly"], "===", () => void>(true)
 		expectType<Base["baseOnly"], "===", () => void>(true)
 		expectType<(str: string) => string, "==>", Base["walk"]>(false)
-	})
-	it("throws error if _mixin is defined on the base class", () => {
-		expect(inspectError(() => {
-			mixin(BaseError, [Mixin1, Mixin2])
-		}))
-	})
+})
+
+it("throws error if _mixin is defined on the base class", () => {
+	expect(inspectError(() => {
+		mixin(BaseError, [Mixin1, Mixin2])
+	}))
 })

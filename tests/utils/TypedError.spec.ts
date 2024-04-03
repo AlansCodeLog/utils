@@ -1,14 +1,12 @@
 import { describe, expect, it } from "vitest"
 
 import { expectType, TypedError } from "../../src/index.js"
-import { testName } from "../../src/testing/index.js"
 
 
-describe(testName(), () => {
-	it("works", () => {
-		enum ERROR {
-			SOME_ERROR = "SOME_ERROR",
-		}
+it("works", () => {
+	enum ERROR {
+		SOME_ERROR = "SOME_ERROR",
+	}
 		// eslint-disable-next-line @typescript-eslint/naming-convention
 		type ALL_ERRORS = ERROR
 
@@ -31,5 +29,4 @@ describe(testName(), () => {
 		const validError = new MyKnownError(ERROR.SOME_ERROR, "message", { required: "data" })
 
 		expectType<typeof validError, "===", MyKnownError<ERROR.SOME_ERROR>>(true)
-	})
 })

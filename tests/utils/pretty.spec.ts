@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest"
 
 import { crop, pretty } from "../../src/index.js"
-import { testName } from "../../src/testing/index.js"
 import { complexObj } from "../_helpers/constants.js"
 
 
@@ -9,10 +8,9 @@ const test1 = (...args1: any) => (...args2: any) => { console.log(args1, args2) 
 test1`one${undefined}`
 
 
-describe(testName(), () => {
-	it("works", () => {
-		expect(pretty(complexObj)).to.equal(JSON.stringify(complexObj, null, "\t"))
-		expect(pretty(complexObj)).to.equal(crop`
+it("works", () => {
+	expect(pretty(complexObj)).to.equal(JSON.stringify(complexObj, null, "\t"))
+	expect(pretty(complexObj)).to.equal(crop`
 			{
 				"0": 0,
 				"a": "a",
@@ -30,10 +28,11 @@ describe(testName(), () => {
 				"m": null
 			}
 		`)
-	})
-	it.todo("stringify = true", () => {
-		// function getting extra newline?????
-		expect(pretty(complexObj, { stringify: true })).to.equal(crop`
+})
+
+it.todo("stringify = true", () => {
+	// function getting extra newline?????
+	expect(pretty(complexObj, { stringify: true })).to.equal(crop`
 			{
 				"0": 0,
 				"a": "a",
@@ -55,11 +54,12 @@ describe(testName(), () => {
 				"m": null
 			}
 		`)
-	})
-	it("stringify = custom", () => {
-		expect(pretty(complexObj, {
-			stringify: el => ["function", "object", "symbol"].includes(typeof el) ? undefined : el,
-		})).to.equal(crop`
+})
+
+it("stringify = custom", () => {
+	expect(pretty(complexObj, {
+		stringify: el => ["function", "object", "symbol"].includes(typeof el) ? undefined : el,
+	})).to.equal(crop`
 			{
 				"0": 0,
 				"a": "a",
@@ -67,5 +67,4 @@ describe(testName(), () => {
 				"l": false
 			}
 		`)
-	})
 })

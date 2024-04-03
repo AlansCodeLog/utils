@@ -1,26 +1,26 @@
 import { describe, expect, it } from "vitest"
 
 import { crop, indent, pretty } from "../../src/index.js"
-import { testName } from "../../src/testing/index.js"
 
 
 const obj = { a: "a", b: "b", c: "c" }
-describe(testName(), () => {
-	it("works", () => {
-		expect(indent(pretty(obj), 3)).to.equal(
+
+it("works", () => {
+	expect(indent(pretty(obj), 3)).to.equal(
 			`{
 				"a": "a",
 				"b": "b",
 				"c": "c"
 			}`)
-	})
-	it("works in realistic use cases", () => {
-		const message = crop`
+})
+
+it("works in realistic use cases", () => {
+	const message = crop`
 			Some message:
 			${indent(pretty(obj), 3)}
 		`
 
-		expect(message).to.equal(crop`
+	expect(message).to.equal(crop`
 			Some message:
 			{
 				"a": "a",
@@ -28,11 +28,11 @@ describe(testName(), () => {
 				"c": "c"
 			}
 		`)
-		const message2 = crop`
+	const message2 = crop`
 			Some message:
 				${indent(pretty(obj), 4)}
 		`
-		expect(message2).to.equal(crop`
+	expect(message2).to.equal(crop`
 			Some message:
 				{
 					"a": "a",
@@ -40,13 +40,13 @@ describe(testName(), () => {
 					"c": "c"
 				}
 		`)
-	})
-	it("first = true", () => {
-		expect(indent(pretty(obj), 3, { first: true })).to.equal(
+})
+
+it("first = true", () => {
+	expect(indent(pretty(obj), 3, { first: true })).to.equal(
 `			{
 				"a": "a",
 				"b": "b",
 				"c": "c"
 			}`)
-	})
 })

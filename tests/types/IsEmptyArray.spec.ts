@@ -1,38 +1,41 @@
 import { describe, expect, it } from "vitest"
 
-import { expectType, testName } from "../../src/index.js"
 import type { IsEmptyArray } from "../../src/types/index.js"
+import { expectType } from "../../src/utils/expectType.js"
 
 
-describe(testName(), () => {
-	it("[] = boolean", () => {
-		const arr: any = []
+it("[] = boolean", () => {
+	const arr: any = []
 		type Res = IsEmptyArray<typeof arr>
 		expectType<Res, "===", boolean>(true)
-	})
-	it("[\"A\"] = boolean", () => {
-		const arr = ["A"]
+})
+
+it("[\"A\"] = boolean", () => {
+	const arr = ["A"]
 		type Res = IsEmptyArray<typeof arr>
 		expectType<Res, "===", boolean>(true)
-	})
-	it("[] as const = true", () => {
-		const arr = [] as const
+})
+
+it("[] as const = true", () => {
+	const arr = [] as const
 		type Res = IsEmptyArray<typeof arr>
 		expectType<Res, "===", true>(true)
-	})
-	it(":[] = [] = true", () => {
-		const arr: [] = []
+})
+
+it(":[] = [] = true", () => {
+	const arr: [] = []
 		type Res = IsEmptyArray<typeof arr>
 		expectType<Res, "===", true>(true)
-	})
-	it("[\"A\"] as const = true", () => {
-		const arr = ["A"] as const
+})
+
+it("[\"A\"] as const = true", () => {
+	const arr = ["A"] as const
 		type Res = IsEmptyArray<typeof arr>
 		expectType<Res, "===", false>(true)
-	})
-	it(":[\"A\"] = [\"A\"] = true", () => {
-		const arr: ["A"] = ["A"]
+})
+
+it(":[\"A\"] = [\"A\"] = true", () => {
+	const arr: ["A"] = ["A"]
 		type Res = IsEmptyArray<typeof arr>
 		expectType<Res, "===", false>(true)
-	})
 })

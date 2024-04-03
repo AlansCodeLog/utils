@@ -4,6 +4,8 @@ import { escapeRegex } from "./escapeRegex.js"
 
 
 /**
+ * @deprecated This can cause issues in IDEs and is so ancient I don't exactly remember what the issue was. I now use vitest and it comes with fuzzy search included.
+ *
  * Used for getting the file name of a test spec (relative to the `tests/tests` folder) so it's one less thing we have to worry about when creating a new spec. Its name is just its filename (or if it's nested: folder/filename), making everything easier to find.
  *
  * ```ts
