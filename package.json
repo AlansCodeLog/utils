@@ -38,7 +38,7 @@
 		"build:types": "tsc -p tsconfig.types.json",
 		"lint:eslint": "eslint \"{src,tests}/**/*.{cjs,js,ts}\" \"*.{cjs,js,ts}\" --max-warnings=0 --report-unused-disable-directives",
 		"lint:types": "tsc --noEmit --pretty",
-		"lint:commits": "commitlint --from $(git rev-list HEAD --not --remotes | tail -1)^ --to HEAD --verbose",
+		"lint:commits": "commitlint --from $(git rev-list --max-parents=0 HEAD) --to HEAD --verbose",
 		"lint:imports": "madge --circular --extensions ts ./src",
 		"lint": "npm run lint:types && npm run lint:eslint",
 		"coverage": "vitest --coverage",
