@@ -16,7 +16,7 @@ export function pretty(obj: object,
 		 *
 		 * Otherwise, you can either pass a custom stringify function to completely customize the behavior.
 		 *
-		 * If the function returns undefined the value is skipped. This function will be passed all the object's values. If a value is an object, it's passed all that value's values then the value itself (i.e. it's using {@link walk} with `{ after: true }`)
+		 * The function can return undefined to skip the value since undefined properties are not serialized by JSON.stringify. This function will be passed all the object's values. If a value is an object, it's passed all that value's values then the value itself (i.e. it's using {@link walk} with `{ after: true }`).
 		 *
 		 * If it returns values with newlines note these are preserved when using the oneline option.
 		 */
@@ -32,7 +32,10 @@ export function pretty(obj: object,
 					: val
 		}
 
-		objClone = walk(obj, stringify, { save: true, after: true })
+		objClone = walk(obj, (val, keypath) => {
+			if (keypath.length === 0) return val
+			return (stringify as any)(val)
+		}, { save: true, after: true })
 	}
 	return oneline
 		// | would never appear at the start of any JSON stringified object line afaik
