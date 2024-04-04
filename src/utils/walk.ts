@@ -15,18 +15,18 @@ import { keys } from "./keys.js"
  * ```ts
  * const seen = {}
  *
- * walk(obj, (val, keypath) => {
- * 	if (typeof val === "object") { // we're in before or after
+ * walk(obj, (val, keypath, stage) => {
+ * 	if (stage === "before") {
  * 		const key = keypath.join(".")]
  * 		if (val instanceof ObjectWeWantToPreserve) { // e.g. Error
  * 			seen[key] = val
  *				// return dummy empty value to avoid looping over the value
  * 			// note this needs to return []/{}/null
- * 			// we use {} because we catch it in the same condition above
  * 			return {}
  * 		}
- * 		if (seen[key]) { // we're in after
- * 			// re-assign value we want to keep
+ * 	}
+ * 	if (stage === "after")
+ * 		if (seen[key]) {
  * 			return seen[key]
  * 		}
  * 	}
@@ -34,7 +34,7 @@ import { keys } from "./keys.js"
  * }, {before: true, after: true, save: true})
  *
  * ```
- * In the above scenerio, if not using save and we just want to modify the object directly, we could just keep the list of keypaths + values to modify and only use `{before:true}`, then loop and mutate those keys using {@link set}.
+ * In the above scenerio, if not using save and we just want to modify the object directly, we could do `{before:true}` and use a `Map<keypathAsString, val>` to keep a list of keys to modify. Then after (to avoid interfering with the walk) we loop through those keys in reverse (to get deepest keys first, to avoid conflicts) then mutate those keypaths using {@link set}.
  */
 export function walk<
 	TSave extends true | false = false,
@@ -43,7 +43,7 @@ export function walk<
 		TSave extends true ? any : undefined,
 >(
 	obj: any | any[],
-	walker?: (el: any, keyPath: string[]) => undefined | any,
+	walker?: (el: any, keyPath: string[], stage?: "before" | "after") => undefined | any,
 	opts: {
 		/** If true, will "save" the result of the walker, allowing it to be used for deep map/cloning of objects. By "save" we mean, the return value of the walker will be assigned to the property (if it does not return undefined) and walk will return the modified clone. Using save will change the return type to any since otherwise it is impossible to type. You can use the second type parameter to set it manually.*/
 		save?: TSave
@@ -56,7 +56,7 @@ export function walk<
 	// eslint-disable-next-line prefer-rest-params
 	const keyPath = [...(arguments[3] ?? [])] as string[] // private parameter
 	if (opts.before) {
-		const walkerRes = walker ? walker(obj, keyPath) : obj
+		const walkerRes = walker ? walker(obj, keyPath, "before") : obj
 		if (opts.save) obj = walkerRes
 	}
 	let res
@@ -92,7 +92,7 @@ export function walk<
 		res = opts.save ? walkRes : undefined as any
 	}
 	if (opts.after) {
-		const walkerRes = walker ? walker(res, keyPath) : res
+		const walkerRes = walker ? walker(res, keyPath, "after") : res
 		if (opts.save) res = walkerRes
 	}
 
