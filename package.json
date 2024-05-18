@@ -28,8 +28,8 @@
 			"import": "./dist/index_node.js"
 		},
 		"./*": {
-			"types": "./dist/utils/*.d.ts",
-			"import": "./dist/utils/*.js"
+			"types": "./dist/utils/*",
+			"import": "./dist/utils/*"
 		}
 	},
 	"scripts": {
