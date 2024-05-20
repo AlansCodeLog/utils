@@ -2,6 +2,7 @@
  * Picks a list of properties from an object and returns them in a new object.
  *
  * Optionally never define properties that are not in the object with `ignoreNonexistent` (default is true).
+ *
  * And never define properties that are undefined with `ignoreUndefined` (default is false).
  */
 export function pick<T extends {}, TKeys extends (keyof T)[]>(obj: T, keys: (keyof T)[], { ignoreNonexistent = true, ignoreUndefined = false }: { ignoreNonexistent?: boolean, ignoreUndefined?: boolean } = {}): Pick<T, TKeys[number]> {
