@@ -68,32 +68,41 @@ class ErrResultImpl<TErr extends Error = Error> extends ResultBase<never, TErr> 
  * 	const error = res.error //	error instance
  * }
  *
- * // with custom error
+ * const value = Ok("value").unwrap() // "value"
+ * const value = Err("Err").unwrap() // will throw
+ * ```
  *
- * class KnownError extends Error {
- * 	code: number
+ * Example with custom error, also see {@link TypedError}.
+ * ```ts
+ *
+ * enum ERROR_ENUM {
+ * 	ERROR_A = "ERROR_A",
+ * 	ERROR_B = "ERROR_B",
+ * }
+ *
+ * class KnownError<T extends ERROR_ENUM = ERROR_ENUM> extends Error {
+ * 	code:T
  * 	constructor(
  * 		message: string,
- * 		code: number
+ * 		code:T
  * 	) {
  * 		super(message)
  * 		this.code = code
  * 	}
  * }
  *
- * function compute(x?: string): Result<string, KnownError> {
+ * function compute(x?: string): Result<string, KnownError<ERROR_ENUM.ERROR_A>> {
  * 	return x
  * 		? Ok(x)
- * 		// error automatically constructed from error class with parameters checked
- * 		: Err(KnownError, "Oh no! Something went wrong.", 1)
- * 		// equivilant of:
- * 		// : Err(new KnownError("Oh no! Something went wrong.", 1))
+ * 		: Err(new KnownError(ERROR_ENUM.ERROR_A, "Oh no! Something went wrong")
  * }
+ *```
+ * Note that to make this properly work when a function returns multiple errors, you must pass the KnownError types as a dricriminated union for them to be distinguishable based on some property (e.g. `code`). For example: `KnownError<TypeA> | KnownError<TypeB>`, NOT `KnownError<TypeA | TypeB>`. You can create a helper type like this to discriminate the generic KnownError class:
  *
- *
- * const value = Ok("value").unwrap() // "value"
- * const value = Err("Err").unwrap() // will throw
- *
+ * ```ts
+ * export type MultipleErrors<T extends ERROR_ENUM> = {
+ * 	[k in T]: KnownError<k>
+ * }[T]
  * ```
  */
 
