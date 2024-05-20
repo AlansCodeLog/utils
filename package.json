@@ -16,16 +16,16 @@
 			"import": "./dist/utils/index.js"
 		},
 		"./testing": {
-			"types": "./dist/testing/index.d.ts",
-			"import": "./dist/testing/index.js"
+			"types": "./dist/indexTesting.d.ts",
+			"import": "./dist/indexTesting.js"
 		},
 		"./types": {
 			"types": "./dist/types/index.d.ts",
 			"import": "./dist/types/index.js"
 		},
 		"./node": {
-			"types": "./dist/index_node.d.ts",
-			"import": "./dist/index_node.js"
+			"types": "./dist/indexNode.d.ts",
+			"import": "./dist/indexNode.js"
 		},
 		"./*": {
 			"types": "./dist/utils/*",

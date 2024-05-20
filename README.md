@@ -14,7 +14,7 @@ npm install @alanscodelog/utils
 
 # Usage
 
-The utility functions are available as a subpath exports from the root of the package. Note that some are node only, and also some contain additional type exports (these can also be imported from the root or `/types` as well).
+The utility functions are all available as a subpath exports from the root of the package. Note that some are node only, and also some contain additional type exports (these can also be imported from the root or from `/types` as well).
 
 ```ts
 // recommended import styles
@@ -23,9 +23,12 @@ import { debounce, Debounced } from "@alanscodelog/utils/debounce"
 import type { Debounced } from "@alanscodelog/utils/types"
 import type { Debounced } from "@alanscodelog/utils"
 
-// convenience import styles
+// convenience import styles, not recommended, see why below
 import { keys } from "@alanscodelog/utils"
 import { run } from "@alanscodelog/utils/node"
+
+// convenience import style for testing, this is usually fine
+import { inspectError } from "@alanscodelog/utils/testing"
 ```
 
 The following subpath exports are available for convenience:
