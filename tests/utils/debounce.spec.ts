@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
 import { describe, expect, it, vi } from "vitest"
 
-import { debounce, isDebouncedResult } from "../../src/index.js"
+import { type AnyFunction, type AnyPromise, debounce, expectType, isDebouncedResult } from "../../src/index.js"
 
 
 vi.useFakeTimers()
@@ -260,4 +259,15 @@ it("errors promise throws can be caught by debounced function", async () => {
 	vi.advanceTimersByTime(1001)
 	const res3 = await a1
 	expect(res3).to.equal(true)
+})
+it("types work", () => {
+	type FuncType = () => false
+	type PromiseType = () => Promise<false>
+
+	const debounced = debounce(() => false, 1000)
+	expectType<typeof debounced, "===", FuncType>(true)
+	const debouncedPromise = debounce(async () => false, 1000)
+	expectType<typeof debouncedPromise, "===", PromiseType>(true)
+	const debouncedPromise2 = debounce(() => false, 1000, { promisify: true })
+	expectType<typeof debouncedPromise2, "===", PromiseType>(true)
 })

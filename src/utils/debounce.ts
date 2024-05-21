@@ -118,7 +118,7 @@ export function debounce<
 	TQueued extends
 		boolean | DebounceQueue =
 	boolean | DebounceQueue,
-	TPromisify extends boolean = boolean,
+	TPromisify extends boolean = false,
 >(callback: T, wait: number = 0,
 	{
 		queue = false as TQueued,
