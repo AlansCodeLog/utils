@@ -21,19 +21,14 @@ import type { IsAssignable, IsEqual } from "../types/index.js"
  *
  * ## How to Test
  *
- * If using `ts-jest`\* it will already report type errors (if `diagnostics` is true which it is by default), but if using `babel-jest`:
- *
- * Letting jest test any tests that only use this function (like all the ones in the `types` folder) is like running tests that have no assertions.
+ * Some testing libraries might already report errors, but if they don't running these tests is like running tests without any assertions.
  *
  * The type assertions need to be "tested" by linting them with typescript (`npx tsc --noEmit --pretty` with the tsconfig including the tests directory).
  *
- * This does not mean this can't be used in other test files, it can, just note it's not asserting anything, only "linting" (or your editor) will reveal any errors. Similarly, in the case of tests that only test types they should still be tested (i.e. named .spec) in case an assertion is accidentally added
- *
- * \*I prefer avoiding `ts-jest`. It does not work well with path aliases and usually I transpile with babel instead of typescript, and I want to test the code as it would be transpiled.
+ * This does not mean this can't be used in other test files, it can, just note it's not asserting anything, only "linting" (or your editor) will reveal any errors.
  *
  * @testutil
  */
-// TODO vitest
 export function expectType<
 	T,
 	TOp extends OpAssignableTo | OpEqual,
