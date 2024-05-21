@@ -52,7 +52,7 @@
 		"doc:dev": "concurrently \"npm run doc:watch\" \"npm run doc:serve\"",
 		"doc:check-invalid": "typedoc --options typedoc.config.cjs --listInvalidSymbolLinks",
 		"actions:debug": "act -r -v -j build-only",
-		"gen:exports": "indexit update -o '${path}.js' -i 'src/utils/{colors,run,inspect,expectType,catchError,testName,inspectError}.ts'",
+		"gen:exports": "indexit update -o '${path}.js' -i 'src/utils/{colors,run,inspect,expectType,catchError,inspectError}.ts'",
 		"prepare": "husky install && npm run build"
 	},
 	"devDependencies": {
