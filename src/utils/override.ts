@@ -14,8 +14,11 @@ import { pushIfNotIn } from "./pushIfNotIn.js"
  *	override(base, config) // mutates base
  *	const merged = override({}, base, config) // mutates nothing
  * ```
+ *
+ * The output type can be overriden using the first type parameter. Pass `never` to it to use the default output type.
  */
 export function override<
+	TOutput extends Record<any, any> | unknown = unknown,
 	TBase extends
 		Record<string, any> =
 		Record<string, any>,
@@ -26,7 +29,7 @@ export function override<
 >(
 	base: TBase,
 	...overrides: TOthers
-): TBase & TOther {
+): TOutput extends Record<any, any> ? TOutput : (TBase & TOther) {
 	for (const other of overrides) {
 		const obj: Record<string, any> = base
 		const keys = pushIfNotIn(keysOf(obj), keysOf(other))
@@ -43,5 +46,5 @@ export function override<
 			}
 		}
 	}
-	return base as TBase & TOther
+	return base as any
 }
