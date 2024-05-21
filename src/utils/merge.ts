@@ -12,7 +12,7 @@ import { pushIfNotIn } from "./pushIfNotIn.js"
 /**
  * Basic object merger (does not handle Maps, Sets, class instances, etc). Merges like lodash merge* except arrays are not merged position by position, they're just combined. For arrays that just override the existing key use {@link override}
  *
- * The first object is mutated so pass `{}` instead to avoid mutating it.
+ * The first object is mutated so clone it first if you don't want it mutated. Passing {} as the first param will also work but **only for shallow objects**.
  *
  * ```ts
  *	merge(base, other) // mutates base

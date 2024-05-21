@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 
-import { inspectError, override } from "../../src/index.js"
+import { expectType, inspectError, override } from "../../src/index.js"
 import { complexObj } from "../_helpers/constants.js"
 
 
@@ -72,25 +72,6 @@ it("works with objects when both have an object", () => {
 	expect(merged).to.deep.equal({ obj })
 })
 
-it("works with blank object to avoid mutation", () => {
-	const obj1 = { a: 1, b: 2 }
-	const obj2 = { c: 3 }
-	const merged = override({}, obj1, obj2)
-	expect(merged).to.not.equal(obj1)
-	expect(merged).to.deep.equal({ a: 1, b: 2, c: 3 })
-})
-
-it("works with blank object to avoid mutation", () => {
-	const arr = [1, 2, 3]
-	const obj1 = { arr }
-	const obj2 = { arr: []}
-	const obj3 = { arr: [4]}
-	const merged = override({}, obj1, obj2, obj3)
-	expect(merged).to.not.equal(obj1)
-	expect(merged.arr).to.not.equal(arr)
-	expect(merged).to.deep.equal({ arr: [4]})
-})
-
 it("works with complex base objects with no overriding keys", () => {
 	const obj1 = { ...complexObj }
 	const obj2 = { c: 3 }
@@ -105,4 +86,10 @@ it("does not throw with complex base objects with overriding key", () => {
 	expect(inspectError(() => {
 		override(obj1, obj2)
 	}, false)).to.not.throw()
+})
+it("types work", () => {
+	const overriden = override({ }, { a: 1, b: 2 })
+	expectType<{ a: number, b: number }, "===", typeof overriden>(true)
+	const customOverriden = override<{ c: number }>({ }, { a: 1, b: 2 })
+	expectType<{ c: number }, "===", typeof customOverriden>(true)
 })

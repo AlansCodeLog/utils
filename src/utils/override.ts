@@ -8,7 +8,7 @@ import { pushIfNotIn } from "./pushIfNotIn.js"
  *
  * Similar to {@link merge} but only plain objects are deep merged, everything else (including arrays) aren't. If the key exists in the base object it's overwritten.
  *
- * The first object is mutated so pass `{}` instead to avoid mutating it.
+ * The first object is mutated so clone it first if you don't want it mutated. Passing {} as the first param will also work but **only for shallow objects**.
  *
  * ```ts
  *	override(base, config) // mutates base
