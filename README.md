@@ -2,7 +2,19 @@
 ![Build](https://github.com/alanscodelog/utils/workflows/Build/badge.svg)
 [![Release](https://github.com/alanscodelog/utils/workflows/Release/badge.svg)](https://www.npmjs.com/package/@alanscodelog/utils)
 
-A collection of my utility functions and types. Mostly intended for use within my own projects.
+A collection of my utility functions and types. Mostly intended for use within my own projects to avoid having to depend on third party libraries.
+
+Contains:
+- Base utility functions (is*) for checking simple types and making code more readable.
+- String utilities (pretty, crop, indent, readable, etc.) which I use a lot to format nice errors.
+- Useful functions for prototyping, quick scripts, etc (run, RingBuffer, browserSaveFile, generateCopyRightNotice).
+- Common utilities like debounce, throttle, etc. + some slighly novel onces like multisplice, changeObjectKeys, etc.
+
+I try to keep the utilities simple, fast, and easy to maintain. Where type checks are enough, no runtime checks are done. I only include utilities and options I find myself using 3+ times, not every variation under the sun just because it looks useful and I might need it. If I find myself not using or replacing a function it will be removed.
+
+Rarely used edge cases will not be covered (e.g. `walk` only walks simple objects/arrays, and does not handle cyclic objects).
+
+Most utilities use mutability but can be made to work immutably if needed.
 
 # [Docs](https://alanscodelog.github.io/utils)
 
