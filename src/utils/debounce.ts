@@ -139,7 +139,7 @@ export function debounce<
 		trailing?: boolean
 		/** Whether to promisify the debounced function.*/
 		promisify?: TPromisify
-	} = {}
+	} = {},
 ): Debounced<T, TPromisify> {
 	// eslint-disable-next-line prefer-rest-params
 	const isThrottle = arguments[3] ?? false

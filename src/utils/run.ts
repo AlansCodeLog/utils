@@ -29,7 +29,7 @@ export function run(
 	command: string | string[],
 	opts: Partial<Omit<CommonSpawnOptions, "pipe">> = {},
 	/** A callback for the combined `stdout` and `stderr` streams. */
-	cb?: (chunk: string) => void
+	cb?: (chunk: string) => void,
 ): {
 		promise: Promise<string>
 		child: ChildProcessWithoutNullStreams

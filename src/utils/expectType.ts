@@ -39,7 +39,7 @@ export function expectType<
 		? IsAssignable<T, TOther>
 		: TOp extends OpEqual
 		? IsEqual<T, TOther>
-		: never
+		: never,
 ): void { }
 
 type OpAssignableTo = "assignableTo" | "==>"

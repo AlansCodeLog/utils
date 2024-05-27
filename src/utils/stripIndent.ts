@@ -13,7 +13,7 @@ export function stripIndent(
 		tabs?: boolean
 		/** Remove a specific amount of indents (works like unindenting in editors). Pass `Infinity` to remove all indents. */
 		count?: number | typeof Infinity
-	} = {}
+	} = {},
 ): string {
 	let min: number | undefined = count
 

@@ -8,8 +8,7 @@ abstract class ResultBase<TVal, TErr extends Error | never> {
 		if (self.isOk) {
 			return self.value
 		} else {
-			// eslint-disable-next-line @typescript-eslint/no-throw-literal
-			throw self.error
+			throw self.error as Error
 		}
 	}
 }

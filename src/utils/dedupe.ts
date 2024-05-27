@@ -7,7 +7,7 @@ export function dedupe<T extends any[] = any[]>(array: T,
 	}: {
 		/** Whether to mutate the array. Defaults to false because, counterintuitively, true might be slightly slower. */
 		mutate?: boolean
-	} = {}
+	} = {},
 ): T {
 	if (!mutate) {
 		return [...new Set(array)] as T

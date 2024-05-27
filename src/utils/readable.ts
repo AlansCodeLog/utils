@@ -28,7 +28,7 @@ export function readable(
 		 * ```
 		 */
 		stringify?: (el: any) => any
-	} = {}
+	} = {},
 ): string {
 	const stringifier = (el: any): string => defaultStringify(stringify ? stringify(el) : el)
 	if (arr.length <= 1) {

@@ -7,7 +7,7 @@ export function omit<
 	TKeys extends (keyof T)[],
 >(
 	obj: T,
-	keys: TKeys
+	keys: TKeys,
 ): Omit<T, TKeys[number]> {
 	const copy: any = {}
 	for (const key of objectKeys(obj)) {

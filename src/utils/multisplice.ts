@@ -65,7 +65,7 @@ export function multisplice<
 	}: {
 		/** See {@link MULTISPLICE_ITEM}. */
 		insert?: TInsert
-	} = {}
+	} = {},
 ): {
 		removed: Mutable<TArray>
 		array: Mutable<TArray>

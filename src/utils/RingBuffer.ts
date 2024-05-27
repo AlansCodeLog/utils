@@ -6,7 +6,7 @@
 export class RingBuffer<T> {
 	constructor(
 		public readonly size: number = 100,
-		public items: T[] = [] as T[]
+		public items: T[] = [] as T[],
 	) {
 		if (size <= 0) {
 			throw new Error("Size must be greater than 0")

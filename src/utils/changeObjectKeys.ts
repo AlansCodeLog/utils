@@ -20,7 +20,7 @@ export function changeObjectKeys<
 	TObj extends Record<any, any>,
 >(
 	obj: TObj,
-	changeKey:((key: keyof TObj) => string | number | symbol)
+	changeKey:((key: keyof TObj) => string | number | symbol),
 ): TResObj {
 	const res: any = {}
 	for (const key of keys(obj)) {

@@ -21,7 +21,7 @@ export function pretty(obj: object,
 		 * If it returns values with newlines note these are preserved when using the oneline option.
 		 */
 		stringify?: boolean | ((el: any) => undefined | string)
-	} = {}
+	} = {},
 ): string {
 	let objClone = obj
 	if (stringify) {

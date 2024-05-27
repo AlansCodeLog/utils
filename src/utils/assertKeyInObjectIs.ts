@@ -9,7 +9,7 @@ export function assertKeyInObjectIs<T extends Record<string, any>, TKey extends 
 	obj: T,
 	key: TKey,
 	val: TVal,
-	errorMessage?: string
+	errorMessage?: string,
 ): asserts obj is T & {
 	[k in TKey]: TVal
 } {

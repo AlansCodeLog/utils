@@ -44,7 +44,7 @@ export function throttle<
 		trailing?: boolean
 		/** Whether to promisify the throttled function.*/
 		promisify?: TPromisify
-	} = {}
+	} = {},
 ): Throttled<T> {
 	return (debounce as AddParameters<typeof debounce, [boolean]>)(callback, wait, { queue, index, leading, trailing }, true)
 }

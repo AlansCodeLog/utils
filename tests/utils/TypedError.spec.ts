@@ -13,7 +13,7 @@ it("works", () => {
 		// eslint-disable-next-line @typescript-eslint/naming-convention
 		type ERROR_INFO = {
 			[ERROR.SOME_ERROR]: {
-				"required": "data"
+				required: "data"
 			}
 		}
 

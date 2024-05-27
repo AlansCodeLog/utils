@@ -9,7 +9,7 @@ export function findDuplicates<T = any>(
 	{
 		/** Use a custom equality comparison function to check for a complex value's equality (e.g. two different instanced of a class or object might be considered equal if their properties are.) */
 		equals?: (val: T, other: T, found: T[]) => boolean | undefined
-	} = {}
+	} = {},
 ): T[] {
 	const found: T[] = []
 	for (let i = 0; i < arr.length; i++) {
