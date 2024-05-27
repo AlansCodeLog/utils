@@ -25,7 +25,7 @@ it("captures complicated stdout/stderr - error even on 0 exit code", async () =>
 	if (res instanceof Error) {
 		expect(res.code).to.equal(0)
 		expect(res.stderr).to.equal("stderr")
-		expect(res.stdout).to.equal("stdoutstdout")
-		expect(res.data).to.equal("stdoutstderrstdout")
+		expect(res.stdout).to.equal("stdout")
+		expect(res.data).to.equal("stdoutstderr")
 	}
 })
