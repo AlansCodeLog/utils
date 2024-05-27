@@ -53,7 +53,7 @@
 		"doc:check-invalid": "typedoc --options typedoc.config.cjs --listInvalidSymbolLinks",
 		"actions:debug": "act -r -v -j build-only",
 		"gen:exports": "indexit update -o '${path}.js' -i 'src/utils/{colors,run,inspect,expectType,catchError,inspectError}.ts'",
-		"prepare": "husky install && npm run build"
+		"prepare": "husky && npm run build"
 	},
 	"devDependencies": {
 		"@alanscodelog/commitlint-config": "^2.0.0",
