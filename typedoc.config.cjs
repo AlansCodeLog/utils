@@ -1,3 +1,8 @@
+// #awaiting https://github.com/TypeStrong/typedoc/pull/2268
+// import fs from "fs"
+// import path from "path"
+//
+// import pkg from "./package.json"
 const fs = require("fs")
 const path = require("path")
 const pkg = require("./package.json")
@@ -18,10 +23,12 @@ module.exports = {
 	out: "docs",
 	excludePrivate: true,
 	excludeExternals: true,
-	// prevents typedoc auto-detecting installed plugins
 	// // temporarily turn off plugins (just setting plugin: [] will not work)
 	// plugin: "none",
 	validation: {
 		invalidLink: true,
 	},
+	projectDocuments: [
+		// "docs-src/DEVELOPMENT.md",
+	]
 }

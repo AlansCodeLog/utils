@@ -19,7 +19,5 @@
 		// so eslint doesn't bother us, we don't build with tsc anyways, and to emit types, there's tsconfig.types.json
 		"*.ts"
 	],
-	"exclude": [
-		"tests/template.ts"
-	]
+	"exclude": []
 }
