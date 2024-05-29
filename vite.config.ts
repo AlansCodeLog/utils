@@ -1,6 +1,5 @@
 import glob from "fast-glob"
 import path from "path"
-import url from "url"
 import type { PluginOption } from "vite"
 import { externalizeDeps } from "vite-plugin-externalize-deps"
 import { defineConfig } from "vitest/config"
@@ -14,8 +13,6 @@ const typesPlugin = (): PluginOption => ({
 	writeBundle: async () => run(`npm run build:types`).promise.catch(e => { console.log(e.stdout); process.exit(1) }).then(() => undefined),
 })
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url))
 // https://vitejs.dev/config/
 export default async ({ mode }: { mode: string }) => defineConfig({
 	plugins: [
@@ -27,7 +24,7 @@ export default async ({ mode }: { mode: string }) => defineConfig({
 	build: {
 		outDir: "dist",
 		lib: {
-			entry: glob.sync(path.resolve(__dirname, "src/**/*.ts")),
+			entry: glob.sync(path.resolve(import.meta.dirname, "src/**/*.ts")),
 			formats: ["es"],
 		},
 		rollupOptions: {
