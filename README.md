@@ -1,6 +1,8 @@
 [![Docs](https://github.com/alanscodelog/utils/workflows/Docs/badge.svg)](https://github.com/alanscodelog/utils/actions/workflows/docs.yml)
 [![Build](https://github.com/alanscodelog/utils/actions/workflows/build.yml/badge.svg)](https://github.com/alanscodelog/utils/actions/workflows/build.yml)
 [![Release](https://github.com/alanscodelog/utils/actions/workflows/release.yml/badge.svg)](https://www.npmjs.com/package/@alanscodelog/utils)
+[![NPM Version (with latest tag)](https://img.shields.io/npm/v/%40alanscodelog%2Futils/latest)](https://www.npmjs.com/package/@alanscodelog/utils/v/latest)
+[![NPM Version (with beta tag)](https://img.shields.io/npm/v/%40alanscodelog%2Futils/beta)](https://www.npmjs.com/package/@alanscodelog/utils/v/beta)
 
 A collection of my utility functions and types. Mostly intended for use within my own projects to avoid having to depend on third party libraries.
 
