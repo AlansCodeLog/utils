@@ -1,4 +1,9 @@
-import { type ChildProcessWithoutNullStreams, type CommonSpawnOptions, spawn } from "child_process"
+import {
+	type ChildProcess,
+	type ChildProcessWithoutNullStreams,
+	type CommonSpawnOptions,
+	spawn,
+} from "child_process"
 
 import { castType } from "./castType.js"
 import { isArray } from "./isArray.js"
@@ -27,38 +32,48 @@ import type { RunError } from "../types/index.js"
  */
 export function run(
 	command: string | string[],
+	/** Note that if you override `stdio` in `opts` to just `inherit`, the resulting data will be empty. */
 	opts: Partial<Omit<CommonSpawnOptions, "pipe">> = {},
 	/** A callback for the combined `stdout` and `stderr` streams. */
 	cb?: (chunk: string) => void,
 ): {
 		promise: Promise<string>
-		child: ChildProcessWithoutNullStreams
+		child: ChildProcessWithoutNullStreams | ChildProcess
 	} {
-	let child!: ChildProcessWithoutNullStreams
+	let child!: ChildProcessWithoutNullStreams | ChildProcess
 
 	const promise = (async () => {
 		const parts = isArray(command) ? command : command.split(" ")
 
-		child = spawn(parts[0], [...parts.slice(1)], { shell: true, ...opts, stdio: "pipe" })
+		child = spawn(parts[0], [...parts.slice(1)], {
+			shell: true,
+			stdio: "pipe",
+			...opts,
+		})
 
 		let data = ""
 		let stdout = ""
 		let stderr = ""
 
-		child.stdout.on("data", (chunk: string) => {
+		child.stdout?.on("data", (chunk: string) => {
 			stdout += chunk
 			data += chunk
 			if (cb) cb(chunk)
 		})
 		
-		child.stderr.on("data", (chunk: string) => {
+		child.stderr?.on("data", (chunk: string) => {
 			stderr += chunk
 			data += chunk
 			if (cb) cb(chunk)
 		})
 		
 		const code: number = await new Promise(resolve => {
-			child.on("close", resolve)
+			child.on("close", err => {
+				resolve(err ?? 0)
+			})
+			child.on("exit", err => {
+				resolve(err ?? 0)
+			})
 		})
 
 		if (code !== 0 || stderr !== "") {
