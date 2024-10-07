@@ -3,7 +3,7 @@
 import { describe, expect, it } from "vitest"
 
 import { evalTemplateString } from "../../src/index.js"
-import { complexObj } from "../_helpers/constants.js"
+import { complexObj } from "../helpers/constants.js"
 
 
 const obj = { ...complexObj, b: undefined }

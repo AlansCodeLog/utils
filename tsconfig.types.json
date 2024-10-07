@@ -1,22 +1,7 @@
 // https://www.typescriptlang.org/tsconfig/
 {
 	"extends": "./tsconfig",
-	"compilerOptions": {
-		"outDir": "dist",
-		"rootDir": "src",
-		"declaration": true,
-		"declarationMap": true,
-		// "emitDeclarationOnly": controlled by build/lint:types scripts which both need this config
-		"noEmit": false, // override value in ./tsconfig
-		"allowJs": false,
-		"skipLibCheck": true, // ignore node modules
-		// preserve documentation
-		"removeComments": false
-	},
 	"exclude": [
 		"tests/**/*",
-		"*.ts",
-		"*.cjs",
-		"*.js"
 	]
 }

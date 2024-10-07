@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 
 import { inspectError, omit } from "../../src/index.js"
-import { complexObj } from "../_helpers/constants.js"
+import { complexObj } from "../helpers/constants.js"
 
 
 it("works", () => {

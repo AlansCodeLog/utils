@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 
 import { crop, pretty } from "../../src/index.js"
-import { complexObj } from "../_helpers/constants.js"
+import { complexObj } from "../helpers/constants.js"
 
 
 const test1 = (...args1: any) => (...args2: any) => { console.log(args1, args2) }

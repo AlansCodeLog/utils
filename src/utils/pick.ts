@@ -5,7 +5,10 @@
  *
  * And never define properties that are undefined with `ignoreUndefined` (default is false).
  */
-export function pick<T extends {}, TKeys extends (keyof T)[]>(obj: T, keys: (keyof T)[], { ignoreNonexistent = true, ignoreUndefined = false }: { ignoreNonexistent?: boolean, ignoreUndefined?: boolean } = {}): Pick<T, TKeys[number]> {
+export function pick<
+	T extends Record<string, any>,
+	TKeys extends (keyof T)[],
+>(obj: T, keys: (keyof T)[], { ignoreNonexistent = true, ignoreUndefined = false }: { ignoreNonexistent?: boolean, ignoreUndefined?: boolean } = {}): Pick<T, TKeys[number]> {
 	const copy: Partial<T> = {}
 	for (const key of keys) {
 		if (ignoreNonexistent && !(key in obj)) continue

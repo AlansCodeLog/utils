@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 
 import { readable } from "../../src/index.js"
-import { complexArray } from "../_helpers/constants.js"
+import { complexArray } from "../helpers/constants.js"
 
 
 it("single element array", () => {

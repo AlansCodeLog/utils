@@ -47,5 +47,5 @@ it(`works with unions`, () => {
 it(`works with unions`, () => {
 		type Base = { a: string } & { a: number }
 		expectType<{ a: never, b: string }, "==>", Base>(true)
-		expectType<{}, "==>", Base>(false)
+		expectType<object, "==>", Base>(false)
 })

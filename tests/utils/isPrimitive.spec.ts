@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 
 import { isPrimitive } from "../../src/index.js"
-import { Animal } from "../_helpers/constants.js"
+import { Animal } from "../helpers/constants.js"
 
 
 function func(): void {}

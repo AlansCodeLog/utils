@@ -73,7 +73,7 @@ import type { MakePrimitive } from "./index.js"
 export type RecordFromArray<
 	T extends any[] | readonly any[],
 	TKey extends string & keyof T[number],
-	TExtra extends Record<any, any> = {},
+	TExtra extends Record<any, any> = Record<any, any>,
 	TValue extends Record<TKey, any> = T[number],
 > = {
 	[K in TValue[TKey]]:

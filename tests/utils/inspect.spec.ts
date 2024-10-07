@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest"
 
-import { inspect } from "../../src/index_node.js"
+import { inspect } from "../../src/indexNode.js"
 
 
 let columns: number

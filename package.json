@@ -35,16 +35,15 @@
 	"scripts": {
 		"build": "npm run gen:exports && vite build",
 		"build:dev": "vite build --mode development",
-		"build:types": "tsc -p tsconfig.types.json",
-		"lint:eslint": "eslint \"{src,tests}/**/*.{cjs,js,ts}\" \"*.{cjs,js,ts}\" --max-warnings=1 --report-unused-disable-directives",
+		"lint:eslint": "eslint \"{src,tests}/**/*.{js,ts}\" \"*.{cjs,js,ts}\" --max-warnings=1 --report-unused-disable-directives",
 		"lint:types": "tsc --noEmit --pretty",
 		"lint:commits": "commitlint --from $(git rev-list --max-parents=0 HEAD) --to HEAD --verbose",
 		"lint:imports": "madge --circular --extensions ts ./src",
-		"lint": "npm run lint:types && npm run lint:eslint",
-		"coverage": "vitest --exclude '.direnv/**/*' --coverage",
-		"coverage:dev": "vitest --exclude '.direnv/**/*'  --watch --coverage",
-		"test": "npm run lint:types && vitest run --exclude '.direnv/**/*'",
-		"test:watch": "vitest --watch --exclude '.direnv/**/*'",
+		"lint": "npm run lint:eslint && npm run lint:imports",
+		"coverage": "vitest --coverage",
+		"coverage:dev": "vitest --watch --coverage",
+		"test": "vitest run",
+		"test:watch": "vitest --watch",
 		"test:inspect-errors": "cross-env INSPECT_ERRORS=true npm run test",
 		"doc": "typedoc --options typedoc.config.cjs",
 		"doc:watch": "onchange -i \"src/**/*.ts\" \"typedoc.config.cjs\" -- npm run doc",
@@ -52,7 +51,7 @@
 		"doc:dev": "concurrently \"npm run doc:watch\" \"npm run doc:serve\"",
 		"doc:check-invalid": "typedoc --options typedoc.config.cjs --listInvalidSymbolLinks",
 		"gen:exports": "indexit update -o '${path}.js' -i 'src/utils/{colors,run,inspect,expectType,catchError,inspectError}.ts'",
-		"actions:debug": "act -r -v -j build",
+		"actions:debug": "act -r -v -j release",
 		"prepare": "husky && npm run build"
 	},
 	"devDependencies": {
@@ -94,6 +93,13 @@
 		"extends": [
 			"@alanscodelog"
 		]
+	},
+	"madge": {
+		"detectiveOptions": {
+			"ts": {
+			"skipTypeImports": true
+			}
+		}
 	},
 	"engines": {
 		"node": ">=14.0.0"

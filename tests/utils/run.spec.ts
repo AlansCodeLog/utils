@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 
 import type { RunError } from "../../src/index.js"
-import { run } from "../../src/index_node.js"
+import { run } from "../../src/indexNode.js"
 
 
 it("works", async () => {
@@ -10,7 +10,7 @@ it("works", async () => {
 })
 
 it("captures exit code as error code", async () => {
-	const res = await run("node tests/_helpers/exitWithCode2.js").promise
+	const res = await run("node tests/helpers/exitWithCode2.js").promise
 		.catch(err => err as RunError)
 	expect(res instanceof Error).to.equal(true)
 	if (res instanceof Error) {
@@ -19,7 +19,7 @@ it("captures exit code as error code", async () => {
 })
 
 it("captures complicated stdout/stderr - error even on 0 exit code", async () => {
-	const res = await run("node tests/_helpers/writeToStdoutErrAndExit0.js").promise
+	const res = await run("node tests/helpers/writeToStdoutErrAndExit0.js").promise
 		.catch(err => err as RunError)
 	expect(res instanceof Error).to.equal(true)
 	if (res instanceof Error) {
