@@ -1,7 +1,7 @@
 {
 	"name": "@alanscodelog/utils",
 	"description": "My utility functions and typescript types.",
-	"version": "4.1.1",
+	"version": "4.1.2",
 	"module": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
