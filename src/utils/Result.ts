@@ -11,6 +11,15 @@ abstract class ResultBase<TVal, TErr extends Error | never> {
 			throw self.error as Error
 		}
 	}
+
+	unwrapOr<TOtherVal>(val: TOtherVal): TVal | TOtherVal {
+		const self: Result<TVal, TErr> = this as any
+		if (self.isOk) {
+			return self.value
+		} else {
+			return val
+		}
+	}
 }
 
 class OkResultImpl<TVal> extends ResultBase<TVal, never> {
