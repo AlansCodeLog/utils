@@ -25,6 +25,9 @@ abstract class ResultBase<TVal, TErr extends Error | never> {
 class OkResultImpl<TVal> extends ResultBase<TVal, never> {
 	value: TVal
 
+	// this is so we can do `if (res.error)` instead of having to check `res.isError` first
+	error: never = undefined as never
+
 	readonly isOk: true = true as const
 
 	readonly isError: false = false as const
@@ -40,6 +43,8 @@ class OkResultImpl<TVal> extends ResultBase<TVal, never> {
 
 class ErrResultImpl<TErr extends Error = Error> extends ResultBase<never, TErr> {
 	error: TErr
+
+	value: never = undefined as never
 
 	readonly isOk: false = false as const
 

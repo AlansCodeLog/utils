@@ -28,11 +28,11 @@ it("../../src/types work", () => {
 	if (resOk.isOk) {
 		const value = resOk.value
 		expectType<typeof value, "===", undefined>(true)
-		// @ts-expect-error should be missing
 		const error = resOk.error
+		expectType<typeof error, "===", never>(true)
 	} else {
-		// @ts-expect-error should be missing
 		const value = resOk.value
+		expectType<typeof value, "===", never>(true)
 		const error = resOk.error
 		expectType<typeof error, "===", never>(true)
 	}
@@ -41,11 +41,11 @@ it("../../src/types work", () => {
 	if (resErr.isOk) {
 		const value = resErr.value
 		expectType<typeof value, "===", never>(true)
-		// @ts-expect-error should be missing
 		const error = resErr.error
+		expectType<typeof error, "===", never>(true)
 	} else {
-		// @ts-expect-error should be missing
 		const value = resErr.value
+		expectType<typeof value, "===", never>(true)
 		const error = resErr.error
 		expectType<typeof error, "===", Error>(true)
 	}
