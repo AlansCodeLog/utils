@@ -77,7 +77,7 @@ export type RecordFromArray<
 	TValue extends Record<TKey, any> = T[number],
 > = {
 	[K in TValue[TKey]]:
-		TValue extends {[k in TKey]: K }
+		TValue extends Record<TKey, K>
 		? {
 			[KV in keyof TValue]:
 				KV extends TKey

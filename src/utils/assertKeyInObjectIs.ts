@@ -10,9 +10,7 @@ export function assertKeyInObjectIs<T extends Record<string, any>, TKey extends 
 	key: TKey,
 	val: TVal,
 	errorMessage?: string,
-): asserts obj is T & {
-	[k in TKey]: TVal
-} {
+): asserts obj is T & Record<TKey, TVal> {
 	const objVal = obj[key]
 	if (objVal !== val) {
 		throw new Error(errorMessage ?? `${key as string} is not ${val}.`)
