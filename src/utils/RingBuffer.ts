@@ -4,10 +4,16 @@
  * Type must be specified at construction, otherwise we can't know the type of items and it will be unknown[].
  */
 export class RingBuffer<T> {
+	size: number = 100
+
+	items: T[] = [] as T[]
+
 	constructor(
-		public readonly size: number = 100,
-		public items: T[] = [] as T[],
+		size: RingBuffer<T>["size"] = 100,
+		items: T[] = [] as T[]
 	) {
+		this.size = size
+		this.items = items
 		if (size <= 0) {
 			throw new Error("Size must be greater than 0")
 		}
