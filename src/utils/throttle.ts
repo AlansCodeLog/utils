@@ -20,7 +20,7 @@ export function throttle<
 	TQueued extends
 		boolean | ThrottleQueue =
 		boolean | ThrottleQueue,
-	TPromisify extends boolean = boolean,
+	TPromisify extends boolean = false,
 >(callback: T, wait: number = 0,
 	{
 		queue = false as TQueued,
@@ -45,8 +45,14 @@ export function throttle<
 		/** Whether to promisify the throttled function.*/
 		promisify?: TPromisify
 	} = {},
-): Throttled<T> {
-	return (debounce as AddParameters<typeof debounce, [boolean]>)(callback, wait, { queue, index, leading, trailing }, true)
+): Throttled<T, TPromisify> {
+	const func = (debounce as AddParameters<typeof debounce<T, TQueued, TPromisify>, [ boolean ]>)(callback, wait, {
+		queue,
+		index: index as any,
+		leading,
+		trailing,
+	}, true)
+	return func as any
 }
 
 export type * from "../types/throttle.js"

@@ -34,11 +34,9 @@ export function merge<
 	base: TBase | undefined,
 	...others: TOthers
 ): TBase & TOther {
-	if (base === undefined) {
-		base = isArray(others[0])
+	base ??= isArray(others[0])
 			? [] as any
 			: {} as any
-	}
 
 	for (const other of others as Record<string, any>[]) {
 		if (isArray(base)) {
