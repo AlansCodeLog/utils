@@ -5,10 +5,15 @@
  *
  * ```ts
  * // error types should look something like this
- *	enum ERROR {
+ *
+ *	const ERROR = {
  *		SOME_ERROR = "SOME_ERROR"
- *	}
- *	type ALL_ERRORS = ERROR // | SOME_OTHER_ERROR_CATEGORY
+ *	} as const
+ *
+ *	// this is just to avoid using enums so we can use typescript's new restricted erasable syntax feature
+ *	const ERROR_TYPE = EnumLike<typeof ERROR>
+ *
+ *	type ALL_ERRORS = ERROR_TYPE // | SOME_OTHER_ERROR_CATEGORY_TYPE
  *
  *	type ERROR_INFO = {
  *		[ERROR.SOME_ERROR]: {

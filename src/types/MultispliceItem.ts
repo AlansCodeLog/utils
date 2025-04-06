@@ -1,4 +1,6 @@
+import { type EnumLike } from "./EnumLike.js"
+
 import { type MULTISPLICE_ITEM } from "../utils/multisplice.js"
 
 
-export type MultispliceItem = MULTISPLICE_ITEM | keyof typeof MULTISPLICE_ITEM
+export type MultispliceItem = EnumLike<typeof MULTISPLICE_ITEM>
