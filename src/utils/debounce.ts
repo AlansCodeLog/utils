@@ -1,7 +1,7 @@
 import { castType } from "./castType.js"
 
 import { getQueueKey } from "../internal/getQueueKey.js"
-import type { AnyFunction, AnyPromise, Debounced, DebounceQueue } from "../types/index.js"
+import type { AnyFunction, AnyPromise, AnyTimer } from "../types/index.js"
 
 
 /**
@@ -256,4 +256,19 @@ export function debounce<
 /** @internal */
 // use single frozen instance since this might be getting created quite a lot
 export const debounceError = Object.freeze(new Error("Debounced"))
-export type * from "../types/debounce.js"
+
+export type Debounced<T extends AnyFunction | AnyPromise, TPromisify extends boolean = false> =
+	TPromisify extends true
+		? ((...args: Parameters<T>) => Promise<Awaited<ReturnType<T>> | false>)
+		: ((...args: Parameters<T>) => void)
+
+export type DebounceQueue = Record<string, {
+	timeout?: AnyTimer
+	/** @internal */
+	_context: any
+	/** @internal */
+	_args: any[]
+	resolve?: any
+	reject?: any
+}>
+

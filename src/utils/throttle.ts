@@ -1,6 +1,6 @@
 import { debounce } from "./debounce.js"
 
-import type { AddParameters, AnyFunction, AnyPromise, Throttled, ThrottleQueue } from "../types/index.js"
+import type { AddParameters, AnyFunction, AnyPromise, DebounceQueue } from "../types/index.js"
 
 
 /**
@@ -55,4 +55,14 @@ export function throttle<
 	return func as any
 }
 
-export type * from "../types/throttle.js"
+export type Throttled<
+	T extends
+		AnyFunction | AnyPromise =
+		AnyFunction | AnyPromise,
+	TPromisify extends boolean = boolean,
+> = TPromisify extends true
+	? (...args: Parameters<T>) => Promise<ReturnType<T>>
+	: ((...args: Parameters<T>) => void)
+
+export type ThrottleQueue = DebounceQueue
+

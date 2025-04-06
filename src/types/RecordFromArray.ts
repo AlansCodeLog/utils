@@ -1,4 +1,4 @@
-import type { MakePrimitive } from "./index.js"
+import type { MakePrimitive } from "./MakePrimitive.js"
 
 /**
  * Creates a map from an array (of objects) T, keyed by it's object's TKey property value, with values of TValue.
