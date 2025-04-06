@@ -52,9 +52,8 @@ The following subpath exports are available for convenience:
 - `/testing` - functions that are only useful for testing purposes
 - `/types` - all the types used internally + any utility types
 
-*Note that while convenient, they should be avoided in most situations.* Although the package is tree-shakeable (99.9\*), if using vite, for example, it's dev server does not tree-shake the imports from index files that re-export functions. This means importing from index files (i.e. the convenience subpath exports) slows things down.
+*Note that while convenient, they should be avoided in most situations.* Although the package is tree-shakeable, if using vite, for example, it's dev server does not tree-shake the imports from index files that re-export functions. This means importing from index files (i.e. the convenience subpath exports) slows things down.
 
 Some utility functions are browser only, but they are included with the regular functions since they'll just throw when you try to use them (they should not cause errors when just getting imported).
 
-\* There is one small namespace (Result) that it does not seem to be able to treeshake, but this is regardless of where you import it from, unless you use direct imports everywhere.
 

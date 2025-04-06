@@ -1,11 +1,11 @@
-import { Result } from "./Result.js"
+import { Err, Ok, type Result } from "./Result.js"
 
 export function jsonSafeParse<T>(
 	json: string,
 ): Result<T, Error> {
 	try {
-		return Result.Ok(JSON.parse(json))
+		return Ok(JSON.parse(json))
 	} catch (err) {
-		return Result.Err(err as any)
+		return Err(err as any)
 	}
 }

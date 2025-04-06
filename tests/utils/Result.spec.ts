@@ -1,10 +1,11 @@
 import { describe, expect, it } from "vitest"
 
-import { Err, expectType, Ok, Result } from "../../src/index.js"
+import { expectType } from "../../src/indexTesting.js"
+import { Err, Ok, type Result } from "../../src/utils/Result.js"
 
 
 it("import works", () => {
-	expect(Result.Ok).to.equal(Ok)
+	expect(Ok).to.equal(Ok)
 })
 
 it("works", () => {

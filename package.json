@@ -49,7 +49,7 @@
 		"doc:serve": "http-server docs --port=5001",
 		"doc:dev": "concurrently \"pnpm doc:watch\" \"pnpm doc:serve\"",
 		"doc:check-invalid": "typedoc --options typedoc.config.cjs --listInvalidSymbolLinks",
-		"gen:exports": "indexit update -o '${path}.js' -i 'src/utils/{colors,run,inspect,expectType,catchError,inspectError}.ts'",
+		"gen:exports": "indexit update -o '${path}.js' -i 'src/utils/{colors,run,inspect,expectType,catchError,inspectError,Result}.ts'",
 		"actions:debug": "act -r -v -j release",
 		"prepare": "husky && pnpm build"
 	},

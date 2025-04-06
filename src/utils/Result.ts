@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/no-namespace */
 
 
 abstract class ResultBase<TVal, TErr extends Error | never> {
@@ -60,9 +59,11 @@ class ErrResultImpl<TErr extends Error = Error> extends ResultBase<never, TErr> 
  * Barebones result monad.
  *
  * ```ts
- * import { Result, Ok, Err } from "@alanscodelog/utils"
+ * import { type Result, Ok, Err } from "@alanscodelog/utils"
  *
- * // you can also access Ok and Err like Result.Ok and Result.Err
+ * // or import * as Result from "@alanscodelog/utils/Result.js"
+ * // to be able to do Result.Ok and Result.Err
+ * // but you'll have to use Result.Result or Result.Type for the type
  *
  * function compute(x?: string): Result<string, Error> {
  * 	return x
@@ -120,24 +121,25 @@ class ErrResultImpl<TErr extends Error = Error> extends ResultBase<never, TErr> 
  */
 
 
-export namespace Result {
-	export function Ok<T = undefined>(val: T = undefined as any as T): Result<T, never> {
-		return new OkResultImpl<T>(val) as any
-	}
-	export type OkResult<T = undefined> = OkResultImpl<T>
-	export type ErrResult<E extends Error = Error> = ErrResultImpl<E>
+export function Ok<T = undefined>(val: T = undefined as any as T): Result<T, never> {
+	return new OkResultImpl<T>(val) as any
+}
+export type OkResult<T = undefined> = OkResultImpl<T>
+export type OkErr<E extends Error = Error> = ErrResultImpl<E>
 
-	export function Err<E extends Error>(): Result<never, E>
-	export function Err<E extends Error | string>(val: E): Result<never, E extends Error ? E : Error>
-	export function Err(typeOrVal?: Error | string): Result<never, Error> {
-		if (typeOrVal === undefined) {
-			return new ErrResultImpl(new Error())
-		}
-		return new ErrResultImpl((typeOrVal instanceof Error ? typeOrVal : new Error(typeOrVal)) as any)
+export function Err<E extends Error>(): Result<never, E>
+export function Err<E extends Error | string>(val: E): Result<never, E extends Error ? E : Error>
+export function Err(typeOrVal?: Error | string): Result<never, Error> {
+	if (typeOrVal === undefined) {
+		return new ErrResultImpl(new Error())
 	}
+	return new ErrResultImpl((typeOrVal instanceof Error ? typeOrVal : new Error(typeOrVal)) as any)
 }
 
-// eslint-disable-next-line @typescript-eslint/no-redeclare
+ 
 export type Result<T, E extends Error = Error> =
 	| OkResultImpl<T>
 	| ErrResultImpl<E>
+
+/** Alias for when doing `import * as Result`. */
+export type Type<T, E extends Error = Error> = Result<T, E>
