@@ -13,7 +13,6 @@
 			"esnext"
 		], // dom needed for browser utils
 		"allowJs": true, // for eslint to be able to typecheck js files
-		"erasableSyntaxOnly": true,
 	},
 	"include": [
 		"src/**/*.ts",
