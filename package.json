@@ -55,7 +55,7 @@
 	"devDependencies": {
 		"@alanscodelog/commitlint-config": "^3.0.3",
 		"@alanscodelog/eslint-config": "^5.0.2",
-		"@alanscodelog/semantic-release-config": "^5.0.1",
+		"@alanscodelog/semantic-release-config": "^5.0.4",
 		"@alanscodelog/tsconfigs": "^6.0.0",
 		"@alanscodelog/vite-config": "^0.0.5",
 		"@commitlint/cli": "^19.5.0",
