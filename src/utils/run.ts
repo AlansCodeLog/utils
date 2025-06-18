@@ -46,7 +46,6 @@ export function run(
 		const parts = isArray(command) ? command : command.split(" ")
 
 		child = spawn(parts[0], [...parts.slice(1)], {
-			shell: true,
 			stdio: "pipe",
 			...opts,
 		})
