@@ -1,7 +1,7 @@
 {
 	"name": "@alanscodelog/utils",
 	"description": "My utility functions and typescript types.",
-	"version": "6.0.0",
+	"version": "6.0.1",
 	"type": "module",
 	"sideEffects": false,
 	"exports": {
@@ -115,7 +115,6 @@
 		"access": "public"
 	},
 	"pnpm": {
-		"overrides": {
-		}
+		"overrides": {}
 	}
 }
