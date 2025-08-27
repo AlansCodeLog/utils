@@ -58,6 +58,7 @@ it.skip("stringify = true -", () => {
 })
 
 it("stringify = true", () => {
+	// note the stringification of functions and classes can vary depending on the compiler
 	expect(pretty(complexObj, { stringify: true })).to.equal(crop`
 			{
 				"0": 0,
@@ -71,9 +72,9 @@ it("stringify = true", () => {
 				],
 				"e": {},
 				"f": [],
-				"g": "function g() {\\n  }",
-				"h": "() => {\\n  }",
-				"i": "class Animal {\\n}",
+				"g": "function g() {}",
+				"h": "() => {}",
+				"i": "class Animal {}",
 				"j": {},
 				"k": true,
 				"l": false,
