@@ -26,8 +26,8 @@
 			"import": "./dist/indexNode.js"
 		},
 		"./*": {
-			"types": "./dist/utils/*",
-			"import": "./dist/utils/*"
+			"types": "./dist/utils/*.d.ts",
+			"import": "./dist/utils/*.js"
 		}
 	},
 	"scripts": {
