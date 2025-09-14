@@ -66,14 +66,14 @@ it("works with function return types when using errors with generics", () => {
 			this.code = code
 		}
 	}
-		type ReturnType = Result<number, MyError<"b" | "c">>
+	type ReturnType = Result<number, MyError<"b" | "c">>
 
-		// eslint-disable-next-line @typescript-eslint/naming-convention
-		function func(arr: any[]): ReturnType {
-			if (arr.includes("a")) return Ok(1)
-			if (arr.includes("b")) return Err(new MyError("b"))
-			if (arr.includes("c")) return Err(new MyError("c"))
-			// @ts-expect-error MyError<"d"> is not assignable to MyError<"b" | "c"> as expected
-			return Err(new MyError("d"))
-		}
+	// eslint-disable-next-line @typescript-eslint/naming-convention
+	function func(arr: any[]): ReturnType {
+		if (arr.includes("a")) return Ok(1)
+		if (arr.includes("b")) return Err(new MyError("b"))
+		if (arr.includes("c")) return Err(new MyError("c"))
+		// @ts-expect-error MyError<"d"> is not assignable to MyError<"b" | "c"> as expected
+		return Err(new MyError("d"))
+	}
 })

@@ -22,7 +22,7 @@ import type { NonEmptyArray } from "./NonEmptyArray.js"
  */
 export type IsEmptyArray<T> =
 	T extends EmptyArray
-	? true
-	: T extends NonEmptyArray
-	? false
-	: boolean
+		? true
+		: T extends NonEmptyArray
+			? false
+			: boolean

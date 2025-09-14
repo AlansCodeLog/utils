@@ -19,7 +19,7 @@ export type IsEqual<T, TOther> =
 		? PrimitiveEqual<DeepRequired<T>, DeepRequired<TOther>> extends true
 			? true
 			: false
-	: false
+		: false
 
 
 type Resolve<T> = {

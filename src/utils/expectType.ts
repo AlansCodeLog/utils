@@ -35,11 +35,11 @@ export function expectType<
 	TOther,
 >(
 	_expected:
-		TOp extends OpAssignableTo
+	TOp extends OpAssignableTo
 		? IsAssignable<T, TOther>
 		: TOp extends OpEqual
-		? IsEqual<T, TOther>
-		: never,
+			? IsEqual<T, TOther>
+			: never,
 ): void { }
 
 type OpAssignableTo = "assignableTo" | "==>"

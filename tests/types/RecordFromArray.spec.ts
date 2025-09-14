@@ -5,33 +5,33 @@ import { expectType } from "../../src/utils/expectType.js"
 
 
 it("words with types", () => {
-		type Arr = [{ id: "a" }, { id: "b" }]
-		type Entries = RecordFromArray<Arr, "id">
-		expectType<Entries["a"]["id"], "===", string>(true)
-		expectType<Entries, "===", {
-			a: { id: string }
-			b: { id: string }
-		}>(true)
+	type Arr = [{ id: "a" }, { id: "b" }]
+	type Entries = RecordFromArray<Arr, "id">
+	expectType<Entries["a"]["id"], "===", string>(true)
+	expectType<Entries, "===", {
+		a: { id: string }
+		b: { id: string }
+	}>(true)
 })
 
 it("works with overrides", () => {
-		type Arr = [{ id: "a" }, { id: "b" }]
-		type Entries = RecordFromArray<Arr, "id", { other: string }>
-		expectType<Entries["a"], "===", { id: string, other: string }>(true)
-		expectType<Entries, "===", {
-			a: { id: string, other: string }
-			b: { id: string, other: string }
-		}>(true)
+	type Arr = [{ id: "a" }, { id: "b" }]
+	type Entries = RecordFromArray<Arr, "id", { other: string }>
+	expectType<Entries["a"], "===", { id: string, other: string }>(true)
+	expectType<Entries, "===", {
+		a: { id: string, other: string }
+		b: { id: string, other: string }
+	}>(true)
 })
 
 it("incorrect override has no effect", () => {
-		type Arr = [{ id: "a" }, { id: "b" }]
-		type Entries = RecordFromArray<Arr, "id", { other: string, id: number }>
-		expectType<Entries["a"], "===", { id: string, other: string }>(true)
-		expectType<Entries, "===", {
-			a: { id: string, other: string }
-			b: { id: string, other: string }
-		}>(true)
+	type Arr = [{ id: "a" }, { id: "b" }]
+	type Entries = RecordFromArray<Arr, "id", { other: string, id: number }>
+	expectType<Entries["a"], "===", { id: string, other: string }>(true)
+	expectType<Entries, "===", {
+		a: { id: string, other: string }
+		b: { id: string, other: string }
+	}>(true)
 })
 
 it("works with classes", () => {

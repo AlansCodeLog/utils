@@ -16,7 +16,7 @@
  */
 export type ExtractByValue<TObj, TValType> = {
 	[K in keyof TObj]: TObj[K] extends TValType
-	? K
-	: never
+		? K
+		: never
 }[keyof TObj]
 

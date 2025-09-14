@@ -61,7 +61,7 @@ class ErrResultImpl<TErr extends Error = Error> extends ResultBase<never, TErr> 
  * ```ts
  * import { type Result, Ok, Err } from "@alanscodelog/utils"
  *
- * // or import * as Result from "@alanscodelog/utils/Result.js"
+ * // or import * as Result from "@alanscodelog/utils/Result"
  * // to be able to do Result.Ok and Result.Err
  * // but you'll have to use Result.Result or Result.Type for the type
  *

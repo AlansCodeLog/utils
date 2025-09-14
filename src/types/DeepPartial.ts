@@ -4,6 +4,6 @@ export type DeepPartial<T> = {
 	T[P] extends (infer U)[]
 		? DeepPartial<U>[]
 		: T[P] extends object
-		? DeepPartial<T[P]>
-		: T[P]
+			? DeepPartial<T[P]>
+			: T[P]
 }

@@ -68,9 +68,9 @@ export function multisplice<
 		insert?: TInsert
 	} = {},
 ): {
-		removed: Mutable<TArray>
-		array: Mutable<TArray>
-	} {
+	removed: Mutable<TArray>
+	array: Mutable<TArray>
+} {
 	if (typeof indexes === "number") indexes = [indexes]
 
 	const arr = array as any[]

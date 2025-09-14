@@ -10,7 +10,7 @@ export type Keys<
 	TKey extends string | number | symbol = string | number | symbol,
 > =
 	T extends any[]
-	? number[]
-	: T extends Record<any, any>
-	? Extract<keyof T, TKey>[]
-	: (keyof T)[]
+		? number[]
+		: T extends Record<any, any>
+			? Extract<keyof T, TKey>[]
+			: (keyof T)[]

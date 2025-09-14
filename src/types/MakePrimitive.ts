@@ -10,18 +10,18 @@
  */
 export type MakePrimitive<T, TIgnoreBooleans extends boolean = false> =
 	T extends string
-	? string
-	: T extends number
-	? number
-	: T extends symbol
-	? symbol
-	: T extends boolean
-	? (TIgnoreBooleans extends true
-		? T
-		: T extends true
-		? boolean
-		: T extends false
-		? boolean
-		: never
-	)
-	: never
+		? string
+		: T extends number
+			? number
+			: T extends symbol
+				? symbol
+				: T extends boolean
+					? (TIgnoreBooleans extends true
+						? T
+						: T extends true
+							? boolean
+							: T extends false
+								? boolean
+								: never
+					)
+					: never

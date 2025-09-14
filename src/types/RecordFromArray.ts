@@ -77,17 +77,17 @@ export type RecordFromArray<
 	TValue extends Record<TKey, any> = T[number],
 > = {
 	[K in TValue[TKey]]:
-		TValue extends Record<TKey, K>
+	TValue extends Record<TKey, K>
 		? {
 			[KV in keyof TValue]:
-				KV extends TKey
-					? MakePrimitive<TValue[KV]>
-					: TValue[KV]
+			KV extends TKey
+				? MakePrimitive<TValue[KV]>
+				: TValue[KV]
 		} & {
 			[KE in keyof TExtra]:
-				KE extends TKey
-					? MakePrimitive<TValue[KE]>
-					: TExtra[KE]
+			KE extends TKey
+				? MakePrimitive<TValue[KE]>
+				: TExtra[KE]
 		}
 		: never
 }

@@ -37,9 +37,9 @@ export function run(
 	/** A callback for the combined `stdout` and `stderr` streams. */
 	cb?: (chunk: string) => void,
 ): {
-		promise: Promise<string>
-		child: ChildProcessWithoutNullStreams | ChildProcess
-	} {
+	promise: Promise<string>
+	child: ChildProcessWithoutNullStreams | ChildProcess
+} {
 	let child!: ChildProcessWithoutNullStreams | ChildProcess
 
 	const promise = (async () => {
