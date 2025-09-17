@@ -33,7 +33,7 @@
 	"scripts": {
 		"build": "vite build",
 		"build:watch": "vite build --mode development --watch",
-		"lint:eslint": "eslint \"{src,tests}/**/*.{js,ts}\" \"*.{cjs,js,ts}\" --max-warnings=2 --report-unused-disable-directives",
+		"lint:eslint": "eslint \"{src,tests}/**/*.{js,ts}\" \"*.{cjs,js,ts}\" --report-unused-disable-directives",
 		"lint:types": "tsc --noEmit --pretty",
 		"lint:commits": "commitlint --from-last-tag --to HEAD --verbose",
 		"lint:imports": "madge --circular --extensions ts ./src",
