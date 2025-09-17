@@ -1,4 +1,9 @@
 import type { DeepRequired } from "./DeepRequired.js"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { IsAssignable } from "./IsAssignable.js"
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { expectType } from "../utils/expectType.js"
 
 
 type PrimitiveEqual<T, TOther> = [T] extends [TOther] ? [TOther] extends [T] ? true : false : false

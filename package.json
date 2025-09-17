@@ -43,7 +43,7 @@
 		"test": "vitest run",
 		"test:watch": "vitest --watch",
 		"test:inspect-errors": "cross-env INSPECT_ERRORS=true pnpm test",
-		"doc": "typedoc --options typedoc.config.cjs",
+		"doc": "typedoc --options typedoc.config.js",
 		"doc:watch": "onchange -i \"src/**/*.ts\" \"typedoc.config.cjs\" -- pnpm doc",
 		"doc:serve": "http-server docs --port=5001",
 		"doc:dev": "concurrently \"pnpm doc:watch\" \"pnpm doc:serve\"",
@@ -71,7 +71,7 @@
 		"madge": "^8.0.0",
 		"onchange": "^7.1.0",
 		"semantic-release": "^24.2.7",
-		"typedoc": "0.28.11",
+		"typedoc": "0.28.13",
 		"typescript": "^5.9.2",
 		"vite": "^7.1.3",
 		"vitest": "^3.2.4"

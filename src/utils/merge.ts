@@ -5,9 +5,10 @@ import { isObject } from "./isObject.js"
 import { isPlainObject } from "./isPlainObject.js"
 import { isPrimitive } from "./isPrimitive.js"
 import { keys as keysOf } from "./keys.js"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { override } from "./override.js"
 import { pretty } from "./pretty.js"
 import { pushIfNotIn } from "./pushIfNotIn.js"
-
 
 /**
  * Basic object merger (does not handle Maps, Sets, class instances, etc). Merges like lodash merge* except arrays are not merged position by position, they're just combined. For arrays that just override the existing key use {@link override}

@@ -1,5 +1,7 @@
 import { isPlainObject } from "./isPlainObject.js"
 import { keys as keysOf } from "./keys.js"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { merge } from "./merge.js"
 import { pushIfNotIn } from "./pushIfNotIn.js"
 
 

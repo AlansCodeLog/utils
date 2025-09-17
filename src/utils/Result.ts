@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { TypedError } from "./TypedError.js"
 /* eslint-disable @typescript-eslint/naming-convention */
 
 

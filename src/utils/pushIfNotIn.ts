@@ -1,4 +1,6 @@
 import { isArray } from "./isArray.js"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { union } from "./union.js"
 
 /**
  * Pushes all the items passed to the first array if it doesn't already contain them.

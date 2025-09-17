@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { inspectError } from "./inspectError.js"
 /**
  * Similar to {@link inspectError}, but returns the error instead and throws if the function does not throw.
  *

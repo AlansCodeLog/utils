@@ -1,3 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { ExpandClassRecord } from "./ExpandClassRecord.ts"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { RecordFromArray } from "./RecordFromArray.ts"
 /**
  * Expands a record type. By default expands the record to accept any string key.
  *

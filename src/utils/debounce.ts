@@ -1,4 +1,6 @@
 import { castType } from "./castType.js"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { isDebouncedResult } from "./isDebouncedResult.js"
 
 import { getQueueKey } from "../internal/getQueueKey.js"
 import type { AnyFunction, AnyPromise, AnyTimer } from "../types/index.js"
