@@ -9,3 +9,5 @@ todo.md
 dist
 !flake.lock
 .direnv
+.devenv/
+.direnv/
